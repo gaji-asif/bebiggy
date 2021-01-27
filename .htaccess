@@ -1,0 +1,13 @@
+RewriteEngine on
+#RewriteBase /demo/mybay/
+RewriteCond $1 !^(index\.php|assets|images|js|css|uploads|SCRIPT|install|update|favicon.png|info.php)
+RewriteCond %(REQUEST_FILENAME) !-f
+RewriteCond %(REQUEST_FILENAME) !-d
+RewriteRule ^(.*)$ ./index.php/$1 [L]
+
+#chane php ini setting file
+php_value memory_limit 			1024M
+php_value upload_max_filesize 	1024M
+php_value post_max_size 		1024M
+php_value max_execution_time 	10000
+php_value max_input_time 		5000
