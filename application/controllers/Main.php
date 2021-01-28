@@ -2506,11 +2506,12 @@ class Main extends CI_Controller
 
 
 		$datac['heading'] = "shopify-dropship-websites-for-sale";
-		$datac['pageName'] = "product-category-shopify-dropship-websites-for-sale";
+		// $datac['pageName'] = "product-category-shopify-dropship-websites-for-sale";
+		$datac['pageName'] = "";
 		$datac['url'] = site_url("product-category/shopify-dropship-websites-for-sale");
+		$datac['condition'] = 'category_id = "1" ';
 		// $datac['condition'] = "frontend_section = 'feature'";
 		$data = $this->commonListing($datac);
-
 
 
 		$data['site_name'] 				= $this->lang->line('site_name');
@@ -2545,9 +2546,11 @@ class Main extends CI_Controller
 
 
 		$datac['heading'] = "site_websites_premium";
-		$datac['pageName'] = "product-category-shopify-premium-dropship-websites-for-sale";
+		//  $datac['pageName'] = "product-category-shopify-premium-dropship-websites-for-sale";
+		 $datac['pageName'] = "";
 		$datac['url'] = site_url("product-category/shopify-premium-dropship-websites-for-sale");
 		// $datac['condition'] = 'frontend_section = "premium" ';
+		$datac['condition'] = 'category_id = "2" ';
 		$data = $this->commonListing($datac);
 
 		$data['site_name'] 				= $this->lang->line('site_name');
@@ -2579,9 +2582,11 @@ class Main extends CI_Controller
 
 
 		$datac['heading'] = "site_websites_latest";
-		$datac['pageName'] = "product-category-shopify-latest-dropship-websites-for-sale";
+		// $datac['pageName'] = "product-category-shopify-latest-dropship-websites-for-sale";
+		$datac['pageName'] = "";
 		// product-category-shopify-latest-dropship-websites-for-sale
 		$datac['url'] = site_url("product-category/shopify-latest-dropship-websites-for-sale");
+		$datac['condition'] = 'service_type_id = "1" ';
 		//$datac['condition'] = 'frontend_section = "latest" ';
 		$data = $this->commonListing($datac);
 
@@ -2759,6 +2764,7 @@ class Main extends CI_Controller
 			'#solution'
 		);
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+		
 		return $data;
 	}
 
@@ -2847,8 +2853,10 @@ class Main extends CI_Controller
 
 		$datac['heading'] 	=	"home_decore_websites";
 		$datac['pageName'] 	= 	 "starter-websites-for-sale-home-decor";
-		$datac['detailed_url'] = "";
+		// $datac['pageName'] 	= 	 "";
+		$datac['detailed_url'] = "product-category/home-decor";
 		$datac['url'] =  '';
+		// $datac['condition'] = 'service_type_id = "1" ';
 
 		$data = $this->commonListing($datac);
 
@@ -2999,7 +3007,9 @@ class Main extends CI_Controller
 	{
 
 		$datac['heading'] = "fashion_website";
-		$datac['pageName'] = "product-category-fashion";
+		// $datac['pageName'] = "product-category-fashion";
+		$datac['pageName'] = "";
+		$datac['condition'] = 'sub_category_id = "13" or sub_category_id = "3"';
 		$datac['url'] =  site_url("product-category/fashion");
 		$data = $this->commonListing($datac);
 
@@ -3196,7 +3206,10 @@ class Main extends CI_Controller
 	{
 
 		$datac['heading'] 	= "home-decor";
-		$datac['pageName'] 	= "product-category-home-decor";
+		$datac['pageName'] 	= "";
+		// $datac['pageName'] 	= "product-category-home-decor";
+
+		$datac['condition'] = 'sub_category_id = "16" or sub_category_id = "6"';
 		$datac['url'] 		= site_url("product-category/home-decor");
 		$data = $this->commonListing($datac);
 

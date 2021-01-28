@@ -1,4 +1,4 @@
-<section class="offer-area">
+<!-- <section class="offer-area">
     <div class="container limited_offer_a">
         <div class="row">
             <div class="col-12">
@@ -9,7 +9,7 @@
         </div>
 
     </div>
-</section>
+</section> -->
 <section class="auth-area login_page_section_a">
     <div class="container-fluid">
         <div class="container">

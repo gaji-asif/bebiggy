@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/authorizenet" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/gocardless" />
+      <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/common" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/netbanx" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/netaxept" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/mollie" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/buckaroo" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/sagepay" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/manual" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/migs" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/stripe" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/coinbase" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/dummy" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/payflow" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/targetpay" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/paypal" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/paymentexpress" />
+      <path value="$PROJECT_DIR$/vendor/mailchimp/marketing" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/securepay" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/worldpay" />
+      <path value="$PROJECT_DIR$/vendor/ircmaxell/password-compat" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/2checkout" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/multisafepay" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/eway" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/cardsave" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/payfast" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php54" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/firstdata" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/omnipay/pin" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php55" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+    </include_path>
+  </component>
+</project>

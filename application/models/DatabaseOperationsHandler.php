@@ -2612,6 +2612,7 @@ class DatabaseOperationsHandler extends CI_Model
 
 
         if (!empty($condition)) {
+     
             $this->db->where($condition);
         }
         if (!empty($pageName)) {
@@ -2624,6 +2625,7 @@ class DatabaseOperationsHandler extends CI_Model
 
         //, s3.name as website_thumbnail'--$this->db->join('tbl_solution_media s3', 's1.id = s3.solution_id', 'left');
 
+       
         $this->db->where('s1.status <>', '9');
         $this->db->where('s1.sponsorship_priority <>', '4');
 

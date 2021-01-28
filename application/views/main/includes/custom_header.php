@@ -365,14 +365,16 @@
 			</div>
 		</div>
 	</div>
-	   <?php if(isset($text_below_main_menu)) {?>
+	<?php 
+	$dev_text_below_main_menu = fileCache("text_below_main_menu", "",  "get");
+	if(isset($dev_text_below_main_menu)) {?>
     <div class="mobile_menu">
         <div class="row header_before_banner mobile_table">
             <div class="container p-0">
                 <div class="col-sm-12">
 
                     <div class="text_herder_getnow">
-                        <p><?php echo substr($text_below_main_menu,0,75);?>
+                        <p><?php echo substr($dev_text_below_main_menu,0,75);?>
                             <!-- <span><a href="#" class="get_now">GET NOW <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></span> -->
                         </p>
                     </div>
@@ -385,8 +387,9 @@
             <div class="container p-0">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="text_herder_getnow">
-                            <p><?php echo substr($text_below_main_menu,0,75);?>
+                        <div class="text_herder_getnow" style="text-align:center" >
+                            <p>
+							<?php echo substr($dev_text_below_main_menu,0,75);?>
                                 <!-- <span><a href="#" class="get_now">GET NOW <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></span> -->
                             </p>
                         </div>
@@ -395,6 +398,6 @@
             </div>
         </div>
     </div>
-    <?php } ?>
+    <?php } ?> 
 
 </header>
