@@ -184,14 +184,15 @@ define(
                 'product-category/toys'                                         => 'toys',
                 'product-category/travel'                                       => 'travel'
             ],
-            'product-category/ecommerce-business' => 'Profitable Ecommerce Business',
+            // 'product-category/ecommerce-business' => 'Profitable Ecommerce Business',
+             'product-category/exclusive-shopify-dropship-stores-for-sale' => 'Exclusive Shopify Dropship Stores for Sale',
         ],
         'dropshipping'  => [
             'dropshipping'                          => 'dropshipping',
             'dropshipping-products'                 => 'WINNING PRODUCTS',
             'dropshipping-websites'                 => 'DROPSHIPPING WEBSITES',
             'shopify-stores-for-sale'               => 'Shopify Stores',
-            'product-category/ecommerce-business'   => 'PROFITABLE ECOMMERCE BUSINESS',
+            // 'product-category/ecommerce-business'   => 'PROFITABLE ECOMMERCE BUSINESS',
         ],
         'learn'         => [
             'course'            => 'learn',
@@ -512,7 +513,7 @@ define("MAILCHIMP_KEY", "c206ea96def4eb579f1b7deeef8474e4");
 define("MAILCHIMP_SERVER", "us2");
 
 // show text length in desceription of all products
-define('text_lenght_front', 200);
+define('text_lenght_front', 300);
 // show section wise image
 define('SECTION_WISE', 4);
 

@@ -132,18 +132,18 @@ if (!empty($listing_data)) {
     <!-- Button -->
     <div class="btn buy_nowbtn h-auto listing_type_btn_a this_products_belongs_a single_page_width_auto_a">
         <!-- logged in user to view demo website/domain -->
-        <a href="<?php if (!empty($listing_data['solution_url'])) echo  $listing_data['solution_url']; ?> " class="white d-flex align-items-center  "><span>View Demo</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
+        <a target="_blank" href="<?php if (!empty($listing_data['solution_url'])) echo  $listing_data['solution_url']; ?> " class="white d-flex align-items-center  "><span>View Demo</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
     </div>
 <?php } else if (empty($listing_data['user_permission']['view-demo']) &&  !empty($this->session->userdata('user_id'))) { ?>
     <!-- Logged-in without permission -->
     <div class="btn buy_nowbtn h-auto listing_type_btn_a this_products_belongs_a single_page_width_auto_a">
-        <a href="javascript:void(0)" class="white d-flex align-items-center" id='upgradePlan'> <span>View Demo</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i> </a>
+        <a  href="javascript:void(0)" class="white d-flex align-items-center" id='upgradePlan'> <span>View Demo</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i> </a>
     </div>
 <?php
 } else if (empty($listing_data['user_permission']['view-demo']) &&  empty($this->session->userdata('user_id'))) { ?>
     <!-- Without login to view demo website/domain -->
     <div class="btn buy_nowbtn h-auto listing_type_btn_a this_products_belongs_a single_page_width_auto_a">
-        <a href="#small-dialog-4" class="white d-flex align-items-center  popup-with-zoom-anim "><span>View Demo</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
+        <a  href="#small-dialog-4" class="white d-flex align-items-center  popup-with-zoom-anim "><span>View Demo</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
     </div>
 <?php } ?>
 
@@ -231,5 +231,85 @@ if (!empty($listing_data)) {
     </section>
 <?php
 } ?>
+<?php if (!empty($listing_data['user_permission']['contact-seller'])) {  ?>
+    <div id="small-dialog-4" class="zoom-anim-dialog  dialog-with-tabs">
+	<!--Tabs -->
+	<div class="sign-in-form">
 
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab2">Send Message</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab2">
+
+				<!-- Avatar -->
+				<a href="#"><img src="<?php if (isset($ownerData[0]['thumbnail'])) echo base_url() . USER_UPLOAD . $ownerData[0]['thumbnail']; ?>" alt="" class="msgavatar centerButtons"></a>
+
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Direct Message <?php if (isset($ownerData[0]['firstname'])) echo 'To ' . $ownerData[0]['firstname']; ?> <?php if (isset($ownerData[0]['lastname'])) echo $ownerData[0]['lastname']; ?></h3>
+				</div>
+
+				<!-- Form -->
+				<form name="msgOwnerForm" class="msgOwnerForm" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="owner_id" class="owner_id" value="<?php if (isset($ownerData[0]['user_id'])) echo $ownerData[0]['user_id']; ?>">
+					<textarea name="txt_msg" class="txt_msg" cols="10" placeholder="Message" class="with-border" required></textarea>
+
+					<!-- Button -->
+					<div id="validationMsg"></div>
+					<button class="button full-width button-sliding-icon ripple-effect" type="submit">Send <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<?php  } else if (empty($this->session->userdata('user_id') && empty($listing_data['user_permission']['contact-seller']))) { ?>
+    <div id="small-dialog-4" class="zoom-anim-dialog  dialog-with-tabs">
+	<!--Tabs -->
+	<div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab2">Send Message</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab2">
+
+				<!-- Avatar -->
+				<a href="#"><img src="<?php if (isset($ownerData[0]['thumbnail'])) echo base_url() . USER_UPLOAD . $ownerData[0]['thumbnail']; ?>" alt="" class="msgavatar centerButtons"></a>
+
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Direct Message <?php if (isset($ownerData[0]['firstname'])) echo 'To ' . $ownerData[0]['firstname']; ?> <?php if (isset($ownerData[0]['lastname'])) echo $ownerData[0]['lastname']; ?></h3>
+				</div>
+
+				<!-- Form -->
+				<form name="msgOwnerForm" class="msgOwnerForm" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="owner_id" class="owner_id" value="<?php if (isset($ownerData[0]['user_id'])) echo $ownerData[0]['user_id']; ?>">
+					<textarea name="txt_msg" class="txt_msg" cols="10" placeholder="Message" class="with-border" required></textarea>
+
+					<!-- Button -->
+					<div id="validationMsg"></div>
+					<button class="button full-width button-sliding-icon ripple-effect" type="submit">Send <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<?php } ?>
 <?php $this->load->view('main/includes/models'); ?>

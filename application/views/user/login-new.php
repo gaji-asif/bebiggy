@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-12">
                 Limited Time Offer: 50% OFF & Buy 1 Get 1 Free. 
-                <!-- <a href="#">Get Now <i
-                        class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+
             </div>
         </div>
 

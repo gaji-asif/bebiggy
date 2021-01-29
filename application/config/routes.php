@@ -220,6 +220,11 @@ $route['product-category/shopify-dropship-websites-for-sale/(:any)']            
 $route['product-category/shopify-premium-dropship-websites-for-sale']   =   'main/websitesForPremiumSale';
 $route['product-category/shopify-premium-dropship-websites-for-sale/(:any)']   =   'main/websitesForPremiumSale/$1';
 
+
+$route['product-category/exclusive-shopify-dropship-stores-for-sale']   =   'main/websitesForExclusiveSale';
+$route['product-category/exclusive-shopify-dropship-stores-for-sale/(:any)']   =   'main/websitesForExclusiveSale/$1';
+
+
 $route['product-category/shopify-latest-dropship-websites-for-sale']   =   'main/websitesForLatestSale';
 $route['product-category/shopify-latest-dropship-websites-for-sale/(:any)']   =   'main/websitesForLatestSale/$1';
 

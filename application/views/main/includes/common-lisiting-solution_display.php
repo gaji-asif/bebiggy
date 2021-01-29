@@ -100,7 +100,9 @@ foreach ($common_listing as $ad) {
 								<!-- login to view demo website/domain -->
 								<a target="_blank" href="<?php if (!empty($ad['solution_url'])) echo  $ad['solution_url']; ?> " class="view_demo  ripple-effect move-on-hover">View Demo</a>
 
-							<?php } else if (empty($common_listing['user_permission']['view-demo'] && !empty($this->session->userdata('user_id')))) { ?>
+							<?php } 
+							
+							else if (empty($common_listing['user_permission']['view-demo'] && !empty($this->session->userdata('user_id')))) { ?>
 								<!-- Logged-In user without permssion view demo -->
 								<a  href="javascript:void(0)" class="view_demo  ripple-effect move-on-hover" id='upgradePlan'> View Demo</a>
 						<?php }

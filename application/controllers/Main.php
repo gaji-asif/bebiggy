@@ -2569,6 +2569,31 @@ class Main extends CI_Controller
 		$this->loadPage('websites-for-premium_sale', $data);
 	}
 
+	public function websitesForExclusiveSale($page = 0)
+	{
+		$datac['heading'] = "site_websites_exclusive";
+		//  $datac['pageName'] = "product-category-shopify-premium-dropship-websites-for-sale";
+		$datac['pageName'] = "";
+		$datac['url'] = site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
+		// $datac['condition'] = 'frontend_section = "premium" ';
+		$datac['condition'] = 'category_id = "39" ';
+		$data = $this->commonListing($datac);
+
+		$data['site_name'] 				= $this->lang->line('site_name');
+		$data['site_title'] 			= $this->lang->line('websitesForExclusiveSale_site_title');
+		$data['site_metadescription'] 	= $this->lang->line('websitesForExclusiveSale_site_metadescription');
+		$data['site_keywords'] 			= $this->lang->line('websitesForExclusiveSale_site_keywords');
+		$data['canonical']              = $this->lang->line('websitesForExclusiveSale_canonical');
+		$data['og_type']                = $this->lang->line('websitesForExclusiveSale_og_type');
+		$data['og_title']               = $this->lang->line('websitesForExclusiveSale_og_title');
+		$data['og_description']         = $this->lang->line('websitesForExclusiveSale_og_description');
+		$data['og_url']                 = $this->lang->line('websitesForExclusiveSale_og_url');
+		$data['og_site_name']           = $this->lang->line('websitesForExclusiveSale_og_site_name');
+		$data['twitter_description']    = $this->lang->line('websitesForExclusiveSale_site_name');
+		$data['twitter_title']          = $this->lang->line('websitesForExclusiveSale_twitter_description');
+
+		$this->loadPage('websites-for-exclusive_sale', $data);
+	}
 	public function websitesForLatestSale($page = 0)
 	{
 		// $data = self::$data;
@@ -2656,6 +2681,7 @@ class Main extends CI_Controller
 		$pageName = PAGESNAME_SECTION["dropshipping_feature"];
 		$data['featuredWebsite']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
 
+	
 
 		//BUY PREMIUM SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["dropshipping_premium"];
@@ -2680,6 +2706,7 @@ class Main extends CI_Controller
 		$data['twitter_description']    = $this->lang->line('dropShipping_site_name');
 		$data['twitter_title']          = $this->lang->line('dropShipping_twitter_description');
 
+	
 		$this->loadPage('drop-shipping', $data);
 	}
 
@@ -3281,7 +3308,7 @@ class Main extends CI_Controller
 		// Buy Featured Premium Shopify Dropship Stores & Ecommerce Websites for sale
 		$pageName = PAGESNAME_SECTION["dropshipping-websites-feature"];
 		$data['featuredWebsite'] = $this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
-
+		$data['featuredWebsite']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 
 		//BUY PREMIUM SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["dropshipping-websites-premium"];
@@ -3328,15 +3355,18 @@ class Main extends CI_Controller
 		// Buy Featured Premium Shopify Dropship Stores & Ecommerce Websites for sale
 		$pageName = PAGESNAME_SECTION["shopify-stores-for-sale-feature"];
 		$data['featuredWebsite']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
+		$data['featuredWebsite']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 
 
 		//BUY PREMIUM SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["shopify-stores-for-sale-premium"];
 		$data['premiumWebsites']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
+		$data['premiumWebsites']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 
 		//BUY LATEST SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["shopify-stores-for-sale-latest"];
 		$data['latestWebsites']	=		$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
+		$data['latestWebsites']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 
 
 		$data['site_name'] 				= $this->lang->line('site_name');

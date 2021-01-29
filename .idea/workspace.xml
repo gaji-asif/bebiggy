@@ -20,24 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8fdb548-e171-45be-a4ee-0eefa4c6b921" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bebiggy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/admin_101" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/user_101" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/user_101_permission" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/cache/admin_101" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/admin_101" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/cache/user_101" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/user_101" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/cache/user_101_permission" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/user_101_permission" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/cache/user__permission" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/user__permission" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/constants.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/main/includes/custom_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/includes/custom_header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/main/includes/common-lisiting-solution_display.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/includes/common-lisiting-solution_display.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/main/single-static-item-solution.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/single-static-item-solution.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/user/login-new.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/login-new.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/custom_responsive_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/custom_responsive_style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -115,6 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1611778585839</updated>
       <workItem from="1611778586969" duration="1561000" />
+      <workItem from="1611917553646" duration="811000" />
     </task>
     <servers />
   </component>
@@ -131,6 +133,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1174" y="130" key="SettingsEditor" timestamp="1611780755953">
