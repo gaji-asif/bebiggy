@@ -207,8 +207,16 @@ define(
             'faq-3/what-is-drop-shipping'               => 'What is Drop Shipping',
         ],        
         'contact-us' => 'contact us',
-        '/' => 'home',
         //'solution'      =>  'Solution',
+    ]
+);
+define(
+    'CUSTOME_MAIN_MENU',
+    [
+        '/chat' => 'Messages',
+        '/user/manage_offers' => 'Listings',
+        '/user/pending_offers' => 'Offers',
+        '/user/dashboard' => 'Dashboard',
     ]
 );
 

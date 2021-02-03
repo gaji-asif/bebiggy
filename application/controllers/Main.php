@@ -122,7 +122,7 @@ class Main extends CI_Controller
 		$perPage =  SECTION_WISE;
 		$page = $this->input->get('page') ?? 1;
 		$searchterm = $this->input->get('search') ?? "";
-
+		
 		// Buy Featured Premium Shopify Dropship Stores & Ecommerce Websites for sale
 		$pageName = PAGESNAME_SECTION['home_feature'];
 		$data['featuredWebsite']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
@@ -786,6 +786,7 @@ class Main extends CI_Controller
 	/*search page*/
 	public function search($type = '', $page = 0, $searchterm = '')
 	{
+
 		$arr = '';
 		$data = self::$data;
 		if (!empty($this->input->post('searchterm')) || !empty($this->input->post('listing_type'))) {
@@ -2256,6 +2257,7 @@ class Main extends CI_Controller
 		$perPage =  RESULTS_PER_SEARCH;
 		$pageName = "";
 		$searchterm = $this->input->get('search') ?? "";
+	
 		$data['heading'] = "site_domains";
 		$url =  site_url("domains");
 		$data['commonData']	=	$this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('tbl_listings.listing_type' => 'domain'), 'app', $pageName, $page, $searchterm);

@@ -119,7 +119,13 @@
         $(this).addClass("active");
    
         })
+        
 });
+// function myFunction(x) {
+//         x.classList.toggle("change");
+//         $('.table_menu').toggle('hide');
+//     }
+   
 </script>
 
 <?php

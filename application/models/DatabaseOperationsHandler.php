@@ -1322,8 +1322,10 @@ class DatabaseOperationsHandler extends CI_Model
     {
         if ($void === 'all') {
             $data['platforms']   =   $this->_get_activated_platforms('');
+            
         } else {
             $data['platforms']   =   $this->_get_activated_platforms($void);
+           
         }
 
         $data['options']     =   $this->_get_row_data('tbl_platforms', array('type' => 'option', 'status' => 1));

@@ -1362,6 +1362,7 @@ class Common extends CI_Controller
             $data = array(
                 'firstname' => $this->input->post('firstname'),
                 'lastname' => $this->input->post('lastname'),
+                'email' => $this->input->post('email'),
                 'thumbnail' => $thumbnail,
                 'user_metadescription' => $this->input->post('user_metadescription'),
                 'user_description' => $this->input->post('user_description'),

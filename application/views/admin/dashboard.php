@@ -78,7 +78,7 @@
 								<div class="col-md-12">
 									<?php if (count($disputes) > 0) { ?>
 										<div class="alert alert-info">
-											<a href="#"><?php echo count($disputes) ?></a> Disputes waiting for review
+											<a href="<?php echo base_url()?>admin/manage_disputes/"><?php echo count($disputes) ?></a> Disputes waiting for review
 										</div>
 									<?php } ?>
 								</div>

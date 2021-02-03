@@ -136,7 +136,7 @@
 										<div class="col-xl-6">
 											<div class="submit-field">
 												<h5>Email</h5>
-												<input type="email" class="with-border" value="<?php if(isset($userdata[0]['email'])) echo $userdata[0]['email']; ?>" readonly="true">
+												<input type="email" name="email" class="with-border" value="<?php if(isset($userdata[0]['email'])) echo $userdata[0]['email']; ?>">
 											</div>
 										</div>
 

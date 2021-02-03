@@ -1,3 +1,10 @@
+<style>
+	.custome-height{
+		height: 220px;
+	}
+	
+</style>
+
 <?php
 // pre($common_listing , 1); 
 /*$m  = 0 ;*/
@@ -11,7 +18,7 @@ foreach ($common_listing as $ad) {
 // pre($ad , 1);
 	if (!empty($ad['id'])) {
 ?>
-		<div class="row first_div dropshipping_products_a mb-3 p-4 shadow clearfix <?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] != 1) echo "sponsership_bgcolor" ?>">
+		<div  class="row first_div dropshipping_products_a mb-3 p-4 shadow clearfix  <?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] != 1) echo "sponsership_bgcolor" ?>">
 			<?php 
 				$show_image = 0;
 				if (!empty($ad['listing_header_priority']) && $ad['listing_header_priority'] != 1) {
@@ -26,8 +33,7 @@ foreach ($common_listing as $ad) {
 						}
 					}
 				}?>
-				<?php 
-				if($show_image === 1):	?>
+				<?php if($show_image === 1):?>
 				<div class="col-md-3 col-sm-12 image_div">					
 					<img src="<?php echo $img_url; ?>" class="rounded">					
 				</div>
@@ -70,20 +76,23 @@ foreach ($common_listing as $ad) {
 
 				if ($d_date > $p_date) $url_proudct = SOLUTION_DETAILS_URL[0];
 				else $url_proudct = SOLUTION_DETAILS_URL[1] ?>
-			<div class="<?php echo $show_image === 1 ? 'col-md-6': 'col-md-9'?> col-sm-12 title_withbtn">
+			<div class="<?php echo $show_image === 1 ? 'col-md-6 custome-height': 'col-md-9'?> col-sm-12 title_withbtn">
 				<a href="<?php echo base_url() . "$url_proudct/" . $ad['slug'];  ?>"><h4 <?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 1) {
 							echo "class='title_unboald'";
 						} ?>>
 				<?php if (isset($ad['sponsorship_priority']) && $ad['sponsorship_priority']  == 4) { ?>
 							<span class="sponsored">Sponsored
-								<i class="help-icon" data-tippy-placement="top" title="This is Ad as per your search">
-									<i class="fa fa-info-circle sponsored"></i>
-								</i>
+							
+							<?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 3){ echo "Premium";} ?>
 							</span>
 							<br>
-						<?php  } ?>	
-				<?php if (isset($ad['website_BusinessName'])) echo $ad['website_BusinessName']; 	if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 3)
-								echo " (Premium) "; ?></h4></a>
+						<?php  } else if(isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 3) {?>	
+							<span class="sponsored">Premium
+							
+							</span>
+							<br>
+							<?php }?>
+				<?php if (isset($ad['website_BusinessName'])) echo $ad['website_BusinessName']; ?></h4></a>
 
 				<div class='row px-0 py-2'>
 					<div class="col-md-6 col-sm-6 d-flex w-100 p-0">						
@@ -134,7 +143,7 @@ foreach ($common_listing as $ad) {
 									<span class="pricetext d-block">Price</span>
 									<?php if (!empty($ad['price'])) { ?>
 										<span class="price_text"><?php if (isset($default_currency)) echo $default_currency;
-																	else echo '$'; ?><?php if (isset($ad['price'])) echo number_format(floatval($ad['price']), 2);																																				else echo number_format(floatval($ad['price']), 2);  ?></span>
+											else echo '$'; ?><?php if (isset($ad['price'])) echo number_format(floatval($ad['price']), 2);																																				else echo number_format(floatval($ad['price']), 2);  ?></span>
 									<?php } ?>
 
 								</div>

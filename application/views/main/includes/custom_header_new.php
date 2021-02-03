@@ -1,4 +1,4 @@
-<header>
+
 	<div class="desktop_menu">
 		<div class="row header_custom py-1">
 			<div class="container p-0">
@@ -23,7 +23,7 @@
 								<span class="bar"></span>
 								<div class="form-group header_top_dropdown mr-sm-2">
 									<select class="form-control header_shopy_stores" name="opt">
-										<option selected value="all_marketplace" disabled>All Marketplace</option>
+										<option selected disabled>All Marketplace</option>
 										<?php foreach (SEARCH_OPTION as $key => $val) :  $select = "" ;?>
 											<?php if ($key == $opt) $select = 'selected'; ?>
 											<?php echo "<option value='$key' $select >";
@@ -323,57 +323,6 @@
 										<div class="dropdown-divider"></div>
 										<?php endif; ?>
 									<?php endforeach; ?>
-							
-						<?php foreach (CUSTOME_MAIN_MENU as $key => $val) : ?>
-										<?php if ($val != null && !empty($val) && is_array($val)) :  ?>
-
-											<li class="firstulli_li_a dropdown">
-												<div class="menu_li_a">
-													<a href="<?php echo site_url(@array_search($key, $val)) ?? '#' ?>"><?php if ($key == 'faq') echo strtoupper(strtolower($key));else echo ucwords(strtolower($key)); ?> </a>
-													<i class="fa fa-angle-down" aria-hidden="true"></i>
-												</div>	
-
-											<?php array_shift($val); ?>
-												<ul class="dropdown-menu">
-													<?php foreach ($val as $subKey => $subVal) :   ?>
-														<?php if ($subVal != null && !empty($subVal) && is_array($subVal)) :  ?>
-															<li class="dropdown dropdown-submenu second_levelli_a">
-																<div class="mobile_submenu_a">
-																	
-																<a href="<?php echo site_url(@array_search($subKey, $subVal)) ?? '#' ?>"><?php echo ucwords(strtolower($subKey)); ?></a>
-																<i class="fa fa-angle-down" aria-hidden="true"></i>
-																</div>
-																<ul class="dropdown-menu">
-																	<?php
-																	if (is_array($subVal)) :
-																		array_shift($subVal);
-																		foreach ($subVal as $sub_sub_key => $sub_sub_val) : ?>
-																			<li class="">
-																				<a class="" href="<?php echo site_url($sub_sub_key) ?? '#' ?>"><?php echo ucwords(strtolower($sub_sub_val)); ?></a>
-																			</li>
-																	<?php endforeach;
-																	endif; ?>
-																</ul>
-															</li>
-														<?php else : ?>
-															<li class="">
-																<a class="" href="<?php echo site_url($subKey) ?? '#' ?>">
-																	<?php if ($subVal == 'faq') echo strtoupper(strtolower($key));
-																	else echo ucwords(strtolower($subVal)); ?></a>
-															</li>
-														<?php endif; ?>
-													<?php endforeach; ?>
-
-												</ul>
-											</li>
-											<div class="dropdown-divider"></div>
-										<?php else : ?>
-											<li class="firstulli_li_a active">
-												<a href="<?php echo site_url($key); ?>"><?php echo ucwords($val); ?></a>
-											</li>
-										<div class="dropdown-divider"></div>
-										<?php endif; ?>
-									<?php endforeach; ?>
 						<?php if (defined('MAIN_HEAD_MENU') != null && !empty(defined('MAIN_HEAD_MENU'))) :  ?>
 							<?php foreach (MAIN_HEAD_MENU as $key => $val) : ?>
 								<?php if ($val != null && !empty($val) && is_array($val)) :  ?>
@@ -443,7 +392,7 @@
 								<span class="bar"></span>
 								<div class="form-group header_top_dropdown mr-sm-2">
 									<select class="form-control header_shopy_stores" name="opt">
-										<option selected  value="all_marketplace" disabled>All Marketplace</option>
+										<option selected disabled>All Marketplace</option>
 										<?php foreach (SEARCH_OPTION as $key => $val) : $select = "";?>
 											<?php if ($key == $opt) $select = 'selected'; ?>
 											<?php echo "<option value='$key' $select >";
@@ -496,4 +445,3 @@
     </div>
     <?php } ?> 
 
-</header>
