@@ -509,7 +509,7 @@ class DatabaseOperationsHandler extends CI_Model
     public function _unique_id($table = 'tbl_opens', $method = 'alnum', $condition)
     {
         do {
-            $new_key = random_string($method, 8);
+            $new_key = random_string($method, 10);
         } while ($this->_results_count($table, array($condition => $new_key)));
         return $new_key;
     }
@@ -1202,6 +1202,7 @@ class DatabaseOperationsHandler extends CI_Model
             $this->db->limit($limit, $start);
 
             $query = $this->db->get('tbl_listings');
+          
             $listingsArr = $query->result_array();
 
         //    $query->free_result();
@@ -1278,7 +1279,7 @@ class DatabaseOperationsHandler extends CI_Model
                 $i++;
             }
         }
-
+      
         return $listingsArr;
     }
     /*fetch front end  results*/
@@ -1322,10 +1323,8 @@ class DatabaseOperationsHandler extends CI_Model
     {
         if ($void === 'all') {
             $data['platforms']   =   $this->_get_activated_platforms('');
-            
         } else {
             $data['platforms']   =   $this->_get_activated_platforms($void);
-           
         }
 
         $data['options']     =   $this->_get_row_data('tbl_platforms', array('type' => 'option', 'status' => 1));

@@ -904,3 +904,7 @@ $lang['lang_payments_method']                = 'Payment method';
 $lang['lang_payments_cancel']                = 'Sorry, Your Payment Was Canceled';
 $lang['lang_payments_tryagain']                = 'Please Try Again';
 $lang['lang_payments_failed']                = 'Sorry, Your Payment Was Failed';
+
+
+// new added by moin
+$lang['site_all_marketplaces']                         = 'All Marketplaces Listing';

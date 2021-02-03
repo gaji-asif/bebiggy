@@ -3,7 +3,7 @@
 <head>
 
 <!--User Page Meta Tags-->
-<title>Contract - <?php if(!empty($contract[0]['contract_id'])) { echo '#'.$contract[0]['contract_id']; } ?> | <?php echo $this->lang->line('site_name') ?>| User Dashboard</title>
+<title>Transaction - <?php if(!empty($contract[0]['contract_id'])) { echo '#'.$contract[0]['contract_id']; } ?> | <?php echo $this->lang->line('site_name') ?>| User Dashboard</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="icon" href="<?php if(isset($imagesData[0]['favicon'])) echo base_url().ADMIN_IMAGES.$imagesData[0]['favicon']; ?>" alt="favicon" />
@@ -35,7 +35,7 @@
 	<div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
 			<div class="dashboad_table">
-					<i class="icon-material-outline-assignment"></i><h3>Open Contract With You & <a href="<?php //echo current_url(); ?>"><?php //if(isset($contract[0]['firstname'])) //echo $contract[0]['firstname'] ?> <?php //if(isset($contract[0]['lastname'])) echo $contract[0]['lastname']; ?><?php if(isset($contract[0]['contract_id'])) echo $contract[0]['contract_id']; ?></a></h3>
+					<i class="icon-material-outline-assignment"></i><h3>Open Transaction With You & <a href="<?php //echo current_url(); ?>"><?php //if(isset($contract[0]['firstname'])) //echo $contract[0]['firstname'] ?> <?php //if(isset($contract[0]['lastname'])) echo $contract[0]['lastname']; ?><?php if(isset($contract[0]['contract_id'])) echo $contract[0]['contract_id']; ?></a></h3>
 
 					<span class="margin-top-7"> <a href="<?php //echo current_url(); ?>"><?php //if(isset($contract[0]['contract_id'])) echo $contract[0]['contract_id']; ?></a>  <?php if ($contract[0]['status'] === '4' || $contract[0]['status'] === '7'){?></span>
                 <div class="badge badge-danger"> CLOSED</div> <?php } ?></span>
@@ -59,7 +59,7 @@
 				<?php if ($contract[0]['status'] === '0' ){?>
                 <div class="badge badge-info"> Pending for payment</div>
                 <?php } else if ($contract[0]['status'] === '1' ) { ?>
-                <div class="badge badge-success"> Paid Contract</div>
+                <div class="badge badge-success"> Paid Transaction</div>
                 <?php } else if ($contract[0]['status'] === '2' ) { ?>
                 <div class="badge badge-danger"> In Reolution Manager</div>
                 <?php } else if ($contract[0]['status'] === '3' ) { ?>
@@ -75,7 +75,7 @@
             	<?php } else if ($contract[0]['status'] === '9' ) { ?>
                 <div class="badge badge-warning"> Raised a Dispute</div>
             	<?php } else if ($contract[0]['status'] === '7' ) { ?>
-                <div class="badge badge-warning"> Canceled Contract & Refunded</div>
+                <div class="badge badge-warning"> Canceled Transaction & Refunded</div>
                 <?php } ?>
             	</span>
 
@@ -83,7 +83,7 @@
 				<nav id="breadcrumbs" class="dark">
 					<ul>
 						<li><a href="<?php echo site_url('user/dashboard'); ?>">Dashboard</a></li>
-						<li>Open Contract</li>
+						<li>Open Transaction</li>
 					</ul>
 				</nav>
 			</div>
@@ -152,7 +152,7 @@
 								<?php } else if($contract[0]['status'] === '2') { ?>
 									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Support Review </span></a></span>
 								<?php } else if($contract[0]['status'] === '3') { ?>
-									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Canceled Contract </span></a></span>
+									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Canceled Transaction </span></a></span>
 								<?php } else if($contract[0]['status'] === '6') { ?>
 									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Requested a Revision </span></a></span>
 								<?php } else if($contract[0]['status'] === '4') { ?>
@@ -160,7 +160,7 @@
 								<?php } else if($contract[0]['status'] === '5') { ?>
 									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Delivered & Waiting for Approval</span></a></span>
 								<?php } else if($contract[0]['status'] === '7') { ?>
-									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Canceled Contract & Refunded</span></a></span>
+									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Canceled Transaction & Refunded</span></a></span>
 								<?php } else if($contract[0]['status'] === '8') { ?>
 									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Rejected Cancel Request</span></a></span>
 								<?php } else if($contract[0]['status'] === '9') { ?>
@@ -171,7 +171,7 @@
 
 								<!-- Bid Details -->
 								<ul class="dashboard-task-info bid-info">
-									<?php if($contract[0]['bid_id'] === 'direct'){ ?> <li><strong><?php if(!empty($default_currency)) echo $default_currency; else echo '$'; ?> <?php if(!empty($contractamount )) echo number_format($contractamount); ?></strong><span>Contract Amount</span></li><?php } else { ?> <li><strong><?php if(!empty($default_currency)) echo $default_currency; else echo '$'; ?><?php if(isset($biddata[0]['bid_amount'])) echo number_format($biddata[0]['bid_amount']); ?></strong><span><?php echo strtoupper($contract[0]['type'])?> AMOUNT</span></li> <?php } ?>
+									<?php if($contract[0]['bid_id'] === 'direct'){ ?> <li><strong><?php if(!empty($default_currency)) echo $default_currency; else echo '$'; ?> <?php if(!empty($contractamount )) echo number_format($contractamount); ?></strong><span>Transaction Amount</span></li><?php } else { ?> <li><strong><?php if(!empty($default_currency)) echo $default_currency; else echo '$'; ?><?php if(isset($biddata[0]['bid_amount'])) echo number_format($biddata[0]['bid_amount']); ?></strong><span><?php echo strtoupper($contract[0]['type'])?> AMOUNT</span></li> <?php } ?>
 									<li><strong><?php if(isset($contract[0]['delivery'])) echo $contract[0]['delivery']; ?> DAYS</strong><span>Delivery</span></li>
 								</ul>
 
@@ -235,7 +235,7 @@
 
 						<!-- Headline -->
 						<div class="headline">
-							<h3>Contract History</h3>
+							<h3>Transaction History</h3>
 						</div>
 						<div id="negotiations_table" class="bs-example container" data-example-id="striped-table">
   							<table class="table table-striped table-bordered table-hover">
@@ -255,11 +255,11 @@
         								<th scope="row"><?php echo $i; ?></th>
         								<td><?php if($contracts['status'] === '1') echo 'Paid'; else if($contracts['status'] === '2')
         								echo 'Support Review'; else if($contracts['status'] === '3')
-        								echo 'Canceled Contract'; else if($contracts['status'] === '6')
+        								echo 'Canceled Transaction'; else if($contracts['status'] === '6')
         								echo 'Requested a Revision'; else if($contracts['status'] === '4')
         								echo 'Completed'; else if($contracts['status'] === '5')
         								echo 'Delivered & Waiting for Approval'; else if($contracts['status'] === '7')
-        								echo 'Canceled the contract and refunded';else if($contracts['status'] === '8')
+        								echo 'Canceled the Transaction and refunded';else if($contracts['status'] === '8')
         								echo 'Rejected Cancel Request By Seller';else if($contracts['status'] === '9')
         								echo 'Raised a dispute by the buyer';
         								?></td>
@@ -300,7 +300,7 @@
 							<h2 id="code"></h2>
 							<?php if($contract[0]['customer_id'] === $this->session->userdata('user_id')) { ?>
 							<div class="button-group" id="action">
-								<a href="#small-dialog-6" data-contractid="<?php if(isset($contract[0]['id'])) echo $contract[0]['id']; ?>" class="popup-with-send-message button dark ripple-effect"><i class="mdi mid-hand-okay"></i> Cancel Contract</a>
+								<a href="#small-dialog-6" data-contractid="<?php if(isset($contract[0]['id'])) echo $contract[0]['id']; ?>" class="popup-with-send-message button dark ripple-effect"><i class="mdi mid-hand-okay"></i> Cancel Transaction</a>
 							</div>
 							<?php } ?>
 						</div>
@@ -373,7 +373,7 @@
 					<div class="dashboard-box margin-top-0">
 						<!-- Headline -->
 						<div class="headline">
-							<h3>No Contracts were Found</h3>
+							<h3>No Transactions were Found</h3>
 						</div>
 					</div>
 				</div>

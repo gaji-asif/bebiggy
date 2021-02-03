@@ -21,17 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e8fdb548-e171-45be-a4ee-0eefa4c6b921" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/admin_101" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/admin_101" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/user_101" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/user_101" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/user_101_permission" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/user_101_permission" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/cache/user__permission" beforeDir="false" afterPath="$PROJECT_DIR$/application/cache/user__permission" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/constants.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/main/includes/common-lisiting-solution_display.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/includes/common-lisiting-solution_display.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/main/single-static-item-solution.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/single-static-item-solution.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/user/login-new.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/user/login-new.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/custom_responsive_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/custom_responsive_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/DatabaseOperationsHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/DatabaseOperationsHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/main/includes/custom_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/includes/custom_header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +98,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="MTCustomThemeConfigurable" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -117,6 +110,7 @@
       <updated>1611778585839</updated>
       <workItem from="1611778586969" duration="1561000" />
       <workItem from="1611917553646" duration="813000" />
+      <workItem from="1612372050580" duration="1772000" />
     </task>
     <servers />
   </component>
@@ -136,9 +130,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1174" y="130" key="SettingsEditor" timestamp="1611780755953">
+    <state x="-1174" y="130" key="SettingsEditor" timestamp="1612372584632">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1174" y="130" key="SettingsEditor/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1611780755953" />
+    <state x="-1174" y="130" key="SettingsEditor/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612372584632" />
   </component>
 </project>

@@ -1693,6 +1693,7 @@ class Main extends CI_Controller
 	/*Domains Page*/
 	public function domains()
 	{
+		
 		$data = self::$data;
 		$data['sponsoredAds']		= 	$this->database->_get_specific_listing('sponsored', 'domain');
 		$data['slider_name']		= 	'featured-slider';
@@ -2248,10 +2249,49 @@ class Main extends CI_Controller
 		$this->loadPage('solution', $data);
 	}
 
+	public function allMarketplaces($page = 0)
+	{
+	
+	
+		$data = self::$data;
+		$page = $this->input->get('page') ?? 0;
+		$perPage =  RESULTS_PER_SEARCH;
+		$pageName = "";
+		$searchterm = $this->input->get('search') ?? "";
+	
+		$data['heading'] = "site_all_marketplaces";
+		$url =  site_url("all-marketplaces");
+		$data['commonData']	=	$this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('status' => 1), 'app', $pageName, $page, $searchterm);
+		
+		$data["links"] 				= 	$this->front_pagination_loader($page, "tbl_listings",  array('status' => 1), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
+		//pre($data['commonData'],1);
 
+		// ($page =  0, $table = 'tbl_listings', $condition = '', $limit = RESULTS_PER_BLOG, $url, $search = '', $column = 'tbl_listings.website_BusinessName', $pageName = '', $hashId = '')
+
+	
+		$data['site_name'] 				= $this->lang->line('site_name');
+		$data['site_title'] 			= $this->lang->line('site_title');
+		$data['site_metadescription'] 	= $this->lang->line('site_metadescription');
+		$data['site_keywords'] 			= $this->lang->line('site_keywords');
+		$data['canonical']              = $this->lang->line('canonical');
+		$data['og_type']                = $this->lang->line('og_type');
+		$data['og_title']               = $this->lang->line('og_title');
+		$data['og_description']         = $this->lang->line('og_description');
+		$data['og_url']                 = $this->lang->line('og_url');
+		$data['og_site_name']           = $this->lang->line('og_site_name');
+		$data['twitter_description']    = $this->lang->line('site_name');
+		$data['twitter_title']          = $this->lang->line('twitter_description');
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['business'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
+
+		$this->loadPage('all-for-sale', $data);
+	}
 	public function newDomain($page = 0)
 	{
-
+	
 		$data = self::$data;
 		$page = $this->input->get('page') ?? 0;
 		$perPage =  RESULTS_PER_SEARCH;
@@ -2346,6 +2386,7 @@ class Main extends CI_Controller
 
 	public function newBusiness($page = 0)
 	{
+		
 		$data = self::$data;
 		$page = $this->input->get('page') ?? 0;
 		$perPage =  RESULTS_PER_SEARCH;
@@ -2364,9 +2405,9 @@ class Main extends CI_Controller
 
 	public function searchFor($page = 0)
 	{
-
 		$searchterm = $this->input->get('p');
 		$opt = $this->input->get('opt');
+	
 		redirect($opt . '?search=' . $searchterm);
 	}
 
@@ -2682,17 +2723,17 @@ class Main extends CI_Controller
 		// Buy Featured Premium Shopify Dropship Stores & Ecommerce Websites for sale
 		$pageName = PAGESNAME_SECTION["dropshipping_feature"];
 		$data['featuredWebsite']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
-
+		$data['featuredWebsite']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 	
 
 		//BUY PREMIUM SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["dropshipping_premium"];
 		$data['premiumWebsites']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
-
+		$data['premiumWebsites']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 		//BUY LATEST SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["dropshipping_latest"];
 		$data['latestWebsites']	=		$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
-
+		$data['latestWebsites']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 
 
 		$data['site_name'] 				= $this->lang->line('site_name');

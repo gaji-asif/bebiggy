@@ -23,18 +23,18 @@
 		</ul>
 	</li>
 
-	<li    <?php if(in_array($this->uri->segment(2),['contract'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-assignment"></i> Open Contracts <span class="nav-tag"><?php echo count($openContracts); ?></span></a>
+	<li    <?php if(in_array($this->uri->segment(2),['contract'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-assignment"></i> Open Transaction <span class="nav-tag"><?php echo count($openContracts); ?></span></a>
 		<ul>
 			<?php foreach ($openContracts as $contract) { ?>
-				<li><a href="<?php echo site_url('user/contract/' . $contract['contract_id']); ?>">Contract - #<?php echo $contract['contract_id']; ?> </a></li>
+				<li><a href="<?php echo site_url('user/contract/' . $contract['contract_id']); ?>">Transaction - #<?php echo $contract['contract_id']; ?> </a></li>
 			<?php } ?>
 		</ul>
 	</li>
 
-	<li    <?php if(in_array($this->uri->segment(2),['closed_contracts'])) echo "class='active-submenu'" ?> ><a href="#"><i class="mdi mdi-briefcase-check"></i> Closed Contracts <span class="nav-tag"><?php echo count($closeContracts); ?></span></a>
+	<li    <?php if(in_array($this->uri->segment(2),['closed_contracts'])) echo "class='active-submenu'" ?> ><a href="#"><i class="mdi mdi-briefcase-check"></i> Closed Transaction <span class="nav-tag"><?php echo count($closeContracts); ?></span></a>
 		<ul>
 			<?php foreach ($closeContracts as $contract) { ?>
-				<li><a href="<?php echo site_url('user/closed_contracts/' . $contract['contract_id']); ?>">Contract - #<?php echo $contract['contract_id']; ?> </a></li>
+				<li><a href="<?php echo site_url('user/closed_contracts/' . $contract['contract_id']); ?>">Transaction - #<?php echo $contract['contract_id']; ?> </a></li>
 			<?php } ?>
 		</ul>
 	</li>

@@ -58,6 +58,7 @@ Assigned to:    Onlinetoolhub
                 left: rippleX - (rippleDiv.width() / 2),
             }).appendTo($(this));
 
+           
             window.setTimeout(function () {
                 rippleDiv.remove();
             }, 800);

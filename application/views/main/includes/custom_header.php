@@ -23,7 +23,7 @@
 								<span class="bar"></span>
 								<div class="form-group header_top_dropdown mr-sm-2">
 									<select class="form-control header_shopy_stores" name="opt">
-										<option selected value="all_marketplace" disabled>All Marketplace</option>
+										<option selected value="all-marketplaces" >All Marketplace</option>
 										<?php foreach (SEARCH_OPTION as $key => $val) :  $select = "" ;?>
 											<?php if ($key == $opt) $select = 'selected'; ?>
 											<?php echo "<option value='$key' $select >";
@@ -443,7 +443,7 @@
 								<span class="bar"></span>
 								<div class="form-group header_top_dropdown mr-sm-2">
 									<select class="form-control header_shopy_stores" name="opt">
-										<option selected  value="all_marketplace" disabled>All Marketplace</option>
+										<option selected  value="all-marketplaces" >All Marketplace</option>
 										<?php foreach (SEARCH_OPTION as $key => $val) : $select = "";?>
 											<?php if ($key == $opt) $select = 'selected'; ?>
 											<?php echo "<option value='$key' $select >";

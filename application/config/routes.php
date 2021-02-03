@@ -229,6 +229,9 @@ $route['product-category/shopify-latest-dropship-websites-for-sale']   =   'main
 $route['product-category/shopify-latest-dropship-websites-for-sale/(:any)']   =   'main/websitesForLatestSale/$1';
 
 // MarketPlace
+$route['all-marketplaces'] = 'main/allMarketplaces';
+$route['all-marketplaces/(:any)'] = 'main/allMarketplaces/$1';
+
 $route['domains'] = 'main/newDomain';
 $route['domains/(:any)'] = 'main/newDomain/$1';
 
