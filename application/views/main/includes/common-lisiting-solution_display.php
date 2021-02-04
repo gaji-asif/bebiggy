@@ -80,18 +80,57 @@ foreach ($common_listing as $ad) {
 				<a href="<?php echo base_url() . "$url_proudct/" . $ad['slug'];  ?>"><h4 <?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 1) {
 							echo "class='title_unboald'";
 						} ?>>
-				<?php if (isset($ad['sponsorship_priority']) && $ad['sponsorship_priority']  == 4) { ?>
+
+
+
+			
+
+
+				<!-- Added by asif -->
+
+						<?php 
+
+						if(isset($ad['sponsorship_priority']) && $ad['sponsorship_priority']  == 4 && isset($ad['listing_header_priority']) && $ad['listing_header_priority']  == 3){  ?>
+
+							<span class="sponsored">Sponsored Premium</span>
+							<br>
+
+						<?php } 
+
+						elseif(isset($ad['sponsorship_priority']) && $ad['sponsorship_priority']  == 4) {
+
+						?>
+
+						
+
 							<span class="sponsored">Sponsored
-							
-							<?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 3){ echo "Premium";} ?>
+								<!-- <i class="help-icon" data-tippy-placement="top" title="This is Ad as per your search">
+									<i class="fa fa-info-circle sponsored"></i>
+								</i> -->
 							</span>
 							<br>
-						<?php  } else if(isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] == 3) {?>	
+
+						<?php } 
+						elseif(isset($ad['listing_header_priority']) && $ad['listing_header_priority']  == 3) { 
+						?>
+
+						
+
 							<span class="sponsored">Premium
-							
+								<!-- <i class="help-icon" data-tippy-placement="top" title="This is Ad as per your search">
+									<i class="fa fa-info-circle sponsored"></i>
+								</i> -->
 							</span>
 							<br>
-							<?php }?>
+
+						<?php }  else{  } ?>
+
+
+						<!-- End Added By Asif -->
+
+
+
+
 				<?php if (isset($ad['website_BusinessName'])) echo $ad['website_BusinessName']; ?></h4></a>
 
 				<div class='row px-0 py-2'>
@@ -124,7 +163,7 @@ foreach ($common_listing as $ad) {
 				<div class="start_coffee description_domain_a">
 					<?php
 
-					if (!empty($ad['description'])) echo _str_limit(strip_tags($ad['description']), text_lenght_front);    ?>
+					if (!empty($ad['description'])) echo _str_limit(strip_tags($ad['description']), text_lenght_front);    ?> 
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-12 price_div">
