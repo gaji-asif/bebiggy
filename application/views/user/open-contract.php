@@ -134,16 +134,21 @@
 							</div>
 
 							<!-- Name -->
-							<div class="seller-name ">
+							<div class="seller-name">
 								<h4><a href="#"><?php if(isset($listing_data[0]['website_BusinessName'])) echo $listing_data[0]['website_BusinessName']; ?> <?php if(!empty($biddata[0]['user_country'])){?>  <img class="flag" src="<?php echo base_url().ICON_FLAGS ?><?php echo strtolower($biddata[0]['user_country']); ?>.svg " alt="" title="<?php if(isset($biddata[0]['user_country'])) echo $biddata[0]['user_country'] ?>"data-tippy-placement="top"><?php } ?></a>&nbsp;<?php if(isset($contract[0]['customer_id']) && !empty($contract[0]['customer_id'])) { ?><span id="FirstStep" class="badge badge-success text-white">HIGHEST <?php echo strtoupper($contract[0]['type']); ?> </span> <?php } ?></h4>
 
 								<!-- Details -->
 								<!--  replace # with php code -->
 								<?php //echo site_url('user_profile/'.$contract[0]['username']) ?>
+
+
 								<span class="seller-detail-item">
 									<a href="<?php echo site_url('user_profile/'.$contract[0]['username']) ?>"><i class="icon-feather-user"></i> 
-									<?php if(isset($contract[0]['firstname'])) echo $contract[0]['firstname'].' '.$contract[0]['lastname']; ?></a>
+									<?php if(isset($contract[0]['firstname'])) echo $contract[0]['firstname'].' '.$contract[0]['lastname']; ?></a> 
+
 								</span>
+
+
 
 								<?php if($contract[0]['status'] === '0') { ?>
 									<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-warning text-white">Pending Payment</span></a></span>
@@ -290,9 +295,25 @@
 					<div class="dashboard-box margin-top-0">
 
 						<!-- Headline -->
+
+						<?php
+						if(isset($contract[0]['email'])){
+					    if($contract[0]['email'] != 'support@bebiggy.com'){
+							
+						?>
 						<div class="headline">
 							<h3><i class="icon-material-outline-time"></i> TIME LEFT</h3>
 						</div>
+
+						<?php 
+						} 
+					} ?>
+
+						<?php
+						if(isset($contract[0]['email'])){
+					    if($contract[0]['email'] != 'support@bebiggy.com'){
+							
+						?>
 
 						<div class="container-timeleft time_interval_a" id="container">
 							<h1 id="days" class="day_number_a"></h1>
@@ -305,10 +326,16 @@
 							<?php } ?>
 						</div>
 
+						<?php 
+						} 
+					} ?>
+
+
+
 						<!-- Headline -->
-						<div class="headline">
+					<!-- 	<div class="headline">
 							<h3><i class="icon-material-outline-users"></i> <?php ?></h3>
-						</div>
+						</div> -->
 
 						<div class="content">
 						<!-- Message Content -->

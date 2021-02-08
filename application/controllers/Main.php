@@ -366,6 +366,7 @@ class Main extends CI_Controller
 
 	public function checkout($type, $id)
 	{
+		
 		//pre("$type,$id" , 1);
 		$data = self::$data;
 		$data['error']   =   $this->session->userdata('error');

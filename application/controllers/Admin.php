@@ -57,6 +57,7 @@ class Admin extends CI_Controller
     public function index()
     {
 
+       
         $data = self::$data;
         $data['TU']                = $this->database->_results_count('tbl_users', array('user_level' => 1), true);
         $data['TE']                = $this->get_totalearnings();
@@ -624,6 +625,7 @@ class Admin extends CI_Controller
     /*Manage Disputes*/
     public function manage_disputes($id)
     {
+        
         $this->checkPermission();
 
         $data = self::$data;

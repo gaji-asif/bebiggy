@@ -703,6 +703,7 @@ class user extends CI_Controller
 	/*Open Contract*/
 	public function open_contract()
 	{
+		
 		$datas = self::$data;
 		if (empty($this->input->post('offer_id'))) {
 			$bid            =  $this->database->_get_row_data('tbl_bids', array('id' => $this->input->post('o_bid_id_cont'), 'bid_status' => 1));
@@ -771,6 +772,7 @@ class user extends CI_Controller
 	/*contract view page*/
 	public function contract($id)
 	{
+		//echo $id; exit;
 		$data = self::$data;
 		if (!empty($id)) {
 			$data['contract']		=	$this->database->_get_contract($id);

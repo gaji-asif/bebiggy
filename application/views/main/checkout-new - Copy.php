@@ -58,40 +58,6 @@
 
 			<?php } else { ?>
 
-					<?php if (empty($membership_buy)) { ?>
-
-			<h3 class="payment_tab_a" style="border-radius: 4px 4px 0px 0px;">
-						<div class="course_title_bar"></div>Coupon Code
-					</h3>
-
-					<style type="text/css">
-						
-						input.with-border, input[type="text"].with-border
-						{
-							max-width: 94% !important;
-						}
-					</style>
-
-				<form id="discountCouponForm" style="margin-top: -15px;">
-					<div class="input-with-icon-left margin-top-30">
-						<i class="fa fa-tags"></i>
-						<input width="100%;" style="margin-left: 40px;" type="text" class="input-text with-border" name="checkoutCoupon" id="checkoutCoupon" placeholder="Coupon Code" required />
-					</div>
-
-					<div id="loadingCoupon" align="center" style="display:none;"> <img src="<?php echo base_url(); ?>assets/img/loadingimage.gif" /> </div>
-					<div id="discountCouponValidate"></div>
-
-					<button id="discountCodeApply" class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit">Apply <i class="icon-material-outline-arrow-right-alt"></i></button>
-
-					<!-- Checkbox -->
-					
-
-					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
-
-				</form>
-				<br>
-			<?php  } ?>
-
 				<!-- payment form --->
 				<form id="paymentForm" class="creditly-card-form agileinfo_form" method="post" enctype="multipart/form-data" action="<?php echo site_url('payments/pay_contract'); ?>">
 
@@ -104,7 +70,7 @@
 					<input type="hidden" name="paymentType" id="paymentType" value="" />
 
 					<!-- Hedline -->
-					<h3 class="payment_tab_a" style="margin-top: 20px; border-radius: 4px 4px 0px 0px;">
+					<h3 class="payment_tab_a">
 						<div class="course_title_bar"></div>Payment Methods
 					</h3>
 
@@ -116,7 +82,7 @@
 
 					<?php if (!empty($payments)) { ?>
 						<!-- Payment Methods Accordion -->
-						<div class="payment margin-top-10">
+						<div class="payment margin-top-30">
 
 							<?php foreach ($payments as $key) {
 
@@ -228,17 +194,11 @@
 							<?php } ?>
 
 						</div>
-						<!-- 	Added By asif -->
-						<div class="checkbox margin-top-30">
-							<input type="checkbox" id="two-step" class="payment_checkbox_a" name="payment_checkbox_a" required >
-							<label for="two-step"><span class="checkbox-icon"></span> I agree to the <a href="<?php echo base_url() ?>terms-of-services"><?php echo $this->lang->line('lang_termsandconditions'); ?></a> and the <a href="<?php echo base_url() . 'privacy-policy'; ?>"><?php echo $this->lang->line('lang_privacy_policy'); ?></a></label>
-						</div>
-						<!-- 	Added By asif -->
 						<span id="loader" style="display:none;"> <img src="<?php echo base_url(); ?>assets/img/loadingimage.gif" /> </span>
 						<?php if (!empty($owner_id) && $owner_id !== $this->session->userdata('user_id')) { ?>
-							<button class="button big ripple-effect margin-top-40 margin-bottom-65 submitpay full-width button-sliding-icon ripple-effect pay_buttonss" id="product_payment" >Pay Now</button>
+							<button class="button big ripple-effect margin-top-40 margin-bottom-65 submitpay full-width button-sliding-icon ripple-effect" id="product_payment">Pay Now</button>
 						<?php } else { ?>
-							<a class="button big ripple-effect margin-top-40 margin-bottom-65 add-to-cart-own float-right full-width button-sliding-icon ripple-effect pay_buttonss" href="#">Pay Now</a>
+							<a class="button big ripple-effect margin-top-40 margin-bottom-65 add-to-cart-own float-right full-width button-sliding-icon ripple-effect" href="#">Proceed Payment</a>
 						<?php } ?>
 
 					<?php } else {
@@ -295,7 +255,29 @@
 
 			<!-- Summary / End -->
 
-		
+			<?php if (empty($membership_buy)) { ?>
+
+				<form id="discountCouponForm">
+					<div class="input-with-icon-left margin-top-30">
+						<i class="fa fa-tags"></i>
+						<input type="text" class="input-text with-border" name="checkoutCoupon" id="checkoutCoupon" placeholder="Coupon Code" required />
+					</div>
+
+					<div id="loadingCoupon" align="center" style="display:none;"> <img src="<?php echo base_url(); ?>assets/img/loadingimage.gif" /> </div>
+					<div id="discountCouponValidate"></div>
+
+					<button id="discountCodeApply" class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit">Apply <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+					<!-- Checkbox -->
+					<div class="checkbox margin-top-30">
+						<input type="checkbox" id="two-step" class="payment_checkbox_a" required checked>
+						<label for="two-step"><span class="checkbox-icon"></span> I agree to the <a href="<?php echo base_url() ?>terms-of-services"><?php echo $this->lang->line('lang_termsandconditions'); ?></a> and the <a href="<?php echo base_url() . 'privacy-policy'; ?>"><?php echo $this->lang->line('lang_privacy_policy'); ?></a></label>
+					</div>
+
+					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+
+				</form>
+			<?php  } ?>
 
 		</div>
 		<!--/ summary -->
@@ -312,29 +294,8 @@
 <!-- Wrapper / End -->
 
 <!--------------------------------------------------------------------------------------------------------------->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 	//checkoutpage();
-
-	 $(document).ready(function(){ 
-    $(".pay_buttonss").prop("disabled",true); 
- });
-
-	 $(document).ready(function(){
-        $('input[type="checkbox"]').click(function(){
-            if($(this).prop("checked") == true){
-                console.log("Checkbox is checked.");
-                //$(".pay_buttonss").attr("disable");
-                $(".pay_buttonss").prop("disabled",false); 
-            }
-            else if($(this).prop("checked") == false){
-                console.log("Checkbox is unchecked.");
-               $(".pay_buttonss").prop("disabled",true); 
-            }
-        });
-    });
-
-
-
 </script>
 <!--------------------------------------------------------------------------------------------------------------->

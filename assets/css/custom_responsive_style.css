@@ -1,4 +1,9 @@
-*started Added By asif*/
+/**started Added By asif*/
+
+
+
+
+
 @media only screen and (min-width: 500px) {
 
     .sticky_header_a{
@@ -917,7 +922,8 @@ transition: 0.1s ease-in-out;
         display: none;
     }
     .but_now {
-        margin-top: 35px;
+        /*margin-top: 35px;*/
+        margin-top: 5px;
     }
 }
 
@@ -1857,9 +1863,11 @@ section.offer-area
     }
     .price .cutting_text {
         width: 40%;
+       
     }
     .price .price_text {
-        width: 60%;
+      /*  width: 60%;*/
+        width: 38%;
     }
 
 

@@ -95,6 +95,7 @@ class payments extends CI_Controller
 	public function pay_contract()
 	{
 
+		// echo "tet"; exit;
 		if (!empty($this->session->userdata('user_id'))) {
 			if ($this->input->post('txt_paytotal') > 0) {
 				switch ($this->input->post('paymentType')) {
@@ -1396,7 +1397,17 @@ class payments extends CI_Controller
 		$DATA['PAYMENT'] 	= $data;
 		$DATA['RETURNED']	= $returned;
 		$DATA = html_escape($this->security->xss_clean($DATA));
-		$this->load->view('payments/success', $DATA);
+		//$this->load->view('payments/success', $DATA);
+
+		$this->loadPage('payments/success_new', $DATA);
+	}
+
+	function loadPage($template, $data = null)
+	{
+		$data['template_name'] 		= 	$template;
+		$data['data'] 				= 	$data;
+		// $data 						= 	html_escape($this->security->xss_clean($data));
+		$this->load->view('main/master-template', $data);
 	}
 
 	/*Fail Return*/

@@ -1,6 +1,6 @@
 <style>
 	.custom_height{
-		height: 180px;
+		height: 225px;
 	}
 
 	.custom_height_normal_listing{
@@ -14,24 +14,7 @@
 		color: #FFFFFF; 
 		font-weight: bold; 
 		width: 49%;
-		margin-right: 1%;
-		text-align: center;
 	}
-
-	.my_btn{
-		text-align: center;
-	}
-
-	a.my_btn:hover{
-		color: #000000 !important;
-		opacity: 0.5 !important;
-		/*background-color: #000000 !important;*/
-	}
-/*
-	@media only screen and (min-width: 1056px)
-.but_now {
-     margin-top: 5px; 
-}*/
 	
 </style>
 
@@ -72,7 +55,7 @@ foreach ($common_listing as $ad) {
 			<?php
 			$text_length_countss = '';
 			if($show_image === 1){
-				$text_length_countss = '170';
+				$text_length_countss = '180';
 			}
 			else{
 				$text_length_countss = '275';
@@ -173,7 +156,32 @@ foreach ($common_listing as $ad) {
 
 						<?php if (isset($ad['website_BusinessName'])) echo $ad['website_BusinessName']; ?></h4></a>
 
-					
+						<div class='row px-0 py-2'>
+							<div class="col-md-6 col-sm-6 d-flex w-100 p-0">						
+								<!-- <a href="<?php echo base_url() . "$url_proudct/" . $ad['slug'];  ?>" class="listing">View Listing</a> -->
+
+
+								<?php if (!empty($ad['solution_url'])) { ?>
+									<!-- show view demo -->
+									<?php if (empty($common_listing['user_permission']['view-demo'])  && empty($this->session->userdata('user_id'))) { ?>
+										<!-- Guest user to login to view demo website/domain -->
+										<a  href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim ">View Demo</a>
+
+									<?php } else if (!empty($common_listing['user_permission']['view-demo']) || $ad['user_id'] == $this->session->userdata('user_id')) { ?>
+										<!-- login to view demo website/domain -->
+										<a target="_blank" href="<?php if (!empty($ad['solution_url'])) echo  $ad['solution_url']; ?> " class="view_demo  ripple-effect move-on-hover">View Demo</a>
+
+									<?php } 
+
+									else if (empty($common_listing['user_permission']['view-demo'] && !empty($this->session->userdata('user_id')))) { ?>
+										<!-- Logged-In user without permssion view demo -->
+										<a  href="javascript:void(0)" class="view_demo  ripple-effect move-on-hover" id='upgradePlan'> View Demo</a>
+									<?php }
+								} ?>
+
+								<!-- end show view demo -->
+							</div>
+						</div>
 						<hr>
 						<div class="start_coffee description_domain_a">
 							<?php if (!empty($ad['description'])) echo _str_limit(strip_tags($ad['description']), $text_length_countss);    ?>  
@@ -281,7 +289,7 @@ foreach ($common_listing as $ad) {
 
 												<div class="row" style="margin-bottom: 5px;">
 
-													
+													<a href="<?php echo base_url() . "$url_proudct/" . $ad['slug'];  ?>" style="background-color: #38bffe; padding: 14px; font-size: 14px; color: #FFFFFF; font-weight: bold; width: 50%; margin-right: 1%;" >View Listing</a>
 
 
 													
@@ -290,24 +298,19 @@ foreach ($common_listing as $ad) {
 									<!-- show view demo -->
 									<?php if (empty($common_listing['user_permission']['view-demo'])  && empty($this->session->userdata('user_id'))) { ?>
 										<!-- Guest user to login to view demo website/domain -->
-										<a  href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn">View Demo</a>
+										<a  href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn">View Demo</a>
 
 									<?php } else if (!empty($common_listing['user_permission']['view-demo']) || $ad['user_id'] == $this->session->userdata('user_id')) { ?>
 										<!-- login to view demo website/domain -->
-										<a target="_blank" href="<?php if (!empty($ad['solution_url'])) echo  $ad['solution_url']; ?> " class="view_demo  ripple-effect move-on-hover view_demo_btn my_btn">View Demo</a>
+										<a target="_blank" href="<?php if (!empty($ad['solution_url'])) echo  $ad['solution_url']; ?> " class="view_demo  ripple-effect move-on-hover view_demo_btn">View Demo</a>
 
 									<?php } 
 
 									else if (empty($common_listing['user_permission']['view-demo'] && !empty($this->session->userdata('user_id')))) { ?>
 										<!-- Logged-In user without permssion view demo -->
-										<a  href="javascript:void(0)" class="view_demo  ripple-effect move-on-hover view_demo_btn my_btn" id='upgradePlan'> View Demo</a>
+										<a  href="javascript:void(0)" class="view_demo  ripple-effect move-on-hover view_demo_btn" id='upgradePlan'> View Demo</a>
 									<?php }
 								} ?>
-
-
-
-
-								<a href="<?php echo base_url() . "$url_proudct/" . $ad['slug'];  ?>" style="background-color: #38bffe; padding: 14px; font-size: 14px; color: #FFFFFF; font-weight: bold; width: 50%;" class="my_btn">View Listing</a>
 
 												</div>
 
