@@ -106,6 +106,7 @@ class payments extends CI_Controller
 						$this->PayPal_Pro();
 						break;
 					case 'Stripe':
+					//echo "sss"; exit;
 						$this->stripe();
 						break;
 					default:
@@ -1395,11 +1396,14 @@ class payments extends CI_Controller
 	public function success($data, $returned)
 	{
 		$DATA['PAYMENT'] 	= $data;
+		// echo "<pre>";
+		// echo  print_r($DATA['PAYMENT'] );
+		// exit;
 		$DATA['RETURNED']	= $returned;
 		$DATA = html_escape($this->security->xss_clean($DATA));
-		//$this->load->view('payments/success', $DATA);
+		$this->load->view('payments/success_new', $DATA);
 
-		$this->loadPage('payments/success_new', $DATA);
+		//$this->loadPage('payments/success_new', $DATA);
 	}
 
 	function loadPage($template, $data = null)
