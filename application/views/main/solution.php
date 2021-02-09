@@ -100,7 +100,10 @@
         <!-- start:ajax -->
         <div class="container-fluid p-0 ecommerce_div">
             <div class="row website-sale" id="solution">
-                <?php $this->load->view('main/includes/common-lisiting-solution', ['commonData' => $commonData]); ?>
+            
+                <?php
+                $commonData['type'] ='solution'; 
+                $this->load->view('main/includes/common-lisiting-solution', ['commonData' => $commonData]); ?>
 
             </div>
 
