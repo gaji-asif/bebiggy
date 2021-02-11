@@ -312,39 +312,13 @@ foreach ($common_listing as $ad) {
 												</div>
 
 												<!-- End added by asif -->
-
-												<?php 
-												
-												if(isset($ad['sold_or_not']) && !empty($ad['sold_or_not']) ){
-													if($ad['sold_or_not']=='no' || (isset($common_listing['type']) && !empty($common_listing['type']) )){
-														 
-												 ?>
-											
 												<div class="">
 													<div class="but_now d-flex buy_btn_a row">
 														<a href="<?php echo base_url() . 'checkout/' . 'buynow-solution' . '/' . $ad['slug']; ?>" class="btn btn-default buy_nowbtn d-flex align-item-center">
 															<span>Buy Now</span> <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i>
 														</a>
 													</div>
-													
 												</div>
-												<?php }
-												else{ ?>
-													<div class="">
-													<div class="but_now d-flex buy_btn_a row">
-														<button class="btn btn-default buy_nowbtn d-flex align-item-center">
-															<span>Sold</span> 
-														</button>
-													</div>
-													
-												</div>
-												<?php
-												}
-											} ?>
-
-
-
-
 												
 											<?php  } else { ?>
 												<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
