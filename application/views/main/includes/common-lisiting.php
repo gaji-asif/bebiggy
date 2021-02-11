@@ -185,9 +185,23 @@
 								<!--  user has buynow permission  -->
 								<?php if ($ad['user_id'] !== $this->session->userdata('user_id')) { ?>
 									<!--  Product belongs to different user -->
+									<?php 
+											
+												if(isset($ad['sold_or_not']) && !empty($ad['sold_or_not'])){
+													if($ad['sold_or_not']=='no' || (isset($ad['listing_type']) && $ad['listing_type'] == 'solution' )){
+														 
+												 ?>
 									<div class="but_now d-flex">
 										<a href="<?php echo base_url() . 'checkout/' . 'buynow' . '/' . $ad['slug']; ?>" class="btn btn-default buy_nowbtn d-flex align-item-center"><span>Buy Now</span> <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
 									</div>
+									<?php }
+												else{ ?>
+									<div class="but_now d-flex">
+										<button  class="btn btn-default buy_nowbtn d-flex align-item-center"><span>Sold</span></button>
+									</div>
+									<?php
+												}
+											} ?>
 								<?php  } else { ?>
 									<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
 										<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 custom_contact_seller" ?>

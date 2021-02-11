@@ -99,6 +99,7 @@
 <?php 
 		if(!empty($featuredWebsite)) { 
 			$common_listing = $featuredWebsite;
+         
 			if (!empty($common_listing[0]['id'])) {
 	?>
 		<section>

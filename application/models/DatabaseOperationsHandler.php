@@ -1253,6 +1253,7 @@ class DatabaseOperationsHandler extends CI_Model
             //pre($listingsArr);
             $listingsArr = array_merge($sponsorshipsArr , $listingsArr);
            //pre($listingsArr,1);
+          
         }
 
         if (!empty($listingsArr)) {
@@ -1279,7 +1280,22 @@ class DatabaseOperationsHandler extends CI_Model
                 $i++;
             }
         }
-      
+        foreach ($listingsArr as $i => $s) {
+          
+        
+            $invoice = $this->getSoldORNot($s['id']);
+            if(isset($invoice) && !empty($invoice))
+            {
+                $listingsArr[$i]['sold_or_not'] = 'yes';
+            }
+            else
+            {
+                $listingsArr[$i]['sold_or_not'] = 'no';
+            }
+           
+       
+        }
+    //    exit;
         return $listingsArr;
     }
     /*fetch front end  results*/
@@ -2670,10 +2686,32 @@ class DatabaseOperationsHandler extends CI_Model
             // Add the images array to the array entry for this solution
             $query[$i]['website_thumbnail'] = $images_query;
         }
+        foreach ($query as $i => $sold) {
+          
+            $invoice = $this->getSoldORNot($query[$i]['id']);
+            if(isset($invoice) && !empty($invoice))
+            {
+                $query[$i]['sold_or_not'] = 'yes';
+            }
+            else
+            {
+                $query[$i]['sold_or_not'] = 'no';
+            }
+           
+       
+        }
         // pre($this->db->last_query(), 1);
         return  $query;
     }
-
+    public function getSoldORNot($Id = "")
+    {
+        $this->db->from(' tbl_invoices');
+        $this->db->where('listing_id', $Id);
+        $invoices = $this->db->get();
+        $invoice = $invoices->row();
+        
+        return $invoice;
+    }
     public function _get_solutionById($solutionId, $userId = "")
     {
         $this->db->select('s1.id ,s1.user_id, s1.name , s1.solution_url ,s1.slug , s1.status, s1.description, s1.price, s1.delivery_days, s1.listing_header_priority, s1.sponsorship_priority,
