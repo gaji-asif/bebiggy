@@ -34,6 +34,8 @@
 			<!--------------------------------------------------------------------------------------------------------------->
 
 			<div class="dashboard-content-container" data-simplebar>
+
+				<div class=""><
 				<div class="dashboard-content-inner">
 
 					<!-- Dashboard Headline -->

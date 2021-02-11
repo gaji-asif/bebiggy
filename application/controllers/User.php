@@ -780,9 +780,9 @@ class user extends CI_Controller
 
 			//echo $data['contract'][0]['bid_id'];
 			
-			echo "<pre>";
-			print_r($data['contract']);
-			exit;
+			// echo "<pre>";
+			// print_r($data['contract']);
+			// exit;
 			// pre($data['contract'],1);
 			if (isset($data['contract'][0]['bid_id'])) {
 				$data['userprofile'] 		= 	$this->database->getUserData($data['contract'][0]['owner_id']);
