@@ -30,7 +30,8 @@
 								<?php endif; ?>
 							</td>
 							<td>
-								<a href='<?php echo site_url('user/edit-solution/' . $listing['id']); ?>' class="solution_edit_icon_a" id="EditSolution" title=" Edit"><i class="fas fa-edit" aria-hidden="true"></i></a>
+
+								<a href='<?php echo base_url('user/create_solution/solution/' . $listing['id']); ?>' class="solution_edit_icon_a" id="EditSolution" title=" Edit"><i class="fas fa-edit" aria-hidden="true"></i></a>
 								&nbsp;&nbsp;
 
 								<a href="javascript:void(0);" class="solution_delete_icon_a" data-url='admin/deleteSolution' id="deleteSolution" data-id="<?php echo $listing['id'] ?>
