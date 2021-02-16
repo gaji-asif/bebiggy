@@ -509,9 +509,13 @@ class DatabaseOperationsHandler extends CI_Model
     public function _unique_id($table = 'tbl_opens', $method = 'alnum', $condition)
     {
         do {
-            // $new_key = random_string($method, 10);
-            $salt = rand(10, 9999999999);
-            $new_key = substr($salt, 0, 10);
+            if ($table == 'tbl_opens') {
+                $salt = mt_rand(1000000000, 9999999999999);
+                $new_key = substr($salt, 0, 10);
+            } else {
+                $new_key = random_string($method, 10);
+                $new_key = substr($salt, 0, 10);
+            }
         } while ($this->_results_count($table, array($condition => $new_key)));
         return $new_key;
     }
