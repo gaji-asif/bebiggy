@@ -730,14 +730,14 @@ class user extends CI_Controller
 						if ($datas['settings'][0]['email_notifications'] === '1') {
 							$this->email_op->_user_email_notification('won-bid', $data);
 						}
-						redirect('user/contract/' . $insert_id);
+						redirect('user/contract/'.$insert_id);
 						return;
 					}
 				}
 			}
 			return;
 		} else {
-			$offer            =  $this->database->_get_offer($this->input->post('offer_id'));
+			$offer = $this->database->_get_offer($this->input->post('offer_id'));
 			if (isset($offer[0]['id'])) {
 				$listing    =   $this->database->_get_row_data('tbl_listings', array('id' => $offer[0]['listing_id']));
 				$data = array(
@@ -760,7 +760,7 @@ class user extends CI_Controller
 						if ($datas['settings'][0]['email_notifications'] === '1') {
 							$this->email_op->_user_email_notification('accept-offer', $data);
 						}
-						redirect('user/contract/' . $insert_id);
+						redirect('user/contract/'.$insert_id);
 						return;
 					}
 				}

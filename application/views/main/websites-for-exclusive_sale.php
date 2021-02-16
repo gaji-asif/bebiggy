@@ -132,8 +132,8 @@
         <div class="container-fluid px-0" id="solution">
             <div class="row website-sale" id="response_print_here">
 
-                <?php $this->load->view('main/includes/common-lisiting-solution', ['commonData' => $commonData]); ?>
-
+              
+                <?php $this->load->view('main/includes/common_listing_pagination', ['commonData' => $commonData]); ?>
             </div>
 
         </div>

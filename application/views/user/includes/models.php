@@ -96,23 +96,25 @@
 
 				<form id="openContractForm" name="openContractForm" action="<?php echo base_url().'user/open_contract'; ?>" method="POST">
 
+					<input type="hidden" name="offer_id" id="offer_id">
 					<input type="hidden" name="o_bid_id_cont" id="o_bid_id_cont">
 					<input type="hidden" name="delivery_time" id="delivery_time">
 					<!-- Welcome Text -->
 					<div class="welcome-text">
 						<h3 id="offer-from"></h3>
 					</div>
-
+					<input type="hidden" class="txt_csrfname" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<div class="radio centerButtons">
 						<input id="radio-1" name="radio" type="radio" required>
 						<label for="radio-1"><span class="radio-label"></span>  I have read and agree to the Terms and Conditions</label>
 					</div>
 
-					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+				
+					<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" type="submit" form="openContractForm">Open Contract <i class="icon-material-outline-arrow-right-alt"></i></button>
+				
 				</form>
 
 				<!-- Button -->
-				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" type="submit" form="openContractForm">Open Contract <i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
 
@@ -136,7 +138,7 @@
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-				<form id="acceptOfferForm" name="acceptOfferForm" action="<?php echo base_url().'user/open_contract'; ?>" method="POST">
+				<form id="acceptOfferForm" name="acceptOfferForm"  action="<?php echo base_url().'user/open_contract'; ?>" method="POST">
 				
 					<input type="hidden" name="offer_id" id="offer_id">
 				

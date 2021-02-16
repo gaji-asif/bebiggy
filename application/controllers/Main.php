@@ -2615,14 +2615,35 @@ class Main extends CI_Controller
 
 	public function websitesForExclusiveSale($page = 0)
 	{
-		$datac['heading'] = "site_websites_exclusive";
-		//  $datac['pageName'] = "product-category-shopify-premium-dropship-websites-for-sale";
-		$datac['pageName'] = "";
-		$datac['url'] = site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
-		// $datac['condition'] = 'frontend_section = "premium" ';
-		$datac['condition'] = 'category_id = "39" ';
-		$data = $this->commonListing($datac);
-
+		// $datac['heading'] = "site_websites_exclusive";
+		// //  $datac['pageName'] = "product-category-shopify-premium-dropship-websites-for-sale";
+		// $datac['pageName'] = "";
+		// $datac['url'] = site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
+		// // $datac['condition'] = 'frontend_section = "premium" ';
+		// $datac['condition'] = 'category_id = "39" ';
+		// $data = $this->commonListing($datac);
+		$data = self::$data;
+		$page = $this->input->get('page') ?? 0;
+		$perPage =  RESULTS_PER_SEARCH;
+		$pageName = "";
+		$searchterm =  "";
+	
+		$data['heading'] = "site_websites_exclusive";
+		$data['pageName'] = "";
+		$data['url'] = site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
+		$url =  site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
+		$data['commonData']	= $this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('page_tags' => 'exclusive-shopify-store'), 'app', $pageName, $page, $searchterm);
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['business'];
+		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
+		
+		$data["links"] = $this->front_pagination_loader($page, "tbl_listings",  array('page_tags' => 'exclusive-shopify-store'), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
+		
+		// var_dump($data['commonData']);
+		// var_dump($data['links']);
+		// exit;
 		$data['site_name'] 				= $this->lang->line('site_name');
 		$data['site_title'] 			= $this->lang->line('websitesForExclusiveSale_site_title');
 		$data['site_metadescription'] 	= $this->lang->line('websitesForExclusiveSale_site_metadescription');

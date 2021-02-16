@@ -623,7 +623,7 @@ class Admin extends CI_Controller
     }
 
     /*Manage Disputes*/
-    public function manage_disputes($id)
+    public function manage_disputes($id='')
     {
         
         $this->checkPermission();
@@ -655,10 +655,38 @@ class Admin extends CI_Controller
             $this->load->view('admin/manage-disputes', $data);
             return;
         }
+        else
+        {
+            $data['contract'] = $this->database->_get_disputes_data(0,'');
+
+            $data['dispute']            =   $this->database->_get_disputes_data('0','');
+  
+            $data['seller']             =   $this->database->getUserData($data['contract'][0]['owner_id']);
+            $data['buyer']              =   $this->database->getUserData($data['contract'][0]['customer_id']);
+            $data['userprofile']        =   $this->database->getUserData($data['contract'][0]['owner_id']);
+            $data['reviewRatings']      =   $this->database->get_reviews($data['contract'][0]['owner_id'], $this->session->userdata('user_id'));
+            $data['contractsHistory']   =   $this->database->_load_history($data['contract'][0]['id']);
+
+            if ($data['contract'][0]['type'] === 'bid') {
+                $data['biddata']        =   $this->database->_get_bid($data['contract'][0]['bid_id']);
+            }
+
+            if ($data['contract'][0]['type'] === 'offer') {
+                $data['biddata']        =   $this->database->_get_offer($data['contract'][0]['bid_id']);
+            }
+
+            $data['contractamount']     =   $this->database->_get_single_data('tbl_contracts', array('contract_id' => $data['contract'][0]['id']), 'amount');
+            $data['listing_data']       =   $this->database->_get_row_data('tbl_listings', array('id' => $data['contract'][0]['listing_id']));
+            
+            $data = html_escape($this->security->xss_clean($data));
+            $this->load->view('admin/all-manage-disputes', $data);
+            return;
+        }
 
         $this->pageNotFound();
     }
 
+   
     /*admin Profile Settings*/
     public function user_settings()
     {

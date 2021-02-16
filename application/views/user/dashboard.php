@@ -645,15 +645,15 @@
 						<div class="card mb-3 shadow">
 
 							<div class="card-header">
-								<h3> YOUR OPEN CONTRACTS</h3>
+								<h3> YOUR OPEN Transaction </h3>
 							</div>
 
 							<?php if(!empty($contracts)) { foreach ($contracts as $contract) { ?>
 								<div class="card-body">
-									<p class="font-600 m-b-5"><b>CONTRACT ID: </b><?php echo $contract['contract_id'] ?> <b> | CONTRACT BETWEEN </b><?php echo $contract['owner'] ?> <b> & </b><?php echo $contract['customer'] ?> <?php if ($contract['status'] === '0' ){?>
+									<p class="font-600 m-b-5"><b>TRANSACTION ID: </b><?php echo $contract['contract_id'] ?> <b> | TRANSACTION BETWEEN </b><?php echo $contract['owner'] ?> <b> & </b><?php echo $contract['customer'] ?> <?php if ($contract['status'] === '0' ){?>
 										<div class="badge badge-info"> Pending for payment</div>
 									<?php } else if ($contract['status'] === '1' ) { ?>
-										<div class="badge badge-success"> Paid Contract</div>
+										<div class="badge badge-success"> Paid Transacion</div>
 									<?php } else if ($contract['status'] === '2' ) { ?>
 										<div class="badge badge-danger"> In Reolution Manager</div>
 									<?php } else if ($contract['status'] === '3' ) { ?>
@@ -669,7 +669,7 @@
 									<?php } else if ($contract['status'] === '9' ) { ?>
 										<div class="badge badge-warning"> Raised a Dispute</div>
 									<?php } else if ($contract['status'] === '7' ) { ?>
-										<div class="badge badge-warning"> Canceled Contract & Refunded</div>
+										<div class="badge badge-warning"> Canceled Transacion & Refunded</div>
 										<?php } ?> <span class="text-primary pull-right"><b>IN PROGRESS (<?php echo $contract['percentage'] ?>%)</b></span></p>
 										<div class="progress">
 											<div class="progress-bar progress-bar-striped progress-xs bg-warning" role="progressbar" style="width: <?php echo $contract['percentage'] ?>%" aria-valuenow="<?php echo $contract['percentage'] ?>" aria-valuemin="0" aria-valuemax="100"></div>
@@ -678,7 +678,7 @@
 										<div class="m-b-20"></div>						
 									</div>
 								<?php } } else { ?>
-									<p class="m-b-5 sorry_text"> Sorry , No contracts were found </p>
+									<p class="m-b-5 sorry_text"> Sorry , No Transacions were found </p>
 								<?php } ?>
 
 								<div class="card-footer small text-muted">Updated <?php echo date('Y-m-d H:i:s'); ?></div>

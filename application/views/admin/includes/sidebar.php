@@ -135,7 +135,9 @@
 								<li><a href="#"><i class="mdi mdi-thumb-up"></i> Manage Disputes <span class="nav-tag"><?php echo count($disputes); ?></span></a>
 									<?php if (!empty($disputes)) { ?>
 										<ul>
-											<?php foreach ($disputes as $dispute) { ?>
+											<?php 
+												 foreach ($disputes as $dispute) { 
+											 ?>
 												<li><a href="<?php echo site_url('admin/manage_disputes/' . $dispute['contract_id']); ?>">Transaction - #<?php echo $dispute['contract_id']; ?> </a></li>
 											<?php } ?>
 										</ul>
