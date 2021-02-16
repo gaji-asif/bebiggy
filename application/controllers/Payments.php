@@ -106,7 +106,7 @@ class payments extends CI_Controller
 						$this->PayPal_Pro();
 						break;
 					case 'Stripe':
-					//echo "sss"; exit;
+						//echo "sss"; exit;
 						$this->stripe();
 						break;
 					default:
@@ -222,7 +222,7 @@ class payments extends CI_Controller
 					$contract_id = $this->common->open_direct_contract($data['listing_id']);
 
 					$Arr['contract_id'] = $contract_id;
-
+					// $this->session->set_userdata('get_contract_id', $contract_id);
 					$contractArr = array(
 						'user_id' => $user_id,
 						'domain_id' => $domain_id,
@@ -471,6 +471,7 @@ class payments extends CI_Controller
 	/*Stripe */
 	public function stripe()
 	{
+
 		$default_currency 	=	$this->common->getCurrency($this->database->_get_single_data('tbl_currencies', array('default_status' => '1'), 'currency'), 'code');
 		$currency 			= 'USD';
 
@@ -554,8 +555,6 @@ class payments extends CI_Controller
 						'cancelUrl' => base_url() . PAYMENT_CANCEL,
 						'domain_list' => json_encode($itemsArr)
 					);
-
-
 					try {
 
 						try {
@@ -575,6 +574,12 @@ class payments extends CI_Controller
 								$this->session->set_userdata('paypal_data', $valTransc);
 
 								$this->direct_payments($data, $valTransc, 'outside', 'Stripe');
+								if (!empty($this->session->userdata('get_contract_id'))) {
+									$valTransc['contract_id'] = $this->session->userdata('get_contract_id');
+								} else {
+									$valTransc['contract_id'] = '';
+								}
+								$this->session->set_userdata('get_contract_id');
 								$url 	= base_url() . PAYMENT_SUCCESS;
 								$this->success($valTransc, $data);
 								$plain_id 				= 	$itemsArr[0]['id'];
@@ -748,6 +753,7 @@ class payments extends CI_Controller
 				'status' => 1,
 				'date' => date('Y-m-d H:i:s')
 			);
+			// $this->session->set_userdata('get_contract_id', $data['contract_id']);
 			return $this->database->_insert_to_DB('tbl_opens', $data);
 		}
 		return;
@@ -786,10 +792,10 @@ class payments extends CI_Controller
 			$listing_sponsorship_priority =  array_search($Arr['plan_header'], LISTING_HEADER_SPONSORSHIP);
 			if (!empty($listing_sponsorship_priority)) {
 				$duration = 1;
-				if(isset($Arr['period'])) {
-					$duration = $Arr['period'];	
+				if (isset($Arr['period'])) {
+					$duration = $Arr['period'];
 				}
-				
+
 				$listArr['sponsorship_priority'] = $listing_sponsorship_priority;
 				$listArr['sponsorship_expires'] = 	 Date('Y-m-d H:i:s ', strtotime('+' . $duration . ' days'));
 				$listArr['status']  = 9;
@@ -800,10 +806,9 @@ class payments extends CI_Controller
 					$this->database->_update_to_DB(' tbl_solutions', $listArr, $solution_id);
 				}
 
-				if(isset($Arr['user_membership_id'])) {
+				if (isset($Arr['user_membership_id'])) {
 					$this->database->_update_to_DB('tbl_listings', $listArr, $Arr['user_membership_id']);
 				}
-				
 			} else {
 				$listArr['status']  = 9;
 			}
@@ -1191,15 +1196,13 @@ class payments extends CI_Controller
 			$userdata 			= $this->database->getUserData($this->session->userdata('user_id'));
 			$totalAmount		= 0;
 
-			if(isset($ListingDataHeader[0]) && isset($ListingDataHeader[0]['listing_type'])) {
+			if (isset($ListingDataHeader[0]) && isset($ListingDataHeader[0]['listing_type'])) {
 				$listing_type      	= $ListingDataHeader[0]['listing_type'];
 			}
 
-			if(isset($ListingDataHeader[0]) && isset($ListingDataHeader[0]['listing_price'])) {
+			if (isset($ListingDataHeader[0]) && isset($ListingDataHeader[0]['listing_price'])) {
 				$totalAmount		= $ListingDataHeader[0]['listing_price'];
 			}
-			
-			
 		}
 
 		if (!empty($this->input->post('txt_listingid')) && !empty($ListingData)) {
@@ -1287,15 +1290,15 @@ class payments extends CI_Controller
 						$this->session->set_userdata('paypal_data', $valTransc[0]);
 						$this->direct_payments($data, $valTransc[0], 'internal', 'Stripe');
 
-						
+
 						$url 	= base_url() . PAYMENT_SUCCESS;
 
 						// add plan header to listing of product
 						$this->addPlanHeaderIntoListing($ListingDataHeader, $ListingData);
-						
-						if(isset($ListingDataArr[0]) && isset($ListingDataArr[0]['listing_type_name']) == 'solution') {
+
+						if (isset($ListingDataArr[0]) && isset($ListingDataArr[0]['listing_type_name']) == 'solution') {
 							$data['solution_url'] = base_url() . 'user/manage_solutions';
-							$this->session->set_userdata('solution_success','Successfully process done');
+							$this->session->set_userdata('solution_success', 'Successfully process done');
 						}
 						$this->session->unset_userdata('listing_data');
 						$this->success($valTransc[0], $data);

@@ -169,6 +169,7 @@ class CommonOperationsHandler extends CI_Model
                 'status' => 0,
                 'date' => date('Y-m-d H:i:s')
             );
+            $this->session->set_userdata('get_contract_id', $data['contract_id']);
             return $this->database->_insert_to_DB('tbl_opens', $data);
         }
         return;

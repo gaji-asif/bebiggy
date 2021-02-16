@@ -214,14 +214,14 @@ class DatabaseOperationsHandler extends CI_Model
 
 
 
-     /* Return Row Data Array*/
-     public function _get_row_single_data($table_name, $condition)
-     {
+    /* Return Row Data Array*/
+    public function _get_row_single_data($table_name, $condition)
+    {
         $this->db->where($condition);
-         $query = $this->db->get($table_name);
-         return $query->result_array();
-     }
- 
+        $query = $this->db->get($table_name);
+        return $query->result_array();
+    }
+
     /* Return Row Data Array order by*/
     public function _get_row_data_order($table_name, $order = 'DESC')
     {
@@ -509,7 +509,9 @@ class DatabaseOperationsHandler extends CI_Model
     public function _unique_id($table = 'tbl_opens', $method = 'alnum', $condition)
     {
         do {
-            $new_key = random_string($method, 10);
+            // $new_key = random_string($method, 10);
+            $salt = rand(10, 9999999999);
+            $new_key = substr($salt, 0, 10);
         } while ($this->_results_count($table, array($condition => $new_key)));
         return $new_key;
     }
@@ -979,7 +981,7 @@ class DatabaseOperationsHandler extends CI_Model
                 $dataArr[$i]['ago']     = $this->CommonOperationsHandler->time_elapsed_string($key['date']);
                 $dataArr[$i]['expire']  = $this->CommonOperationsHandler->time_elapsed_string($key['expire_date'], false, true);
                 $i++;
-            } 
+            }
         }
         return $dataArr;
     }
@@ -1008,7 +1010,7 @@ class DatabaseOperationsHandler extends CI_Model
         $this->db->order_by("tbl_comments.id");
         $query      = $this->db->get('tbl_comments');
         $dataArr    = $query->result_array();
-        
+
         if (!empty($dataArr)) {
             $i = 0;
             foreach ($dataArr as $key) {
@@ -1016,7 +1018,7 @@ class DatabaseOperationsHandler extends CI_Model
                 $i++;
             }
         }
-        return $dataArr;       
+        return $dataArr;
     }
 
     /*Auction Ending Soons Listings*/
@@ -1179,8 +1181,8 @@ class DatabaseOperationsHandler extends CI_Model
             $this->db->where_in('tbl_listings.listing_type', array_column($data['platforms'], 'platform'));
             $this->db->group_end();
 
-           //$this->db->where('sponsorship_priority <>', 4);
-            
+            //$this->db->where('sponsorship_priority <>', 4);
+
             // order priority of subscription while add the product
             $this->db->order_by('listing_header_priority', "desc");
             $this->db->order_by('listing_header_expiry', "desc");
@@ -1202,11 +1204,11 @@ class DatabaseOperationsHandler extends CI_Model
             $this->db->limit($limit, $start);
 
             $query = $this->db->get('tbl_listings');
-          
+
             $listingsArr = $query->result_array();
 
-        //    $query->free_result();
-            
+            //    $query->free_result();
+
             // sponsoreship data
 
             $this->db->select('*,(tbl_listings.id) AS id');
@@ -1223,7 +1225,7 @@ class DatabaseOperationsHandler extends CI_Model
             $this->db->group_end();
 
             $this->db->where('sponsorship_priority', 4);
-            
+
             // order priority of subscription while add the product
             // $this->db->order_by('sponsorship_priority', "desc");
             //$this->db->order_by('sponsorship_expires', "desc");
@@ -1251,9 +1253,9 @@ class DatabaseOperationsHandler extends CI_Model
             $sponsorshipsArr = $query->result_array();
             //pre($sponsorshipsArr);
             //pre($listingsArr);
-            $listingsArr = array_merge($sponsorshipsArr , $listingsArr);
-           //pre($listingsArr,1);
-          
+            $listingsArr = array_merge($sponsorshipsArr, $listingsArr);
+            //pre($listingsArr,1);
+
         }
 
         if (!empty($listingsArr)) {
@@ -1281,21 +1283,16 @@ class DatabaseOperationsHandler extends CI_Model
             }
         }
         foreach ($listingsArr as $i => $s) {
-          
-        
+
+
             $invoice = $this->getSoldORNot($s['id']);
-            if(isset($invoice) && !empty($invoice))
-            {
+            if (isset($invoice) && !empty($invoice)) {
                 $listingsArr[$i]['sold_or_not'] = 'yes';
-            }
-            else
-            {
+            } else {
                 $listingsArr[$i]['sold_or_not'] = 'no';
             }
-           
-       
         }
-    //    exit;
+        //    exit;
         return $listingsArr;
     }
     /*fetch front end  results*/
@@ -1872,7 +1869,7 @@ class DatabaseOperationsHandler extends CI_Model
     /*featch most recent posts*/
     public function _fetch_most_recent($id, $type = 'max')
     {
-        if($type=== 'max')
+        if ($type === 'max')
             $query = $this->db->query("select * from tbl_blog where id=(select min(id) from tbl_blog where id >" . $this->db->escape($id) . ")");
         else
             $query = $this->db->query("select * from tbl_blog where id=(select  max(id) from tbl_blog where id <" . $this->db->escape($id) . ")");
@@ -2619,7 +2616,7 @@ class DatabaseOperationsHandler extends CI_Model
 
     public function front_solution_listings($limit = 4, $start = 1, $search = "", $pageName = "", $condition = "")
     {
-        $this->db->select('l1.id, s1.id as solutionId, s1.solution_url, s1.user_id, s1.slug, s1.name as website_BusinessName, s1.description,s1.date, s1.price, s1.delivery_days,  c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type , s1.listing_header_priority' );
+        $this->db->select('l1.id, s1.id as solutionId, s1.solution_url, s1.user_id, s1.slug, s1.name as website_BusinessName, s1.description,s1.date, s1.price, s1.delivery_days,  c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type , s1.listing_header_priority');
         $this->db->from('tbl_solutions as s1');
         $this->db->order_by('s1.date', 'desc');
 
@@ -2629,7 +2626,7 @@ class DatabaseOperationsHandler extends CI_Model
 
 
         if (!empty($condition)) {
-     
+
             $this->db->where($condition);
         }
         if (!empty($pageName)) {
@@ -2642,7 +2639,7 @@ class DatabaseOperationsHandler extends CI_Model
 
         //, s3.name as website_thumbnail'--$this->db->join('tbl_solution_media s3', 's1.id = s3.solution_id', 'left');
 
-       
+
         $this->db->where('s1.status <>', '9');
         $this->db->where('s1.sponsorship_priority <>', '4');
 
@@ -2652,7 +2649,7 @@ class DatabaseOperationsHandler extends CI_Model
         }
         $query = $this->db->get()->result_array();
 
-       //  now getting again data from sponsored data
+        //  now getting again data from sponsored data
         $this->db->select('l1.id,  s1.id as solutionId, s1.solution_url, s1.user_id, s1.slug, s1.name as website_BusinessName, s1.description,s1.date, s1.price, s1.delivery_days, c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type ,s1.sponsorship_priority , s1.listing_header_priority');
         $this->db->from('tbl_solutions as s1');
         $this->db->order_by('s1.date', 'desc');
@@ -2670,14 +2667,14 @@ class DatabaseOperationsHandler extends CI_Model
 
         $this->db->where('s1.status <>', '9');
         $this->db->where('s1.sponsorship_priority = ', '4');
-        
+
         $this->db->order_by('rand()');
         $this->db->limit(SPONSORSHIP_DISPALY_LIMIT);
-        
-       // collect sponsor data 
+
+        // collect sponsor data 
         $query_sponsor = $this->db->get()->result_array();
         // pre($query_sponsor , 1);
-        $query =  array_merge($query_sponsor, $query) ;
+        $query =  array_merge($query_sponsor, $query);
         // Loop through the solution array
         foreach ($query as $i => $solution) {
             // Get an array of solutions images
@@ -2687,18 +2684,13 @@ class DatabaseOperationsHandler extends CI_Model
             $query[$i]['website_thumbnail'] = $images_query;
         }
         foreach ($query as $i => $sold) {
-          
+
             $invoice = $this->getSoldORNot($query[$i]['id']);
-            if(isset($invoice) && !empty($invoice))
-            {
+            if (isset($invoice) && !empty($invoice)) {
                 $query[$i]['sold_or_not'] = 'yes';
-            }
-            else
-            {
+            } else {
                 $query[$i]['sold_or_not'] = 'no';
             }
-           
-       
         }
         // pre($this->db->last_query(), 1);
         return  $query;
@@ -2709,7 +2701,7 @@ class DatabaseOperationsHandler extends CI_Model
         $this->db->where('listing_id', $Id);
         $invoices = $this->db->get();
         $invoice = $invoices->row();
-        
+
         return $invoice;
     }
     public function _get_solutionById($solutionId, $userId = "")
@@ -2743,7 +2735,7 @@ class DatabaseOperationsHandler extends CI_Model
 
     public function getSolutionDetailsBySlug($solutionSlug, $userId = "")
     {
-        $this->db->select('l1.id , s1.id as solutionId, s1.solution_url , s1.date, s1.slug , s1.user_id, s1.name , s1.description, s1.price, s1.delivery_days, s1.title,s1.metakeywords,s1.metadescription, s1.page_tags, c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type, s2.id as service_type_id' , 's1.sponsorship_priority');
+        $this->db->select('l1.id , s1.id as solutionId, s1.solution_url , s1.date, s1.slug , s1.user_id, s1.name , s1.description, s1.price, s1.delivery_days, s1.title,s1.metakeywords,s1.metadescription, s1.page_tags, c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type, s2.id as service_type_id', 's1.sponsorship_priority');
         $this->db->from('tbl_solutions as s1');
         $this->db->join('tbl_solution_categories c1', 's1.category_id = c1.id', 'left');
         $this->db->join('tbl_solution_categories c2', 's1.sub_category_id = c2.id', 'left');
@@ -3587,14 +3579,14 @@ class DatabaseOperationsHandler extends CI_Model
             'listing_header_expiry < ' => date('Y-m-d H:i:s')
         ];
         $this->_update_to_table('tbl_listings', $data, $conditions);
-        
+
         $data = ['sponsorship_priority' =>  0, 'sponsorship_expires' => date('Y-m-d H:i:s')];
         $conditions = [
             'sponsorship_priority > ' => 1,
             'sponsorship_expires < ' => date('Y-m-d H:i:s')
         ];
-         $this->_update_to_table('tbl_listings', $data, $conditions);
-      
+        $this->_update_to_table('tbl_listings', $data, $conditions);
+
 
         // check for solution table
 
@@ -3604,15 +3596,13 @@ class DatabaseOperationsHandler extends CI_Model
             'listing_header_expiry < ' => date('Y-m-d H:i:s')
         ];
         $this->_update_to_table('tbl_solutions', $data, $conditions);
-       
-        $data = ['sponsorship_priority' =>  0 , 'sponsorship_expires' => date('Y-m-d H:i:s')];
+
+        $data = ['sponsorship_priority' =>  0, 'sponsorship_expires' => date('Y-m-d H:i:s')];
         $conditions = [
             'sponsorship_priority > ' => 1,
             'sponsorship_expires < ' => date('Y-m-d H:i:s')
         ];
-          $this->_update_to_table('tbl_solutions', $data, $conditions);
-          
-
+        $this->_update_to_table('tbl_solutions', $data, $conditions);
     }
 
 
@@ -3657,8 +3647,8 @@ class DatabaseOperationsHandler extends CI_Model
     public function get_user_surfing_pages()
     {
         $this->db->select('u1.username, tbl_user_surfing_pages.user_ip, tbl_user_surfing_pages.page, tbl_user_surfing_pages.tags, tbl_user_surfing_pages.created_at');
-        $this->db->join('tbl_users u1', 'u1.user_id = tbl_user_surfing_pages.user_id' ,'left');
-        $this->db->order_by('id' ,'desc');
+        $this->db->join('tbl_users u1', 'u1.user_id = tbl_user_surfing_pages.user_id', 'left');
+        $this->db->order_by('id', 'desc');
         $this->db->from('tbl_user_surfing_pages');
         $this->db->limit(100);
         $query      = $this->db->get();
