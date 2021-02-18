@@ -122,7 +122,7 @@ class Main extends CI_Controller
 		$perPage =  SECTION_WISE;
 		$page = $this->input->get('page') ?? 1;
 		$searchterm = $this->input->get('search') ?? "";
-		
+
 		// Buy Featured Premium Shopify Dropship Stores & Ecommerce Websites for sale
 		$pageName = PAGESNAME_SECTION['home_feature'];
 		$data['featuredWebsite']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
@@ -366,7 +366,7 @@ class Main extends CI_Controller
 
 	public function checkout($type, $id)
 	{
-		
+
 		//pre("$type,$id" , 1);
 		$data = self::$data;
 		$data['error']   =   $this->session->userdata('error');
@@ -634,11 +634,11 @@ class Main extends CI_Controller
 	public function blog_comments_loader($page, $blog_id, $id)
 	{
 		$config = array();
-		$config["base_url"] 					= base_url().'/blog/'.$id;
+		$config["base_url"] 					= base_url() . '/blog/' . $id;
 		$config["total_rows"] 					= $this->database->_get_comments(RESULTS_PER_BLOG, 0, true, $blog_id, 'blog');
 		$config["per_page"] 					= RESULTS_PER_COMMENT;
 		$config['use_page_numbers'] 			= TRUE;
-		
+
 		$config['num_tag_open'] 				= '<li class="page-item">';
 		$config['num_tag_close'] 				= '</li>';
 		$config['cur_tag_open'] 				= '<li class="page-item"><a class="page-link active">';
@@ -659,13 +659,13 @@ class Main extends CI_Controller
 		$config['next_tag_close'] 				= '</li>';
 
 		$config['attributes'] = array('class' => 'page-link');
-		
+
 		$this->pagination->initialize($config);
 		return $this->pagination->create_links();
 	}
 
 	/*view page*/
-	public function view_blog($id, $page =0)
+	public function view_blog($id, $page = 0)
 	{
 		$data = self::$data;
 		$data['blog']			= $this->database->_get_row_data('tbl_blog', array('id' => $id, 'status' => 1), '', false, array('slug' => $id));
@@ -704,7 +704,7 @@ class Main extends CI_Controller
 		if (!empty($data['blog'])) {
 			$data['nextPost']		= $this->database->_fetch_most_recent($data['blog'][0]['id'], 'max');
 			$data['prevPost']		= $this->database->_fetch_most_recent($data['blog'][0]['id'], 'min');
-			
+
 			$data['comments']		= $this->database->_get_comments(RESULTS_PER_COMMENT, $page, false, $data['blog'][0]['id'], 'blog');
 			$data 					= html_escape($this->security->xss_clean($data));
 			$data['links']		= $this->blog_comments_loader($page, $data['blog'][0]['id'], $id);
@@ -718,7 +718,7 @@ class Main extends CI_Controller
 	}
 
 	/*view page*/
-	public function blog($page=1)
+	public function blog($page = 1)
 	{
 		$additional['blogs']			= $this->database->_fetch_blog_posts(RESULTS_PER_BLOG, $page, false, 'date');
 		$additional['sponsoredAds']		= $this->database->_get_specific_listing();
@@ -1290,6 +1290,8 @@ class Main extends CI_Controller
 	{
 		$id =  $this->database->getIdBySlug('tbl_listings', $slug);
 
+
+
 		if (!empty($id)) {
 			$data = self::$data;
 			$data['listing_data']					=	$this->database->_get_row_data('tbl_listings', array('id' => $id, 'listing_type' => $type, 'listing_option' => 'classified'), '', true);
@@ -1298,6 +1300,12 @@ class Main extends CI_Controller
 			$data['expiredStatus']					=	false;
 			$data['badges']							=	 $this->database->getUserBadge($id);
 
+			$sold_or_not =  $this->database->getSoldORNot($id);
+			if (isset($sold_or_not) && !empty($sold_or_not)) {
+				$data['sold_or_not'] = 'yes';
+			} else {
+				$data['sold_or_not'] = 'no';
+			}
 			//code to show promotion message on home page
 			$listing_detail_page_left_side = fileCache("listing_detail_page_left_side", "",  "get");
 			if (!is_array($listing_detail_page_left_side) || count($listing_detail_page_left_side) == 0) {
@@ -1341,7 +1349,7 @@ class Main extends CI_Controller
 				}
 
 				$data['domainStatics']					=	$this->AnalyticsOperationsHandler->getUsersAndPageViews($id);
-				$data['comments']						=   $this->database->_get_comments(RESULTS_PER_BLOG, 0, true, $id, 'website' );
+				$data['comments']						=   $this->database->_get_comments(RESULTS_PER_BLOG, 0, true, $id, 'website');
 				$data['domainData']						=	$this->database->_get_row_data('tbl_domains', array('id' => $data['listing_data'][0]['domain_id']));
 				$data['ownerData']						=	$this->database->getUserData($data['listing_data'][0]['user_id']);
 
@@ -1389,6 +1397,7 @@ class Main extends CI_Controller
 					$data['listing_data']['description'] = $data['listing_data']['description'];;
 
 					$data['listing_data']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+
 
 					//code to show promotion message on home page
 					$listing_detail_page_left_side = fileCache("listing_detail_page_left_side", "",  "get");
@@ -1694,7 +1703,7 @@ class Main extends CI_Controller
 	/*Domains Page*/
 	public function domains()
 	{
-		
+
 		$data = self::$data;
 		$data['sponsoredAds']		= 	$this->database->_get_specific_listing('sponsored', 'domain');
 		$data['slider_name']		= 	'featured-slider';
@@ -2252,24 +2261,24 @@ class Main extends CI_Controller
 
 	public function allMarketplaces($page = 0)
 	{
-	
-	
+
+
 		$data = self::$data;
 		$page = $this->input->get('page') ?? 0;
 		$perPage =  RESULTS_PER_SEARCH;
 		$pageName = "";
 		$searchterm = $this->input->get('search') ?? "";
-	
+
 		$data['heading'] = "site_all_marketplaces";
 		$url =  site_url("all-marketplaces");
 		$data['commonData']	=	$this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('status' => 1), 'app', $pageName, $page, $searchterm);
-		
+
 		$data["links"] 				= 	$this->front_pagination_loader($page, "tbl_listings",  array('status' => 1), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
 		//pre($data['commonData'],1);
 
 		// ($page =  0, $table = 'tbl_listings', $condition = '', $limit = RESULTS_PER_BLOG, $url, $search = '', $column = 'tbl_listings.website_BusinessName', $pageName = '', $hashId = '')
 
-	
+
 		$data['site_name'] 				= $this->lang->line('site_name');
 		$data['site_title'] 			= $this->lang->line('site_title');
 		$data['site_metadescription'] 	= $this->lang->line('site_metadescription');
@@ -2292,13 +2301,13 @@ class Main extends CI_Controller
 	}
 	public function newDomain($page = 0)
 	{
-	
+
 		$data = self::$data;
 		$page = $this->input->get('page') ?? 0;
 		$perPage =  RESULTS_PER_SEARCH;
 		$pageName = "";
 		$searchterm = $this->input->get('search') ?? "";
-	
+
 		$data['heading'] = "site_domains";
 		$url =  site_url("domains");
 		$data['commonData']	=	$this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('tbl_listings.listing_type' => 'domain'), 'app', $pageName, $page, $searchterm);
@@ -2327,7 +2336,7 @@ class Main extends CI_Controller
 
 	public function newWebsite($page = 0)
 	{
-		
+
 		$data = self::$data;
 		$page = $this->input->get('page') ?? 0;
 		$searchterm = $this->input->get('search') ?? "";
@@ -2388,7 +2397,7 @@ class Main extends CI_Controller
 
 	public function newBusiness($page = 0)
 	{
-		
+
 		$data = self::$data;
 		$page = $this->input->get('page') ?? 0;
 		$perPage =  RESULTS_PER_SEARCH;
@@ -2400,7 +2409,7 @@ class Main extends CI_Controller
 		$data["links"] 				= 	$this->front_pagination_loader($page, "tbl_listings",  array('status' => 1, 'tbl_listings.listing_type' => 'business'), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['business'];
 		$data['site_title'] 			= $this->lang->line('site-newbusiness');
-		
+
 		$this->loadPage('newbusiness-for-sale', $data);
 	}
 
@@ -2409,7 +2418,7 @@ class Main extends CI_Controller
 	{
 		$searchterm = $this->input->get('p');
 		$opt = $this->input->get('opt');
-	
+
 		redirect($opt . '?search=' . $searchterm);
 	}
 
@@ -2592,7 +2601,7 @@ class Main extends CI_Controller
 
 		$datac['heading'] = "site_websites_premium";
 		//  $datac['pageName'] = "product-category-shopify-premium-dropship-websites-for-sale";
-		 $datac['pageName'] = "";
+		$datac['pageName'] = "";
 		$datac['url'] = site_url("product-category/shopify-premium-dropship-websites-for-sale");
 		// $datac['condition'] = 'frontend_section = "premium" ';
 		$datac['condition'] = 'category_id = "2" ';
@@ -2628,7 +2637,7 @@ class Main extends CI_Controller
 		$perPage =  RESULTS_PER_SEARCH;
 		$pageName = "";
 		$searchterm =  "";
-	
+
 		$data['heading'] = "site_websites_exclusive";
 		$data['pageName'] = "";
 		$data['url'] = site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
@@ -2639,9 +2648,9 @@ class Main extends CI_Controller
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['business'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
-		
+
 		$data["links"] = $this->front_pagination_loader($page, "tbl_listings",  array('page_tags' => 'exclusive-shopify-store'), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
-		
+
 		// var_dump($data['commonData']);
 		// var_dump($data['links']);
 		// exit;
@@ -2747,7 +2756,7 @@ class Main extends CI_Controller
 		$pageName = PAGESNAME_SECTION["dropshipping_feature"];
 		$data['featuredWebsite']	=	$this->database->front_solution_listings($perPage, $page, $searchterm, $pageName, '');
 		$data['featuredWebsite']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
-	
+
 
 		//BUY PREMIUM SHOPIFY STORES & DROPSHIP WEBSITES FOR SALE
 		$pageName = PAGESNAME_SECTION["dropshipping_premium"];
@@ -2772,7 +2781,7 @@ class Main extends CI_Controller
 		$data['twitter_description']    = $this->lang->line('dropShipping_site_name');
 		$data['twitter_title']          = $this->lang->line('dropShipping_twitter_description');
 
-	
+
 		$this->loadPage('drop-shipping', $data);
 	}
 
@@ -2857,7 +2866,7 @@ class Main extends CI_Controller
 			'#solution'
 		);
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
-		
+
 		return $data;
 	}
 
@@ -3533,7 +3542,7 @@ class Main extends CI_Controller
 		$this->loadPage('how-to-start-drop-shipping', $data);
 	}
 
-	
+
 
 	public function expertDirectory($pageNo = 0)
 	{

@@ -703,7 +703,7 @@ class user extends CI_Controller
 	/*Open Contract*/
 	public function open_contract()
 	{
-		
+
 		$datas = self::$data;
 		if (empty($this->input->post('offer_id'))) {
 			$bid            =  $this->database->_get_row_data('tbl_bids', array('id' => $this->input->post('o_bid_id_cont'), 'bid_status' => 1));
@@ -730,7 +730,7 @@ class user extends CI_Controller
 						if ($datas['settings'][0]['email_notifications'] === '1') {
 							$this->email_op->_user_email_notification('won-bid', $data);
 						}
-						redirect('user/contract/'.$insert_id);
+						redirect('user/contract/' . $insert_id);
 						return;
 					}
 				}
@@ -760,7 +760,7 @@ class user extends CI_Controller
 						if ($datas['settings'][0]['email_notifications'] === '1') {
 							$this->email_op->_user_email_notification('accept-offer', $data);
 						}
-						redirect('user/contract/'.$insert_id);
+						redirect('user/contract/' . $insert_id);
 						return;
 					}
 				}
@@ -779,7 +779,7 @@ class user extends CI_Controller
 			$data['contract']		=	$this->database->_get_contract($id);
 
 			//echo $data['contract'][0]['bid_id'];
-			
+
 			// echo "<pre>";
 			// print_r($data['contract']);
 			// exit;
@@ -1191,7 +1191,7 @@ class user extends CI_Controller
 		exit(json_encode($output));
 	}
 
-	
+
 
 	public function CommissionUserOrProductWise()
 	{
@@ -1940,7 +1940,6 @@ class user extends CI_Controller
 				$data['soln_title'] = "Create solutions";
 				$data['listingOptions']	=	$this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'solution'));
 				$data['sponsorOptions']	=	$this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'sponsored'));
-
 			}
 
 			$data['mainCategories']    =  $this->database->_get_row_data('tbl_solution_categories', array('parent_id' => 0));
@@ -2095,7 +2094,7 @@ class user extends CI_Controller
 				$commission_amount = 0;
 				$admin_commission = $user[0]['admin_commission'];
 				$commission_amount =  $admin_commission;
-			
+
 				$data = array(
 					'name' => $this->input->post('name'),
 					'solution_url' => $this->input->post('solution_url') ?? '',
@@ -2105,9 +2104,9 @@ class user extends CI_Controller
 					'user_ip' => $deviceData['ip_address'],
 					'date' => date('Y-m-d H:i:s'),
 					'status' => 9,
-					'commission_type'=> !empty($commission_type) ? $commission_type : 1,
-					'commission_user_product'=> $commission_user_product,
-					'commission_amount'=> !empty($commission_amount) ? $commission_amount : 0
+					'commission_type' => !empty($commission_type) ? $commission_type : 1,
+					'commission_user_product' => $commission_user_product,
+					'commission_amount' => !empty($commission_amount) ? $commission_amount : 0
 				);
 
 				$token  = $this->common->_generate_unique_tokens('tbl_domains');

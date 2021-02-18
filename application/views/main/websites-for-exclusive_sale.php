@@ -21,7 +21,7 @@
                                     <!-- <div class="website_start_now_a">
                                        <a href="<?php echo site_url('product-category/shopify-dropship-websites-for-sale') ?>"><span>Regular Shopify Stores</span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                                     </div> -->
-                                
+
                                 </div>
                             </div>
                             <img class="d-block w-100" src="<?php echo site_url('assets/img/website-for-sale.png'); ?>" alt="First slide">
@@ -131,8 +131,6 @@
     <div id="viewProduct" class="product_section_a">
         <div class="container-fluid px-0" id="solution">
             <div class="row website-sale" id="response_print_here">
-
-              
                 <?php $this->load->view('main/includes/common_listing_pagination', ['commonData' => $commonData]); ?>
             </div>
 
