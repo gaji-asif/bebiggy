@@ -279,12 +279,16 @@ foreach ($common_listing as $ad) {
 
 												<!-- start added by asif -->
 
-												<div class="row" style="margin-bottom: 5px;">
+												<div class="">
+													<div class="but_now d-flex buy_btn_a row">
+														<a href="<?php echo base_url() . 'checkout/' . 'buynow-solution' . '/' . $ad['slug']; ?>" class="btn btn-default buy_nowbtn d-flex align-item-center">
+															<span>Buy Now</span> <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
 
-													
+												<div class="row" style="margin-top: 5px;">
 
-
-													
 
 													<?php if (!empty($ad['solution_url'])) { ?>
 									<!-- show view demo -->
@@ -312,13 +316,7 @@ foreach ($common_listing as $ad) {
 												</div>
 
 												<!-- End added by asif -->
-												<div class="">
-													<div class="but_now d-flex buy_btn_a row">
-														<a href="<?php echo base_url() . 'checkout/' . 'buynow-solution' . '/' . $ad['slug']; ?>" class="btn btn-default buy_nowbtn d-flex align-item-center">
-															<span>Buy Now</span> <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i>
-														</a>
-													</div>
-												</div>
+												
 												
 											<?php  } else { ?>
 												<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
