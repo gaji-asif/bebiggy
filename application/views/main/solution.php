@@ -15,7 +15,7 @@
                                         <h2>Buy An Amazing Shopify <br />Dropship Store</h2>
                                     </div>
                                     <div class="btn_kickstart_a">
-                                    <a href="<?php echo site_url('product-category/shopify-dropship-websites-for-sale'); ?>#regular-shopfiy-store" class="first_btn"><span>Regular Shopify Stores</span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                        <a href="<?php echo site_url('product-category/shopify-dropship-websites-for-sale'); ?>#regular-shopfiy-store" class="first_btn"><span>Regular Shopify Stores</span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                                         <a href="<?php echo site_url('product-category/shopify-premium-dropship-websites-for-sale');  ?>#premium-shopfiy-store" class="second_btn"><span>Premium Shopify Stores</span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
@@ -98,14 +98,43 @@
     <input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
     <div id="viewProduct">
         <!-- start:ajax -->
-        <div class="container-fluid p-0 ecommerce_div">
-            <div class="row website-sale" id="solution">
-            
-                <?php
-                $commonData['type'] ='solution'; 
-                $this->load->view('main/includes/common-lisiting-solution', ['commonData' => $commonData]); ?>
+        <?php if (isset($commonData) && !empty($commonData)) { ?>
+            <div class="container-fluid p-0 ecommerce_div">
+                <div class="row website-sale" id="solution">
+
+                    <?php
+                    $commonData['type'] = 'solution';
+                    $this->load->view('main/includes/common-lisiting-solution', ['commonData' => $commonData]); ?>
+
+                </div>
 
             </div>
+        <?php } else { ?>
+            <div class="container-fluid ecommerce_div domain_selling_a pb-5">
+                <div class="row website-sale" id="response_print_here">
+                    <div class="container-fluid p-0" id="section">
+                        <div class="row website-sale" id="response_print_here">
+                            <div class="container">
+                                <div class="row domain_row_selling_a">
+                                    <!-- <div class="title_ecommerce"> -->
+                                    <div class="w-100 text-center mb-3">
+                                        <center>
+                                            <h2><?php echo $this->lang->line($heading);
+                                                ?></h2>
+                                        </center>
+                                    </div>
+                                    <div class=" first_div mb-3 p-4 shadow ">
 
-        </div>
+                                        <div class="text-center">
+                                            <h3>Search data not found</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
 </section>

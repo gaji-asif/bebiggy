@@ -2241,7 +2241,10 @@ class Main extends CI_Controller
 			'', // pageName
 			'#solution'
 		);
-		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+		if (!empty($data['commonData'])) {
+			$data['commonData']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+		}
+		// $data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 
 		$data['site_name'] 				= $this->lang->line('site_name');
 		$data['site_title'] 			= $this->lang->line('site_title');
@@ -2384,8 +2387,10 @@ class Main extends CI_Controller
 		$data['og_site_name']           = $this->lang->line('og_site_name');
 		$data['twitter_description']    = $this->lang->line('site_name');
 		$data['twitter_title']          = $this->lang->line('twitter_description');
-		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
-
+		// $data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
+		if (!empty($data['commonData'])) {
+			$data['commonData']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['domain'];
+		}
 		$this->loadPage('doamins-for-sale', $data);
 	}
 
@@ -2414,8 +2419,10 @@ class Main extends CI_Controller
 		$data['og_site_name']           = $this->lang->line('og_site_name');
 		$data['twitter_description']    = $this->lang->line('site_name');
 		$data['twitter_title']          = $this->lang->line('twitter_description');
-		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];
-
+		// $data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];
+		if (!empty($data['commonData'])) {
+			$data['commonData']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['website'];
+		}
 		$this->loadPage('newwebiste-for-sale', $data);
 	}
 
@@ -2445,8 +2452,10 @@ class Main extends CI_Controller
 		$data['og_site_name']           = $this->lang->line('og_site_name');
 		$data['twitter_description']    = $this->lang->line('site_name');
 		$data['twitter_title']          = $this->lang->line('twitter_description');
-		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
-
+		// $data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
+		if (!empty($data['commonData'])) {
+			$data['commonData']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['app'];
+		}
 		$this->loadPage('newapps-for-sale', $data);
 	}
 
@@ -2462,7 +2471,9 @@ class Main extends CI_Controller
 		$url =  site_url("businesses");
 		$data['commonData']	=	$this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('tbl_listings.listing_type' => 'business'), 'app', $pageName, $page, $searchterm);
 		$data["links"] 				= 	$this->front_pagination_loader($page, "tbl_listings",  array('status' => 1, 'tbl_listings.listing_type' => 'business'), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
-		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['business'];
+		if (!empty($data['commonData'])) {
+			$data['commonData']['user_permission'] = fileCache(getUserSlug("_permission"), " ", "get")['business'];
+		}
 		$data['site_title'] 			= $this->lang->line('site-newbusiness');
 
 		$this->loadPage('newbusiness-for-sale', $data);
