@@ -28,6 +28,11 @@
 		/*background-color: #000000 !important;*/
 	}
 
+	.buy_nowbtn{
+		margin-top: 10px;
+		/*margin-top: -15px;*/
+	}
+
 	/*
 	@media only screen and (min-width: 1056px)
 .but_now {
@@ -287,7 +292,50 @@ foreach ($common_listing as $ad) {
 
 									<!-- start added by asif -->
 
-									<div class="row" style="margin-bottom: 5px;">
+									
+
+									<!-- End added by asif -->
+									<div class="">
+										<div class="but_now d-flex buy_btn_a row">
+											<a href="<?php echo base_url() . 'checkout/' . 'buynow-solution' . '/' . $ad['slug']; ?>" class="btn btn-default buy_nowbtn d-flex align-item-center">
+												<span>Buy Now</span> <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i>
+											</a>
+										</div>
+									</div>
+
+								<?php  } else { ?>
+									<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
+										<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20  custom_contact_seller" data-user_id="<?php echo $ad['user_id']; ?>">
+											<span>It belongs to You</span><i class="fa  ml-auto" aria-hidden="true"></i></a>
+									</div>
+								<?php  } ?>
+
+							<?php endif; ?>
+						<?php } else if ($ad['user_id'] === $this->session->userdata('user_id')) { ?>
+							<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
+								<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20  custom_contact_seller">
+									<span>It belongs to You</span><i class="fa  ml-auto" aria-hidden="true"></i></a>
+							</div>
+
+						<?php } else if (!empty($common_listing['user_permission']['contact-seller'])) {  ?>
+
+							<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
+								<a href="#small-dialog-4" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 popup-with-zoom-anim custom_contact_seller buy_nowbtn" data-user_id="<?php echo $ad['user_id']; ?>">
+									<span>Contact Seller
+									</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
+							</div>
+						<?php  } else if (empty($this->session->userdata('user_id') && empty($common_listing['user_permission']['contact-seller']))) { ?>
+							<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
+								<a href="#small-dialog-4 buy_nowbtn" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 popup-with-zoom-anim custom_contact_seller">
+									<span>Contact Seller
+									</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
+							</div>
+						<?php  } else if (!empty($this->session->userdata('user_id') && empty($common_listing['user_permission']['contact-seller']))) { ?>
+							<div class="btn buy_nowbtn mt-2 w-100 h-auto">
+								<a href="javascript:void(0)" class="buy_nowbtn white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 custom_contact_seller" id='upgradePlan'><span>Contact seller</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
+							</div>
+
+							<div class="row" style="margin-bottom: 5px;">
 
 
 
@@ -316,47 +364,6 @@ foreach ($common_listing as $ad) {
 										<a href="<?php echo base_url() . "$url_proudct/" . $ad['slug'];  ?>" style="background-color: #38bffe; padding: 14px; font-size: 14px; color: #FFFFFF; font-weight: bold; width: 50%;" class="my_btn">View Listing</a>
 
 									</div>
-
-									<!-- End added by asif -->
-									<div class="">
-										<div class="but_now d-flex buy_btn_a row">
-											<a href="<?php echo base_url() . 'checkout/' . 'buynow-solution' . '/' . $ad['slug']; ?>" class="btn btn-default buy_nowbtn d-flex align-item-center">
-												<span>Buy Now</span> <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i>
-											</a>
-										</div>
-									</div>
-
-								<?php  } else { ?>
-									<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
-										<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20  custom_contact_seller" data-user_id="<?php echo $ad['user_id']; ?>">
-											<span>It belongs to You</span><i class="fa  ml-auto" aria-hidden="true"></i></a>
-									</div>
-								<?php  } ?>
-
-							<?php endif; ?>
-						<?php } else if ($ad['user_id'] === $this->session->userdata('user_id')) { ?>
-							<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
-								<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20  custom_contact_seller">
-									<span>It belongs to You</span><i class="fa  ml-auto" aria-hidden="true"></i></a>
-							</div>
-
-						<?php } else if (!empty($common_listing['user_permission']['contact-seller'])) {  ?>
-
-							<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
-								<a href="#small-dialog-4" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 popup-with-zoom-anim custom_contact_seller" data-user_id="<?php echo $ad['user_id']; ?>">
-									<span>Contact Seller
-									</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
-							</div>
-						<?php  } else if (empty($this->session->userdata('user_id') && empty($common_listing['user_permission']['contact-seller']))) { ?>
-							<div class="btn buy_nowbtn mt-2 w-100 h-auto listing_type_btn_a">
-								<a href="#small-dialog-4" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 popup-with-zoom-anim custom_contact_seller">
-									<span>Contact Seller
-									</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
-							</div>
-						<?php  } else if (!empty($this->session->userdata('user_id') && empty($common_listing['user_permission']['contact-seller']))) { ?>
-							<div class="btn buy_nowbtn mt-2 w-100 h-auto">
-								<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 custom_contact_seller" id='upgradePlan'><span>Contact seller</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
-							</div>
 						<?php } ?>
 					</div>
 				</div>
