@@ -1160,7 +1160,138 @@ class DatabaseOperationsHandler extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    public function _custome_get_selected_listing_types_frontend($type, $sold = 0, $limit = 50, $listing = '', $void = 'app', $pageName = "", $start = 0, $searchterm = "")
+    {
+        $data['platforms']   =   $this->_get_activated_platforms('');
 
+
+        $data['options']     =   $this->_get_row_data('tbl_platforms', array('type' => 'option', 'status' => 1));
+        $today = date('Y-m-d H:i:s');
+
+        if (empty($sold)) {
+            $this->db->select('*,(tbl_listings.id) AS id');
+            $this->db->group_start();
+            $this->db->where('tbl_listings.status', '1');
+            $this->db->where('tbl_listings.sold_status', $sold);
+            $this->db->where_in('tbl_listings.listing_type', ['business', 'app', 'website', 'domain']);
+            $this->db->group_end();
+
+            $this->db->group_start();
+            $this->db->where_in('tbl_listings.listing_type', array_column($data['platforms'], 'platform'));
+            $this->db->group_end();
+
+            //$this->db->where('sponsorship_priority <>', 4);
+
+            // order priority of subscription while add the product
+            $this->db->order_by('listing_header_priority', "desc");
+            $this->db->order_by('listing_header_expiry', "desc");
+
+            $this->db->group_by('tbl_listings.id');
+
+            if (!empty($pageName)) {
+                $this->db->where("FIND_IN_SET('$pageName',display_on_page) != ", 0);
+            }
+
+            if (!empty($searchterm)) {
+                $this->db->like('tbl_listings.website_BusinessName', $searchterm);
+            }
+            $this->db->where('tbl_listings.sponsorship_priority <> ', '4');
+            if ($start !== 0) {
+                $start = $limit * ($start - 1);
+            }
+
+            $this->db->limit($limit, $start);
+
+            $query = $this->db->get('tbl_listings');
+
+            $listingsArr = $query->result_array();
+
+            //    $query->free_result();
+
+            // sponsoreship data
+
+            $this->db->select('*,(tbl_listings.id) AS id');
+            $this->db->group_start();
+            $this->db->where('tbl_listings.status', '1');
+            $this->db->where('tbl_listings.sold_status', $sold);
+            $this->db->where_in('tbl_listings.listing_type', ['business', 'app', 'website', 'domain']);
+            $this->db->group_end();
+
+            $this->db->group_start();
+            $this->db->where_in('tbl_listings.listing_type', array_column($data['platforms'], 'platform'));
+            $this->db->group_end();
+
+            $this->db->where('sponsorship_priority', 4);
+
+            // order priority of subscription while add the product
+            // $this->db->order_by('sponsorship_priority', "desc");
+            //$this->db->order_by('sponsorship_expires', "desc");
+
+            $this->db->group_by('tbl_listings.id');
+
+            // if (!empty($pageName)) {
+            //     $this->db->where("FIND_IN_SET('$pageName',display_on_page) != ", 0);
+            // }
+
+            if (!empty($searchterm)) {
+                $this->db->like('tbl_listings.website_BusinessName', $searchterm);
+            }
+
+            // if ($start !== 0) {
+            //     $start = $limit * ($start - 1);
+            // }
+
+            $this->db->order_by('rand()');
+
+            $this->db->limit(SPONSORSHIP_DISPALY_LIMIT);
+
+            $query = $this->db->get('tbl_listings');
+            // pre($this->db->last_query(),1);
+            $sponsorshipsArr = $query->result_array();
+            //pre($sponsorshipsArr);
+            //pre($listingsArr);
+            $listingsArr = array_merge($sponsorshipsArr, $listingsArr);
+            //pre($listingsArr,1);
+
+        }
+
+        if (!empty($listingsArr)) {
+            $i = 0;
+            foreach ($listingsArr as $listing) {
+                if ($listing['listing_type'] === 'domain') {
+                    $listingsArr[$i]['category']        =   $listing['listing_type'];
+                    $listingsArr[$i]['categoryIcon']    =   'domains.svg';
+                } else {
+                    $listingsArr[$i]['category']        =   $listing['listing_type'];
+                    $listingsArr[$i]['categoryIcon']    =   'website.svg';
+                }
+
+                if (isset($listing['domain_id'][0]['domain'])) {
+                    $listingsArr[$i]['domain']          =   $this->_get_single_data('tbl_domains', array('id' => $listing['domain_id']), 'domain');
+                    $listingsArr[$i]['verify']          =   $this->_get_single_data('tbl_domains', array('id' => $listing['domain_id']), 'status');
+                } else {
+                    $listingsArr[$i]['domain']          =   "";
+                    $listingsArr[$i]['verify']          =   "";
+                }
+
+                $listingsArr[$i]['ago']                 =   $this->CommonOperationsHandler->time_elapsed_string($listing['date']);
+                $listingsArr[$i]['username']            =   $this->_get_single_data('tbl_users', array('user_id' => $listing['user_id']), 'username');
+                $i++;
+            }
+        }
+        foreach ($listingsArr as $i => $s) {
+
+
+            $invoice = $this->getSoldORNot($s['id']);
+            if (isset($invoice) && !empty($invoice)) {
+                $listingsArr[$i]['sold_or_not'] = 'yes';
+            } else {
+                $listingsArr[$i]['sold_or_not'] = 'no';
+            }
+        }
+        //    exit;
+        return $listingsArr;
+    }
     /*Trending Classified Listings front end only */
     public function _get_selected_listing_types_frontend($type, $sold = 0, $limit = 50, $listing = '', $void = 'app', $pageName = "", $start = 0, $searchterm = "")
     {
@@ -1332,7 +1463,38 @@ class DatabaseOperationsHandler extends CI_Model
         $query      = $this->db->get($table);
         return $query->result_array();
     }
+    public function _custome_fetch_frontend_result($table, $limit = "", $start = 0, $count = false, $condition = "", $search = "", $column = "", $sort = 'date', $pageName = "")
+    {
+        $this->db->where('status <>', '9');
+        if (!empty($search) && !empty($column)) {
+            $this->db->like($column, $search);
+        }
+        $this->db->where_in('tbl_listings.listing_type', ['business', 'app', 'website', 'domain']);
+        if (!empty($condition)) {
+            $this->db->where($condition);
+        }
 
+        if (!empty($pageName)) {
+            $this->db->where("FIND_IN_SET('$pageName',display_on_page) != ", 0);
+        }
+
+        if ($count) {
+            $query      = $this->db->get($table);
+            // pre($this->db->last_query(),1);
+            return $query->num_rows();
+        }
+
+
+        if (!empty($limit)) {
+            if ($start !== 0) {
+                $start = $limit * ($start - 1);
+            }
+            $this->db->limit($limit, $start);
+        }
+        $this->db->order_by($sort, 'desc');
+        $query      = $this->db->get($table);
+        return $query->result_array();
+    }
 
 
     /*Trending Classified Listings */
@@ -2687,15 +2849,7 @@ class DatabaseOperationsHandler extends CI_Model
             // Add the images array to the array entry for this solution
             $query[$i]['website_thumbnail'] = $images_query;
         }
-        foreach ($query as $i => $sold) {
 
-            $invoice = $this->getSoldORNot($query[$i]['id']);
-            if (isset($invoice) && !empty($invoice)) {
-                $query[$i]['sold_or_not'] = 'yes';
-            } else {
-                $query[$i]['sold_or_not'] = 'no';
-            }
-        }
         // pre($this->db->last_query(), 1);
         return  $query;
     }

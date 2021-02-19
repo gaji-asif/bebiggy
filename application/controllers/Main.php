@@ -2264,16 +2264,24 @@ class Main extends CI_Controller
 
 
 		$data = self::$data;
-		$page = $this->input->get('page') ?? 0;
+		$page = $this->input->get('page') ?? 1;
 		$perPage =  RESULTS_PER_SEARCH;
 		$pageName = "";
 		$searchterm = $this->input->get('search') ?? "";
 
+
+
 		$data['heading'] = "site_all_marketplaces";
 		$url =  site_url("all-marketplaces");
-		$data['commonData']	=	$this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('status' => 1), 'app', $pageName, $page, $searchterm);
+		$data['commonData']	= $this->database->_custome_get_selected_listing_types_frontend('date', 0, $perPage, array('status' => 1), 'app', $pageName, $page, $searchterm);
+		$data['commonData2'] = $this->database->front_solution_listings($perPage, $page, $searchterm);
 
-		$data["links"] 				= 	$this->front_pagination_loader($page, "tbl_listings",  array('status' => 1), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
+		// $data['commonData']	= $lisitng_data;
+		$listing_link = $this->custome_front_pagination_loader($page, "tbl_listings",  array('status' => 1), $perPage, $url, $searchterm, 'tbl_listings.website_BusinessName', '', '#section');
+
+
+		$data["links"] 	= $listing_link;
+
 		//pre($data['commonData'],1);
 
 		// ($page =  0, $table = 'tbl_listings', $condition = '', $limit = RESULTS_PER_BLOG, $url, $search = '', $column = 'tbl_listings.website_BusinessName', $pageName = '', $hashId = '')
@@ -2298,6 +2306,53 @@ class Main extends CI_Controller
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
 
 		$this->loadPage('all-for-sale', $data);
+	}
+
+	public function custome_front_pagination_loader($page =  0, $table = 'tbl_listings', $condition = '', $limit = RESULTS_PER_BLOG, $url, $search = '', $column = 'tbl_listings.website_BusinessName', $pageName = '', $hashId = '')
+	{
+
+
+		$config = array();
+		$config["base_url"] 					=  $url;
+		$listing_total_rows 					= $this->database->_custome_fetch_frontend_result($table, $limit, $page, true, $condition, $search, $column, '', $pageName);
+		$sloutin_total_rows 					= $this->database->_fetch_frontend_result('tbl_solutions', $limit, $page, true, $condition, $search, 'tbl_solutions.name', '', $pageName);
+
+
+		$config["total_rows"] = $listing_total_rows + $sloutin_total_rows;
+
+		// ($table, $limit = "", $start = 0, $count = false, $condition = "", $search = "", $column = "", $sort = 'date', $pageName = "")
+		$config["per_page"] 					= $limit;
+		$config['use_page_numbers'] 			= TRUE;
+
+		$config['num_tag_open'] 				= '<li class="page-item">';
+		$config['num_tag_close'] 				= '</li>';
+		$config['cur_tag_open'] 				= '<li class="page-item"><a class="page-link active">';
+		$config['cur_tag_close']				= '</a></li>';
+		$config['prev_tag_open'] 				= '<li class="page-item">';
+		$config['prev_tag_close'] 				= '</li>';
+		$config['first_tag_open'] 				= '<li class="page-item">';
+		$config['first_tag_close']				= '</li>';
+		$config['last_tag_open'] 				= '<li class="page-item">';
+		$config['last_tag_close'] 				= '</li>';
+
+		$config['prev_link'] 					= '<i class="fa fa-angle-double-left" aria-hidden="true"></i>';
+		$config['prev_tag_open'] 				= '<li class="page-item">';
+		$config['prev_tag_close'] 				= '</li>';
+
+		$config['next_link']		 			= '<i class="fa fa-angle-double-right" aria-hidden="true"></i>';
+		$config['next_tag_open'] 				= '<li class="page-item">';
+		$config['next_tag_close'] 				= '</li>';
+
+		$config['enable_query_strings'] 		= TRUE;
+		$config['page_query_string'] 			= TRUE;
+		$config['use_page_numbers'] 			= TRUE;
+		$config['reuse_query_string'] 			= TRUE;
+		$config['query_string_segment'] 		= 'page';
+		if (!empty($hashId)) {
+			$config['suffix'] 						= $hashId;
+		}
+		$this->pagination->initialize($config);
+		return $this->pagination->create_links();
 	}
 	public function newDomain($page = 0)
 	{

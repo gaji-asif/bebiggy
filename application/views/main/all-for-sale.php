@@ -24,18 +24,56 @@
     </div>
 </section>
 
+
 <section class="domain_last_section domain_mobilelsiting_a">
-   
+
     <?php /*<input type="hidden" name="listing_type" id="listing_type" value="<?php echo $searchtype; ?>">*/ ?>
     <input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
     <div id="viewProduct">
         <!-- start:ajax -->
-        <div class="container-fluid p-0" id="section">
-            <div class="row website-sale" id="response_print_here">
+        <?php if (isset($commonData)) { ?>
+            <div class="container-fluid p-0" id="section">
+                <div class="row website-sale" id="response_print_here">
+                    <?php $this->load->view('main/includes/common_listing_pagination-new', ['commonData' => $commonData]); ?>
+                </div>
+            </div>
+        <?php }
+        if (isset($commonData2)) { ?>
+            <div class="container-fluid p-0 ecommerce_div">
+                <div class="row website-sale" id="solution">
+                    <?php $commonData2['type'] = 'solution';
+                    $this->load->view('main/includes/common-lisiting-solution-new', ['commonData' => $commonData2]); ?>
+                </div>
+            </div>
+        <?php } ?>
+        <?php if (isset($commonData)) { ?>
+            <div class="container-fluid p-0" id="section">
+                <div class="row website-sale" id="response_print_here">
+                    <?php $this->load->view('main/includes/common_listing_pagination-new2', ['commonData' => $commonData]); ?>
+                </div>
+            </div>
 
-        <?php $this->load->view('main/includes/common_listing_pagination', ['commonData' => $commonData]); ?>
-              
-        </div>
+        <?php }
+        if (isset($commonData2)) { ?>
+            <div class="container-fluid p-0 ecommerce_div">
+                <div class="row website-sale" id="solution">
+                    <?php $commonData2['type'] = 'solution';
+                    $this->load->view('main/includes/common-lisiting-solution-new2', ['commonData' => $commonData2]); ?>
+                </div>
+            </div>
 
-    </div>
+        <?php } ?>
+        <?php if (!empty($links)) if (isset($links)) { ?>
+            <div class="row pagination_div mb-2 pagi_top_a w-100">
+                <div class="container paginationSearch w-100">
+                    <nav aria-label="Page navigation example w-100">
+                        <ul class="pagination justify-content-center w-100" style="margin:20px 0">
+                            <?php if (!empty($links)) if (isset($links)) {
+                                echo $links;
+                            } ?>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        <?php } ?>
 </section>
