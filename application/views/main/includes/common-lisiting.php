@@ -30,6 +30,7 @@
 
 	.buy_nowbtn{
 		margin-top: 10px;
+		/*margin-top: -15px;*/
 	}
 
 	/*
@@ -60,6 +61,10 @@
 		/* margin-top: -25px; */
 		margin-top: 0px;
 	}
+
+	.custom_margin_top{
+		margin-top: -20px;
+	}
 </style>
 
 <?php
@@ -72,6 +77,8 @@ foreach ($common_listing as $ad) {
 	//pre($data['commonData']['user_permission']);
 	if (isset($ad['id'])) {
 ?>
+
+
 		<div class="row first_div mb-3 p-4 shadow <?php if (isset($ad['listing_header_priority']) && $ad['listing_header_priority'] != 1) echo "sponsership_bgcolor" ?>">
 			<?php
 			$show_image = 0;
@@ -338,8 +345,12 @@ foreach ($common_listing as $ad) {
 							</div>
 						<?php } else if (!empty($this->session->userdata('user_id') && empty($common_listing['user_permission']['contact-seller']))) { ?>
 							<!--  user is logged in but no have contact seller permission  -->
-							<div class="btn buy_nowbtn  w-100 h-auto">
-								<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width  custom_contact_seller" id='upgradePlan'><span>Contact Seller</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
+
+							<!-- <?php echo  $ad['listing_type'];?> -->
+
+
+							<div class="btn buy_nowbtn  w-100 h-auto <?php if($ad['listing_type'] == 'business') { echo 'custom_margin_top';} ?>">
+								<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width custom_contact_seller" id='upgradePlan'><span>Contact Seller</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
 							</div>
 
 						<?php }

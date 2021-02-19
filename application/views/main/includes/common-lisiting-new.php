@@ -250,58 +250,7 @@ foreach ($common_listing as $ad) {
 
 
 
-						<div class='row py-2 p-0'>
-							<div class="col-md-12 col-sm-12 d-flex w-100 p-0 <?php if ($ad['listing_type'] == 'business' && !empty($this->session->userdata('user_id'))) {
-																					echo 'margin_top_asif';
-																				} ?>">
-								<a href="<?php echo base_url() . $ad['listing_option'] . '/' . $ad['listing_type'] . '/' . $ad['slug'];  ?>" class="listing" style="background-color: #38bffe; padding: 14px; font-size: 14px; color: #FFFFFF; font-weight: bold; width: 50%; margin-right: 2%;" class="my_btn">View Listing</a>
-
-
-
-								<?php if ($ad['listing_type'] !== 'app' && $ad['listing_type'] !== 'business') { ?>
-									<?php if ((!empty($common_listing['user_permission']['view-demo'])) || $ad['user_id']  == $this->session->userdata('user_id')) {  ?>
-										<!--   Permssion to view demo website/domain -->
-										<a target="_blank" href="<?php if (!empty($ad['website_BusinessName'])) echo '//' . $ad['website_BusinessName']; ?>" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn">View Demo</a>
-
-									<?php  } else if (empty($common_listing['user_permission']['view-demo']) && empty($this->session->userdata('user_id'))) { ?>
-
-										<!-- Guest user to login to view demo website/domain -->
-										<a href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn ">View Demo</a>
-
-
-									<?php } else if (!empty($this->session->userdata('user_id'))  && empty($common_listing['user_permission']['view-demo'])) { ?>
-
-										<!-- Logged-In user without permssion view demo -->
-										<a href="javascript:void(0)" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn" id='upgradePlan'>View Demo</a>
-
-									<?php }  ?>
-								<?php
-
-								} else  if ($ad['listing_type'] == 'app') { ?>
-
-									<!-- for app only start  -->
-
-									<?php if ((!empty($common_listing['user_permission']['view-demo']))  || $ad['user_id']  == $this->session->userdata('user_id')) {  ?>
-
-										<a target="_blank" href="<?php if (!empty($ad['app_url'])) echo  $ad['app_url']; ?>" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn">View Demo</a>
-
-									<?php  } else if (empty($this->session->userdata('user_id'))) { ?>
-
-										<!-- Guest user to login to view demo website/domain -->
-										<a href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim ">View Demo</a>
-
-
-									<?php } else if (!empty($this->session->userdata('user_id'))  && empty($common_listing['user_permission']['view-demo'])) { ?>
-
-										<!-- Logged-In user without permssion view demo -->
-										<a href="javascript:void(0)" class="view_demo ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn" id='upgradePlan'>View Demo</a>
-
-								<?php }
-								}  ?>
-
-								<!-- for app only end  -->
-							</div>
-						</div>
+						
 
 						<!-- // end asif area -->
 
@@ -396,6 +345,60 @@ foreach ($common_listing as $ad) {
 								<a href="javascript:void(0)" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 custom_contact_seller">
 									<span>It belongs to You</span><i class="fa  ml-auto" aria-hidden="true"></i></a>
 							</div>
+
+
+							<div class='row py-2 p-0'>
+							<div class="col-md-12 col-sm-12 d-flex w-100 p-0 <?php if ($ad['listing_type'] == 'business' && !empty($this->session->userdata('user_id'))) {
+																					echo 'margin_top_asif';
+																				} ?>">
+								<a href="<?php echo base_url() . $ad['listing_option'] . '/' . $ad['listing_type'] . '/' . $ad['slug'];  ?>" class="listing" style="background-color: #38bffe; padding: 14px; font-size: 14px; color: #FFFFFF; font-weight: bold; width: 50%; margin-right: 2%;" class="my_btn">View Listing</a>
+
+
+
+								<?php if ($ad['listing_type'] !== 'app' && $ad['listing_type'] !== 'business') { ?>
+									<?php if ((!empty($common_listing['user_permission']['view-demo'])) || $ad['user_id']  == $this->session->userdata('user_id')) {  ?>
+										<!--   Permssion to view demo website/domain -->
+										<a target="_blank" href="<?php if (!empty($ad['website_BusinessName'])) echo '//' . $ad['website_BusinessName']; ?>" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn">View Demo</a>
+
+									<?php  } else if (empty($common_listing['user_permission']['view-demo']) && empty($this->session->userdata('user_id'))) { ?>
+
+										<!-- Guest user to login to view demo website/domain -->
+										<a href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn ">View Demo</a>
+
+
+									<?php } else if (!empty($this->session->userdata('user_id'))  && empty($common_listing['user_permission']['view-demo'])) { ?>
+
+										<!-- Logged-In user without permssion view demo -->
+										<a href="javascript:void(0)" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn" id='upgradePlan'>View Demo</a>
+
+									<?php }  ?>
+								<?php
+
+								} else  if ($ad['listing_type'] == 'app') { ?>
+
+									<!-- for app only start  -->
+
+									<?php if ((!empty($common_listing['user_permission']['view-demo']))  || $ad['user_id']  == $this->session->userdata('user_id')) {  ?>
+
+										<a target="_blank" href="<?php if (!empty($ad['app_url'])) echo  $ad['app_url']; ?>" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn">View Demo</a>
+
+									<?php  } else if (empty($this->session->userdata('user_id'))) { ?>
+
+										<!-- Guest user to login to view demo website/domain -->
+										<a href="#small-dialog-4" class="view_demo  ripple-effect move-on-hover  popup-with-zoom-anim ">View Demo</a>
+
+
+									<?php } else if (!empty($this->session->userdata('user_id'))  && empty($common_listing['user_permission']['view-demo'])) { ?>
+
+										<!-- Logged-In user without permssion view demo -->
+										<a href="javascript:void(0)" class="view_demo ripple-effect move-on-hover  popup-with-zoom-anim view_demo_btn my_btn" id='upgradePlan'>View Demo</a>
+
+								<?php }
+								}  ?>
+
+								<!-- for app only end  -->
+							</div>
+						</div>
 
 						<?php } ?>
 
