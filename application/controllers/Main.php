@@ -2735,6 +2735,7 @@ class Main extends CI_Controller
 
 		$this->loadPage('websites-for-exclusive_sale', $data);
 	}
+	
 	public function websitesForLatestSale($page = 0)
 	{
 		// $data = self::$data;
