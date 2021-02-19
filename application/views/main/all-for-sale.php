@@ -88,10 +88,10 @@
                             <h2>All MarketPlaces Listing</h2>
                         </center>
                     </div>
-                    <div class=" first_div mb-3 p-4 shadow ">
+                    <div class=" first_div mb-3 p-4 shadow " style="background-color: #fff3cd;border-color: #fff3cd">
 
-                        <div class="text-center">
-                            <h3>Search data not found</h3>
+                        <div class="text-center ">
+                            <h5>No listings found matching search</h5>
                         </div>
                     </div>
                 <?php } ?>
