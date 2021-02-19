@@ -47,6 +47,8 @@ foreach ($common_listing as $ad) {
 
 	// pre($ad , 1);
 	if (!empty($ad['id'])) {
+
+
 ?>
 		<?php if (isset($ad['sponsorship_priority'])  && $ad['sponsorship_priority'] == 4) { ?>
 			<div class="row first_div dropshipping_products_a mb-3 p-4 shadow clearfix  <?php if (isset($ad['listing_header_priority'])  && $ad['listing_header_priority'] != 1) echo "sponsership_bgcolor" ?>">

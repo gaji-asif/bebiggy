@@ -49,8 +49,8 @@ foreach ($common_listing as $ad) {
 	if (!empty($ad['id'])) {
 ?>
 		<?php
-		// var_dump($ad['sponsorship_priority']);
-		if (!isset($ad['sponsorship_priority']) ) {
+		
+		if (!isset($ad['sponsorship_priority'])) {
 
 
 		?>

@@ -2834,6 +2834,9 @@ class DatabaseOperationsHandler extends CI_Model
         $this->db->where('s1.status <>', '9');
         $this->db->where('s1.sponsorship_priority = ', '4');
 
+        if (!empty($search)) {
+            $this->db->like('s1.name', $search);
+        }
         $this->db->order_by('rand()');
         $this->db->limit(SPONSORSHIP_DISPALY_LIMIT);
 

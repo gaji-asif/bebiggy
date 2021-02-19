@@ -12,7 +12,7 @@
                 <div class="container">
                     <div class="row domain_row_selling_a">
                         <!-- <div class="title_ecommerce"> -->
-                        <div class="w-100 text-center">
+                        <div class="w-100 text-center pb-3">
                             <center>
                                 <h2><?php echo $this->lang->line($heading);
                                     ?></h2>
