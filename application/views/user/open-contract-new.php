@@ -37,7 +37,8 @@
 			<div class="dashboard-content-container" data-simplebar>
 				<div class="dashboard-content-inner">
 					<div class="dashboad_table">
-
+						<i class="icon-material-outline-assignment"></i> &nbsp;
+						<h3>All Transaction</h3>
 
 						<div class="ml-auto dropdown user_name">
 							<div class="get_user dropdown-toggle" data-toggle="dropdown">GP</div>
@@ -78,17 +79,17 @@
 								<div class="headline">
 									<h3>Transaction History</h3>
 								</div>
-								<div id="negotiations_table" class="bs-example container" data-example-id="striped-table">
-									<table class="table table-striped table-bordered table-hover">
+								<div id="negotiations_table" class="bs-example container pb-5" data-example-id="striped-table">
+									<table class="transaction_table table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th style="width: 13%">Date</th>
-												<th>Transaction Id</th>
+												<th style="width: 15%">Date</th>
+												<th>Transactions Number</th>
+												<th>Type</th>
+												<th>Title</th>
+												<th>Amount</th>
 												<th>Status</th>
-												<th>Listing Name</th>
-												<th>Listing Id</th>
-												<th>Listing Status</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -102,12 +103,45 @@
 														<th scope="row"><?php echo $i; ?></th>
 
 														<td><?php if (!empty($row['date'])) echo date('Y-m-d', strtotime($row['date'])); ?></td>
-														<td><?php if (!empty($row['contract_id'])) { ?><a href="<?php echo site_url('user/contract/' . $row['contract_id']); ?>">Transaction - #<?php echo $row['contract_id']; ?> </a> <?php } ?></td>
-														<td></td>
-														<td><?php if (!empty($row['website_BusinessName'])) echo $row['website_BusinessName']; ?></td>
-														<td><?php if (!empty($row['listing_id'])) echo $row['listing_id']; ?></td>
+														<td><?php if (!empty($row['open_contract_id'])) { ?><a href="<?php echo site_url('user/contract/' . $row['open_contract_id']); ?>">Transaction - #<?php echo $row['open_contract_id']; ?> </a> <?php } ?></td>
+														<td><?php if (!empty($row['type'])) echo $row['type']; ?></td>
+														<td><?php if (!empty($row['website_BusinessName'])) echo $row['website_BusinessName']; ?></>
+														<td> <strong>
+																<?php
+																if (!empty($row['amount'])) {
+																	if (!empty($default_currency)) {
+																		echo $default_currency . '' . $row['amount'];
+																	} else {
+																		echo '$ ' . $row['amount'];
+																	}
+																}
+																?>
+															</strong>
+														</td>
 
-														<td></td>
+														<td>
+															<?php if ($row['opens_status'] === '0') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-warning text-white">Pending Payment</span></a></span>
+															<?php } else if ($row['opens_status'] === '1') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-success text-white">Paid </span></a></span>
+															<?php } else if ($row['opens_status'] === '2') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Support Review </span></a></span>
+															<?php } else if ($row['opens_status'] === '3') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Canceled Transaction </span></a></span>
+															<?php } else if ($row['opens_status'] === '6') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-danger text-white">Requested a Revision </span></a></span>
+															<?php } else if ($row['opens_status'] === '4') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Completed </span></a></span>
+															<?php } else if ($row['opens_status'] === '5') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Delivered & Waiting for Approval</span></a></span>
+															<?php } else if ($row['opens_status'] === '7') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Canceled Transaction & Refunded</span></a></span>
+															<?php } else if ($row['opens_status'] === '8') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Rejected Cancel Request</span></a></span>
+															<?php } else if ($row['opens_status'] === '9') { ?>
+																<span class="seller-detail-item"><a href="#"><i class="icon-feather"></i> <span class="badge badge-info text-white">Raised a Dispute</span></a></span>
+															<?php } ?>
+														</td>
 
 													</tr>
 
@@ -152,7 +186,17 @@
 		timeleft();
 	</script>
 	<!--------------------------------------------------------------------------------------------------------------->
+	<script>
+		$('.transaction_table').DataTable({
+			destroy: true,
 
+			dom: 'Bfrtip',
+			buttons: ['csv'],
+			bFilter: true,
+
+			dom: 'Bfrtip',
+		});
+	</script>
 </body>
 
 </html>

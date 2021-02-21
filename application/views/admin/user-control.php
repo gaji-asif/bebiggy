@@ -4,7 +4,12 @@
 <head>
 
 	<!--Admin Page Meta Tags-->
-	<title>User Control | <?php echo $this->lang->line('site_name') ?> | Admin Dashboard</title>
+	<title> <?php if (isset($define_type) && $define_type == 'admin_user') { ?>
+			Admin User
+		<?php } else { ?>
+			User Controls
+		<?php } ?> | <?php echo $this->lang->line('site_name') ?> | Admin Dashboard
+	</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="icon" href="<?php if (isset($imagesData[0]['favicon'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['favicon']; ?>" alt="favicon" />
@@ -90,7 +95,11 @@
 								</div>
 								<!-- Headline -->
 								<div class="headline">
-									<h3>User Controls</h3>
+									<?php if (isset($define_type) && $define_type == 'admin_user') { ?>
+										<h3>Admin User</h3>
+									<?php } else { ?>
+										<h3>User Controls</h3>
+									<?php } ?>
 								</div>
 								<!----- PAGES ---------------->
 								<div class="row">

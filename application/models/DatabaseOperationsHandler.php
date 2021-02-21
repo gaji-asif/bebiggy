@@ -124,7 +124,8 @@ class DatabaseOperationsHandler extends CI_Model
         $this->db->or_where('customer_id', $this->session->userdata('user_id'));
         $this->db->group_end();
         $this->db->join('tbl_listings', 'tbl_listings.id = tbl_opens.listing_id');
-        $this->db->select('*,(tbl_opens.id) as open_id ,(tbl_listings.id) as listings_id2 ,(tbl_listings.status) as listings_status ,(tbl_opens.status) as opens_status');
+        $this->db->join('tbl_contracts', 'tbl_contracts.contract_id = tbl_opens.id');
+        $this->db->select('*,(tbl_opens.contract_id) as open_contract_id ,(tbl_opens.id) as open_id ,(tbl_listings.id) as listings_id2 ,(tbl_listings.status) as listings_status ,(tbl_opens.status) as opens_status');
         $query = $this->db->get('tbl_opens');
         return $query->result_array();
     }

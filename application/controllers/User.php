@@ -812,6 +812,7 @@ class user extends CI_Controller
 		$data = self::$data;
 		if (empty($id)) {
 			$data['contract'] = $this->database->_get_all_contracts();
+
 			$this->load->view('user/open-contract-new', $data);
 			return;
 		}
