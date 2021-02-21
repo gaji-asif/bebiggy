@@ -1642,6 +1642,7 @@ function getListingHeaderData(data) {
 /* Load User data
 /*--------------------------------------------------*/
 function loadUserData() {
+ 
     var csrfName = $('.txt_csrfname').attr('name');
     var csrfHash = $('.txt_csrfname').val();
     var table = $('#tbl_userdata').DataTable({
@@ -1649,6 +1650,24 @@ function loadUserData() {
         "ajax": {
             "type": "GET",
             "url": baseUrl + 'common/get_table_data/tbl_users',
+            "data": {
+                [csrfName]: csrfHash
+            },
+            "success": function (data, json) {
+                $('.txt_csrfname').val(data.token);
+                getUserControlData(data.response);
+            }
+        }
+    });
+}
+function customeLoadUserData() {
+    var csrfName = $('.txt_csrfname').attr('name');
+    var csrfHash = $('.txt_csrfname').val();
+    var table = $('#tbl_userdata').DataTable({
+        destroy: true,
+        "ajax": {
+            "type": "GET",
+            "url": baseUrl + 'common/custome_get_table_data/tbl_users',
             "data": {
                 [csrfName]: csrfHash
             },

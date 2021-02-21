@@ -34,19 +34,19 @@
 					<div class="dashboard-nav-inner admin_dashboard_left">
 						<div class="desktop_view_dashboad_a">
 							<div class="w-100">
-							<a class="navbar-brand brand-logo-mini text-center" href="<?php echo base_url()  ?>">
-								<img src="<?php if (isset($imagesData[0]['invoice_logo'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['invoice_logo']; ?>" alt="logo" />
-							</a>
+								<a class="navbar-brand brand-logo-mini text-center" href="<?php echo base_url()  ?>">
+									<img src="<?php if (isset($imagesData[0]['invoice_logo'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['invoice_logo']; ?>" alt="logo" />
+								</a>
+							</div>
+							<hr>
+							<div class="user_name">
+								<span class="margin-top-7">Welcome <a href=""><?php if (isset($userdata[0]['username'])) {
+																					echo $userdata[0]['username'];
+																				} ?> </a> !</span>
+							</div>
 						</div>
-						<hr>
-						<div class="user_name">
-							<span class="margin-top-7">Welcome <a href=""><?php if (isset($userdata[0]['username'])) {
-																				echo $userdata[0]['username'];
-																			} ?> </a> !</span>
-						</div>
-						</div>
-						
-						
+
+
 
 						<ul data-submenu-title="Start">
 							<?php if (getUserWiseMenu(SIDEMENU['Dashboard'])) { ?>
@@ -135,9 +135,9 @@
 								<li><a href="#"><i class="mdi mdi-thumb-up"></i> Manage Disputes <span class="nav-tag"><?php echo count($disputes); ?></span></a>
 									<?php if (!empty($disputes)) { ?>
 										<ul>
-											<?php 
-												 foreach ($disputes as $dispute) { 
-											 ?>
+											<?php
+											foreach ($disputes as $dispute) {
+											?>
 												<li><a href="<?php echo site_url('admin/manage_disputes/' . $dispute['contract_id']); ?>">Transaction - #<?php echo $dispute['contract_id']; ?> </a></li>
 											<?php } ?>
 										</ul>
@@ -197,11 +197,12 @@
 
 						</ul>
 
-						
+
 
 						<ul data-submenu-title="User Controls">
 
 							<?php if (getUserWiseMenu(SIDEMENU['User_Control'])) { ?>
+								<li <?php if (in_array($this->uri->segment(2), ['admin_user'])) echo "class='active'" ?>><a href="<?php echo site_url('admin/admin_user'); ?>"><i class="mdi mdi-account-circle"></i> Admin User </a></li>
 								<li <?php if (in_array($this->uri->segment(2), ['user_control'])) echo "class='active'" ?>><a href="<?php echo site_url('admin/user_control'); ?>"><i class="mdi mdi-account-circle"></i> User Control </a></li>
 							<?php } ?>
 							<li <?php if (in_array($this->uri->segment(2), ['user-wise-membership-list'])) echo "class='active'" ?>>
@@ -211,12 +212,12 @@
 							<li <?php if (in_array($this->uri->segment(2), ['expert-directory'])) echo "class='active'" ?>>
 								<a href="<?php echo site_url('admin/expert-directory'); ?>"><i class="mdi mdi-account-circle"></i>Expert Directory</a>
 							</li>
-							
+
 
 							<?php if (getUserWiseMenu(SIDEMENU['Announcement_Control'])) { ?>
 								<li <?php if (in_array($this->uri->segment(2), ['announcement_control'])) echo "class='active'" ?>><a href="<?php echo site_url('admin/announcement_control'); ?>"><i class="mdi mdi-bullhorn"></i> Announcements </a></li>
 							<?php } ?>
-						
+
 							<li <?php if (in_array($this->uri->segment(2), ['manage-badges'])) echo "class='active'" ?>>
 								<a href="<?php echo site_url('admin/manage-badges'); ?>"><i class="mdi mdi-account-circle"></i> Badges</a>
 							</li>
@@ -237,7 +238,7 @@
 
 						<ul data-submenu-title="Account">
 
-							
+
 							<li <?php if (in_array($this->uri->segment(2), ['user_settings'])) echo "class='active'" ?>><a href="<?php echo site_url('admin/user_settings'); ?>"><i class="icon-material-outline-settings"></i> Settings</a></li>
 
 
@@ -249,12 +250,15 @@
 
 
 						</ul>
-<!-- 
+						<!-- 
 						<ul data-submenu-title="About Developers & Credits">
 
 							<?php// if (getUserWiseMenu(SIDEMENU['About_Developers'])) { ?>
-								<li <?php //if (in_array($this->uri->segment(2), ['about_developers'])) echo "class='active'" ?>><a href="<?php //echo site_url('admin/about_developers'); ?>"><i class="mdi mdi-information"></i> About us</a></li>
-							<?php //} ?>
+								<li <?php //if (in_array($this->uri->segment(2), ['about_developers'])) echo "class='active'" 
+									?>><a href="<?php //echo site_url('admin/about_developers'); 
+												?>"><i class="mdi mdi-information"></i> About us</a></li>
+							<?php //} 
+							?>
 
 
 						</ul> -->

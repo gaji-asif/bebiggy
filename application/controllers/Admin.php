@@ -9,7 +9,7 @@ class Admin extends CI_Controller
 
     function __construct()
     {
-        parent::__construct();        
+        parent::__construct();
 
         $this->load->helper(array('helperssl'));
         $this->load->library('form_validation');
@@ -57,7 +57,7 @@ class Admin extends CI_Controller
     public function index()
     {
 
-       
+
         $data = self::$data;
         $data['TU']                = $this->database->_results_count('tbl_users', array('user_level' => 1), true);
         $data['TE']                = $this->get_totalearnings();
@@ -92,6 +92,19 @@ class Admin extends CI_Controller
         $this->load->view('admin/user-control', $data);
         return;
     }
+    public function admin_user()
+    {
+        $this->checkPermission();
+
+        $data = self::$data;
+        $data = html_escape($this->security->xss_clean($data));
+        $data['badges']     =   $this->database->_get_row_data('tbl_badges', []);
+        $data['define_type'] = 'admin_user';
+        $this->load->view('admin/user-control', $data);
+        return;
+    }
+
+
 
     /*Ads Control*/
     public function ads_manager()
@@ -623,9 +636,9 @@ class Admin extends CI_Controller
     }
 
     /*Manage Disputes*/
-    public function manage_disputes($id='')
+    public function manage_disputes($id = '')
     {
-        
+
         $this->checkPermission();
 
         $data = self::$data;
@@ -654,13 +667,11 @@ class Admin extends CI_Controller
             $data = html_escape($this->security->xss_clean($data));
             $this->load->view('admin/manage-disputes', $data);
             return;
-        }
-        else
-        {
-            $data['contract'] = $this->database->_get_disputes_data(0,'');
+        } else {
+            $data['contract'] = $this->database->_get_disputes_data(0, '');
 
-            $data['dispute']            =   $this->database->_get_disputes_data('0','');
-  
+            $data['dispute']            =   $this->database->_get_disputes_data('0', '');
+
             $data['seller']             =   $this->database->getUserData($data['contract'][0]['owner_id']);
             $data['buyer']              =   $this->database->getUserData($data['contract'][0]['customer_id']);
             $data['userprofile']        =   $this->database->getUserData($data['contract'][0]['owner_id']);
@@ -677,7 +688,7 @@ class Admin extends CI_Controller
 
             $data['contractamount']     =   $this->database->_get_single_data('tbl_contracts', array('contract_id' => $data['contract'][0]['id']), 'amount');
             $data['listing_data']       =   $this->database->_get_row_data('tbl_listings', array('id' => $data['contract'][0]['listing_id']));
-            
+
             $data = html_escape($this->security->xss_clean($data));
             $this->load->view('admin/all-manage-disputes', $data);
             return;
@@ -686,7 +697,7 @@ class Admin extends CI_Controller
         $this->pageNotFound();
     }
 
-   
+
     /*admin Profile Settings*/
     public function user_settings()
     {
@@ -761,7 +772,7 @@ class Admin extends CI_Controller
         $this->checkPermission();
 
         $data = self::$data;
-        
+
         $data['posts']      =   $this->database->_get_row_data('tbl_blog', array('status' => 1), '');
         $data = html_escape($this->security->xss_clean($data));
         $this->load->view('admin/blog_manager', $data);
@@ -769,16 +780,17 @@ class Admin extends CI_Controller
     }
 
     /*view blog comments*/
-    public function view_comments($id = null){
+    public function view_comments($id = null)
+    {
 
         $this->checkPermission();
-        
+
         $data = self::$data;
-        if($id != '')
-            $data['comments']      =   $this->database->_get_row_data('tbl_comments', array('listing_id' => $id,  'tbl_comments.section' => 'blog'), '');           
-        else 
+        if ($id != '')
+            $data['comments']      =   $this->database->_get_row_data('tbl_comments', array('listing_id' => $id,  'tbl_comments.section' => 'blog'), '');
+        else
             $data['comments']      =   $this->database->_get_row_data('tbl_comments', array('status' => 0,  'tbl_comments.section' => 'blog'), '');
-           // echo '<pre>';print_r($data['comments']);exit;
+        // echo '<pre>';print_r($data['comments']);exit;
         $data = html_escape($this->security->xss_clean($data));
         $this->load->view('admin/comments_manager', $data);
         return;
@@ -2298,48 +2310,46 @@ class Admin extends CI_Controller
             }
         }
 
-        
+
         if (!empty($this->input->post('solution_id'))) {
             //$dataUp = array_map("html_entity_decode", html_escape($this->security->xss_clean($dataUp)));
             //pre($dataUp );
             //update sponsorship
-            $ListingData 		= $this->database->_get_row_data('tbl_listings', array('solution_id' => $this->input->post('solution_id')));
+            $ListingData         = $this->database->_get_row_data('tbl_listings', array('solution_id' => $this->input->post('solution_id')));
 
-            $sponsorshipDataHeader 	= $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('sponsorship_priority')));
+            $sponsorshipDataHeader     = $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('sponsorship_priority')));
             $sponsorDataUp = array();
-            if($this->input->post('sponsorship_priority') != '' && $ListingData[0]['sponsorship_priority'] != array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP)){
+            if ($this->input->post('sponsorship_priority') != '' && $ListingData[0]['sponsorship_priority'] != array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP)) {
 
-                $sponsorDataUp['sponsorship_priority'] = array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP);            
-                $sponsorDataUp['sponsorship_expires'] = 	 Date('Y-m-d H:i:s ', strtotime('+' . $sponsorshipDataHeader[0]['listing_duration'] . ' days'));            
-            
-            } 
-        
+                $sponsorDataUp['sponsorship_priority'] = array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP);
+                $sponsorDataUp['sponsorship_expires'] =      Date('Y-m-d H:i:s ', strtotime('+' . $sponsorshipDataHeader[0]['listing_duration'] . ' days'));
+            }
+
             $postData = $this->input->post();
-            if(isset($postData['sponsorship_priority']) && $this->input->post('sponsorship_priority') == ''){
+            if (isset($postData['sponsorship_priority']) && $this->input->post('sponsorship_priority') == '') {
 
                 $sponsorDataUp['sponsorship_priority'] = 0;
                 $sponsorDataUp['sponsorship_expires'] = null;
             }
             // echo $ListingData[0]['sponsorship_priority'];
             // echo array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP);
-            
+
             $dataUp = array_merge($dataUp, $sponsorDataUp);
-            
-            if(!empty($sponsorDataUp))
-            $this->database->_update_to_DB('tbl_listings', $sponsorDataUp, $ListingData[0]['id']);
+
+            if (!empty($sponsorDataUp))
+                $this->database->_update_to_DB('tbl_listings', $sponsorDataUp, $ListingData[0]['id']);
 
             $output['response']      =  $this->database->_update_to_DB('tbl_solutions', $dataUp, $this->input->post('solution_id'));
-           
+
             $this->addSolutionToList($list);
 
             //update listing header priority             
-            if($this->input->post('listing_header_priority') != '') {
-               
-                $ListingDataHeader 	= $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('listing_header_priority')));
-                
+            if ($this->input->post('listing_header_priority') != '') {
+
+                $ListingDataHeader     = $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('listing_header_priority')));
+
                 $this->addPlanHeaderIntoListing($ListingDataHeader, $ListingData);
-                 
-            }           
+            }
 
             $data['id']             =  $this->input->post('solution_id');
             $data['list_id']         =  $this->input->post('list_id');
@@ -2371,8 +2381,8 @@ class Admin extends CI_Controller
     {
 
         $data = self::$data;
-        $data['listingOptions']	=	$this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'solution'));
-        $data['sponsorOptions']	=	$this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'sponsored'));
+        $data['listingOptions']    =    $this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'solution'));
+        $data['sponsorOptions']    =    $this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'sponsored'));
         //echo '<pre>';print_r($data['sponsorOptions']);exit;
         if (!empty($id)) {
             $data['solution_data']    =    $this->database->_get_solutionById($id, '');
@@ -2387,7 +2397,7 @@ class Admin extends CI_Controller
         $listing = $this->database->_get_row_data('tbl_listings', array('solution_id' => $id));
         $data['list_id']            = @$listing[0]['id']; //
         $data['domain_id']         = @$listing[0]['domain_id'];
-       
+
         $this->load->view('admin/create-solution-listings', $data);
     }
 
@@ -2573,11 +2583,11 @@ class Admin extends CI_Controller
     public function edit_listings($type, $id)
     {
         $data = self::$data;
-        $data['listingOptions']	=	$this->database->_get_row_data('tbl_listing_header', array('listing_type' => $type));
-        $data['sponsorOptions']	=	$this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'sponsored'));
-        
+        $data['listingOptions']    =    $this->database->_get_row_data('tbl_listing_header', array('listing_type' => $type));
+        $data['sponsorOptions']    =    $this->database->_get_row_data('tbl_listing_header', array('listing_type' => 'sponsored'));
+
         if (!empty($type) && !empty($id) && $type == 'website') {
-            
+
             $data['listing_data']             =    $this->database->_get_row_data('tbl_listings', array('id' => $id));
 
             if (!empty($data['listing_data'][0]['domain_id'])) {
@@ -2598,7 +2608,7 @@ class Admin extends CI_Controller
         } else if (!empty($type) && !empty($id) && trim($type) == 'domain') {
 
 
-            
+
             $data['listing_data']                    =    $this->database->_get_row_data('tbl_listings', array('id' => $id));
 
             if (!empty($data['listing_data'][0]['domain_id'])) {
@@ -2617,15 +2627,15 @@ class Admin extends CI_Controller
             }
         } else if (!empty($type) && !empty($id) && $type == 'app') {
 
-            
+
             $data['listing_data']                    =    $this->database->_get_row_data('tbl_listings', array('id' => $id));
-            
+
             if (!empty($data['listing_data'][0]['website_BusinessName'])) {
                 $data['domainData']                    =    $this->database->_get_row_data('tbl_domains', array('id' => $data['listing_data'][0]['domain_id']));
                 $data['domainStatics']                =    $this->AnalyticsOperationsHandler->getUsersAndPageViews($id);
                 $data['selectedLanguage']             =     $this->common->is_language();
 
-               
+
 
                 if (!DECODE_DESCRIPTIONS) {
                     $data = html_escape($this->security->xss_clean($data));
@@ -2633,12 +2643,12 @@ class Admin extends CI_Controller
                     $data = $this->security->xss_clean($data);
                 }
 
-                
+
                 $this->load->view('admin/edit-app-listings', $data);
                 return;
             }
         } else if (!empty($type) && !empty($id) && $type == 'business') {
-            
+
             $data['listing_data']                    =    $this->database->_get_row_data('tbl_listings', array('id' => $id));
             if (!empty($data['listing_data'][0]['domain_id'])) {
                 $data['domainData']                    =    $this->database->_get_row_data('tbl_domains', array('id' => $data['listing_data'][0]['domain_id']));
@@ -2839,10 +2849,10 @@ class Admin extends CI_Controller
                 'slug' => $this->input->post('slug'),
             );
             if (isset($thumbnail) && !empty($thumbnail)) {
-               // array_push($dataUp, ['website_thumbnail' =>  $thumbnail]);
-               $dataUp['website_thumbnail'] = $thumbnail;
+                // array_push($dataUp, ['website_thumbnail' =>  $thumbnail]);
+                $dataUp['website_thumbnail'] = $thumbnail;
             }
-           
+
             // pre($dataUp,1);
         } else if ($this->input->post('listing_type') === 'website') {
 
@@ -3229,89 +3239,88 @@ class Admin extends CI_Controller
                 $this->database->_update_to_table('tbl_users', $data, ['user_id' => $user_id]);
             }
         }
-        
+
         //update sponsorship
-        $ListingData 		= $this->database->_get_row_data('tbl_listings', array('id' => $this->input->post('listing_id')));
+        $ListingData         = $this->database->_get_row_data('tbl_listings', array('id' => $this->input->post('listing_id')));
 
-        $sponsorshipDataHeader 	= $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('sponsorship_priority')));
-        if($this->input->post('sponsorship_priority') != '' && $ListingData[0]['sponsorship_priority'] != array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP)){
+        $sponsorshipDataHeader     = $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('sponsorship_priority')));
+        if ($this->input->post('sponsorship_priority') != '' && $ListingData[0]['sponsorship_priority'] != array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP)) {
 
-            $dataUp['sponsorship_priority'] = array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP);            
-			$dataUp['sponsorship_expires'] = 	 Date('Y-m-d H:i:s ', strtotime('+' . $sponsorshipDataHeader[0]['listing_duration'] . ' days'));
-            
-        } 
-        
-        if($this->input->post('sponsorship_priority') == ''){
+            $dataUp['sponsorship_priority'] = array_search($this->input->post('sponsorship_priority'), LISTING_HEADER_SPONSORSHIP);
+            $dataUp['sponsorship_expires'] =      Date('Y-m-d H:i:s ', strtotime('+' . $sponsorshipDataHeader[0]['listing_duration'] . ' days'));
+        }
+
+        if ($this->input->post('sponsorship_priority') == '') {
 
             $dataUp['sponsorship_priority'] = 0;
-			$dataUp['sponsorship_expires'] = 	 null;
+            $dataUp['sponsorship_expires'] =      null;
         }
-        
+
         $dataUp = array_map("html_entity_decode", html_escape($this->security->xss_clean($dataUp)));
-       
+
         $output['response']  =  $this->database->_update_to_DB('tbl_listings', $dataUp, $this->input->post('listing_id'));
 
         //update listing header priority
-        
-        $ListingDataHeader 	= $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('listing_header_priority')));
-        
+
+        $ListingDataHeader     = $this->database->_get_row_data('tbl_listing_header', array('listing_id' => $this->input->post('listing_header_priority')));
+
         $this->addPlanHeaderIntoListing($ListingDataHeader, $ListingData);
 
         exit(json_encode($output));
     }
 
     // adding listing_header plan and expiry date in tbl_listings table
-	public function addPlanHeaderIntoListing($ListingDataHeader, $ListingData)
-	{
+    public function addPlanHeaderIntoListing($ListingDataHeader, $ListingData)
+    {
 
-		$plan_header_id = $ListingDataHeader[0]['listing_id'];
-		$listing_duration = $ListingDataHeader[0]['listing_duration'];
+        $plan_header_id = $ListingDataHeader[0]['listing_id'];
+        $listing_duration = $ListingDataHeader[0]['listing_duration'];
 
-		if (!empty($plan_header_id) && !empty($listing_duration)) {
-			// get list on which update plan;
-			$listing_id = $ListingData[0]['id'];
-			$listing_type = $ListingData[0]['listing_type'];
-			if ($listing_type == 'domain') {
-				$listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_DOMAIN);
-				if (empty($listing_header_priority)) {
-					$listing_header_priority =  1;
-				}
-			} else
+        if (!empty($plan_header_id) && !empty($listing_duration)) {
+            // get list on which update plan;
+            $listing_id = $ListingData[0]['id'];
+            $listing_type = $ListingData[0]['listing_type'];
+            if ($listing_type == 'domain') {
+                $listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_DOMAIN);
+                if (empty($listing_header_priority)) {
+                    $listing_header_priority =  1;
+                }
+            } else
 			if ($listing_type == 'website') {
-				$listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_WEBSITE);
-				if (empty($listing_header_priority)) {
-					$listing_header_priority =  1;
-				}
-			} else
+                $listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_WEBSITE);
+                if (empty($listing_header_priority)) {
+                    $listing_header_priority =  1;
+                }
+            } else
 			if ($listing_type == 'app') {
-				$listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_APP);
-				if (empty($listing_header_priority)) {
-					$listing_header_priority =  1;
-				}
-			} else
+                $listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_APP);
+                if (empty($listing_header_priority)) {
+                    $listing_header_priority =  1;
+                }
+            } else
 			if ($listing_type == 'business') {
-				$listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_BUSINESS);
-				if (empty($listing_header_priority)) {
-					$listing_header_priority =  1;
-				}
-			} else if ($listing_type == 'solution') {
-				$listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_SOLUTION);
-				if (empty($listing_header_priority)) {
-					$listing_header_priority =  1;
-				}
-			}
-           
-            if($ListingData[0]['listing_header_priority'] != $listing_header_priority){
+                $listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_BUSINESS);
+                if (empty($listing_header_priority)) {
+                    $listing_header_priority =  1;
+                }
+            } else if ($listing_type == 'solution') {
+                $listing_header_priority =  array_search($plan_header_id, LISTING_HEADER_SOLUTION);
+                if (empty($listing_header_priority)) {
+                    $listing_header_priority =  1;
+                }
+            }
+
+            if ($ListingData[0]['listing_header_priority'] != $listing_header_priority) {
 
                 //get expire date
                 $listing_validate = Date('Y-m-d H:i:s ', strtotime('+' . $listing_duration . ' days'));
 
-                
+
                 $data = [
                     'listing_header_priority' => $listing_header_priority,
                     'listing_header_expiry' => $listing_validate,
                 ];
-            
+
                 $this->database->_update_to_DB('tbl_listings', $data, $listing_id);
                 if ($listing_type == 'solution') {
                     $list = $this->database->_get_row_data('tbl_listings', array('id' => $listing_id));
@@ -3319,9 +3328,8 @@ class Admin extends CI_Controller
                     $this->database->_update_to_DB('tbl_solutions', $data, $solution_id);
                 }
             }
-			
-		}
-	}
+        }
+    }
 
     public function adminPermissions($id = 0)
     {
@@ -4140,7 +4148,7 @@ class Admin extends CI_Controller
 
         $pageTagsData = $this->database->getPageTag();
         $data['pageTagsData'] = $pageTagsData;
-        
+
         $this->load->view('admin/pages-tags', $data);
     }
 

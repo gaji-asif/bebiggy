@@ -38,10 +38,14 @@
 
 					<!-- Dashboard Headline -->
 					<div class="dashboard-headline">
-
 						<div class="dashboad_table">
 							<i class="mdi mdi-account-circle"></i>
-							<h3>User Controls</h3>
+							<?php if (isset($define_type) && $define_type == 'admin_user') { ?>
+								<h3>Admin User</h3>
+							<?php } else { ?>
+								<h3>User Controls</h3>
+							<?php } ?>
+
 							<div class="ml-auto dropdown user_name">
 								<div class="get_user dropdown-toggle" data-toggle="dropdown">AD</div>
 								<div class="dropdown-menu">
@@ -57,7 +61,12 @@
 					<nav id="breadcrumbs" class="dark">
 						<ul>
 							<li><a href="#">Home</a></li>
-							<li><a href="#">User Controls</a></li>
+							<?php if (isset($define_type) && $define_type == 'admin_user') { ?>
+								<li><a href="#">Admin User</a></li>
+							<?php } else { ?>
+								<li><a href="#">User Controls</a></li>
+							<?php } ?>
+
 						</ul>
 					</nav>
 
@@ -205,7 +214,7 @@
 
 								<div class="submit-field d-flex flex-row">
 									<h5>Commission Price : </h5>
-									<input type="text" id="commissionTxt" name="admin_commission" value="" class="with-border numberOnly col-md-8 ml-4" placeholder="Enter Commission"  required>
+									<input type="text" id="commissionTxt" name="admin_commission" value="" class="with-border numberOnly col-md-8 ml-4" placeholder="Enter Commission" required>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -248,9 +257,19 @@
 
 	<!--------------------------------------------------------------------------------------------------------------->
 	<?php $this->load->view('main/includes/footerscripts'); ?>
-	<script>
-		loadUserData();
-	</script>
+
+	<?php if (isset($define_type) && $define_type == 'admin_user') {
+	?>
+
+		<script>
+			customeLoadUserData();
+		</script>
+	<?php } else { ?>
+		<script>
+			loadUserData();
+		</script>
+	<?php } ?>
+
 	<!--------------------------------------------------------------------------------------------------------------->
 
 </body>

@@ -2304,7 +2304,7 @@ class Main extends CI_Controller
 		$data['twitter_title']          = $this->lang->line('twitter_description');
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];
-		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
+		$data['commonData2']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['business'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['app'];
 
@@ -2735,7 +2735,7 @@ class Main extends CI_Controller
 
 		$this->loadPage('websites-for-exclusive_sale', $data);
 	}
-	
+
 	public function websitesForLatestSale($page = 0)
 	{
 		// $data = self::$data;

@@ -820,21 +820,29 @@ class Common extends CI_Controller
         $output = html_escape($this->security->xss_clean($output));
         exit(json_encode($output));
     }
+    public function custome_get_table_data($table)
+    {
+        $output['token'] = $this->security->get_csrf_hash();
+        header('Content-Type: application/json');
+        $output['response']   = $this->database->_get_row_data($table, array('user_level' => 0), '');
+        $output = html_escape($this->security->xss_clean($output));
+        exit(json_encode($output));
+    }
 
     /*load comment to table*/
     public function get_comments_table_data($listing_id = null)
     {
         $output['token'] = $this->security->get_csrf_hash();
-        header('Content-Type: application/json');  
+        header('Content-Type: application/json');
 
-        if($listing_id != '')
+        if ($listing_id != '')
 
-            $this->db->where(array('listing_id' => $listing_id,  'tbl_comments.section' => 'blog'));             
-            
-        else 
-            $this->db->where(array('tbl_comments.status' => 0,  'tbl_comments.section' => 'blog'));     
+            $this->db->where(array('listing_id' => $listing_id,  'tbl_comments.section' => 'blog'));
 
-        $this->db->join('tbl_blog', 'tbl_blog.id = tbl_comments.listing_id')->select('tbl_comments.*, tbl_blog.title');           
+        else
+            $this->db->where(array('tbl_comments.status' => 0,  'tbl_comments.section' => 'blog'));
+
+        $this->db->join('tbl_blog', 'tbl_blog.id = tbl_comments.listing_id')->select('tbl_comments.*, tbl_blog.title');
         $query = $this->db->get('tbl_comments');
         $output['response']      =   $query->result_array();
         $output = html_escape($this->security->xss_clean($output));
@@ -842,7 +850,8 @@ class Common extends CI_Controller
     }
 
     /*delete blog comments */
-    public function delete_comment($id, $listing_id){
+    public function delete_comment($id, $listing_id)
+    {
 
         $this->database->_delete_from_table('tbl_comments', array('id' => $id));
         $this->session->set_flashdata('success', 'Successfully Deleted.');
@@ -850,8 +859,9 @@ class Common extends CI_Controller
     }
 
     /*approve blog comments */
-    public function approve_comment($id, $listing_id){
-        
+    public function approve_comment($id, $listing_id)
+    {
+
         $this->database->_update_to_table('tbl_comments', array('status' => 1), array('id' => $id));
         $this->session->set_flashdata('success', 'Successfully Updated.');
         redirect($this->agent->referrer());
@@ -968,7 +978,7 @@ class Common extends CI_Controller
         header('Content-Type: application/json');
 
         $condition =  $condition + ['listing_type <>' => 'solution'];
-        
+
         // old way
         // $output['response']     =  $this->database->_get_row_data('tbl_listings', $condition, '');
 
@@ -1539,34 +1549,33 @@ class Common extends CI_Controller
     }
 
     /*Insert Comments*/
-	public function insert_comment()
-	{
+    public function insert_comment()
+    {
         $output['token']       = $this->security->get_csrf_hash();
         $output['token_name'] = $this->security->get_csrf_token_name();
-		header('Content-Type: application/json');
+        header('Content-Type: application/json');
 
-		$data = array(
-			'user_id' => $this->input->post('logged_user'),
-			'listing_id' => $this->input->post('comment_listing'),
-			'body' => $this->input->post('write_comment'),
-			'author_comment' => $this->input->post('author_comment'),
-			'section' => $this->input->post('comment_section'),
-			'status' => 0,
-			'user_name' => $this->input->post('user_name')
-		);
+        $data = array(
+            'user_id' => $this->input->post('logged_user'),
+            'listing_id' => $this->input->post('comment_listing'),
+            'body' => $this->input->post('write_comment'),
+            'author_comment' => $this->input->post('author_comment'),
+            'section' => $this->input->post('comment_section'),
+            'status' => 0,
+            'user_name' => $this->input->post('user_name')
+        );
 
-		$this->form_validation->set_data($data);
-		$this->form_validation->set_rules('body', 'comment', 'required|trim|xss_clean');
+        $this->form_validation->set_data($data);
+        $this->form_validation->set_rules('body', 'comment', 'required|trim|xss_clean');
 
-		if ($this->form_validation->run()) {
-			$data = html_escape($this->security->xss_clean($data));
-			
-			$output['response']     = $this->database->_insert_to_table('tbl_comments', $data);
-			exit(json_encode($output));
-		}
+        if ($this->form_validation->run()) {
+            $data = html_escape($this->security->xss_clean($data));
 
-		$output['response']         = false;
-		exit(json_encode($output));
-	}
+            $output['response']     = $this->database->_insert_to_table('tbl_comments', $data);
+            exit(json_encode($output));
+        }
 
+        $output['response']         = false;
+        exit(json_encode($output));
+    }
 }

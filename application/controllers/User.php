@@ -770,7 +770,7 @@ class user extends CI_Controller
 	}
 
 	/*contract view page*/
-	public function contract($id)
+	public function contract($id = '')
 	{
 		//echo $id; exit;
 		$data = self::$data;
@@ -802,6 +802,17 @@ class user extends CI_Controller
 			}
 			$data = $this->security->xss_clean($data);
 			$this->load->view('user/open-contract', $data);
+			return;
+		}
+		$this->pageNotFound();
+	}
+	public function transcation($id = '')
+	{
+		//echo $id; exit;
+		$data = self::$data;
+		if (empty($id)) {
+			$data['contract'] = $this->database->_get_all_contracts();
+			$this->load->view('user/open-contract-new', $data);
 			return;
 		}
 		$this->pageNotFound();

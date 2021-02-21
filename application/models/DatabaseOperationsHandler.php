@@ -111,6 +111,24 @@ class DatabaseOperationsHandler extends CI_Model
         return $query->result_array();
     }
 
+    public function _get_all_contracts($open = true)
+    {
+        // $ignore = array(0, 1, 2, 3, 5, 6, 8, 9);
+        $ignore = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        // if ($open) {
+        //     $ignore = array(4, 7);
+        // }
+        $this->db->where_in('tbl_opens.status', $ignore);
+        $this->db->group_start();
+        $this->db->where('owner_id', $this->session->userdata('user_id'));
+        $this->db->or_where('customer_id', $this->session->userdata('user_id'));
+        $this->db->group_end();
+        $this->db->join('tbl_listings', 'tbl_listings.id = tbl_opens.listing_id');
+        $this->db->select('*,(tbl_opens.id) as open_id ,(tbl_listings.id) as listings_id2 ,(tbl_listings.status) as listings_status ,(tbl_opens.status) as opens_status');
+        $query = $this->db->get('tbl_opens');
+        return $query->result_array();
+    }
+
     /*Count website Listings Userwise*/
     public function _count_listings_user_wise($listing_option = "")
     {
