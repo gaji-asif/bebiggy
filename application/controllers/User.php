@@ -2208,9 +2208,9 @@ class user extends CI_Controller
 					'title' 			=> $this->input->post('title'),
 					'metadescription' 	=> $this->input->post('metadescription'),
 					'metakeywords'  	=> $this->input->post('metakeywords'),
+					'price' => $this->input->post('view_price'),
 
-
-					'price' 			=>  !empty($commission['website_buynowprice']) ? $commission['website_buynowprice']  : $commission['original_buynowprice'],
+					// 'price' 			=>  !empty($commission['website_buynowprice']) ? $commission['website_buynowprice']  : $commission['original_buynowprice'],
 
 					'original_minimumoffer' 	=> $commission['original_minimumoffer'],
 					'original_buynowprice'		=> $commission['original_buynowprice'],

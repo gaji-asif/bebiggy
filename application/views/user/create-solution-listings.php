@@ -87,7 +87,8 @@
 						<!-- overview start -->
 						<div class="col-md-12">
 							<div class="post_box">
-								<ul class="nav nav-tabs <?php  if(!empty($id)) echo 'edit_user_new_post user_new_post ' ; else echo 'user_new_post'; ?> ">
+								<ul class="nav nav-tabs <?php if (!empty($id)) echo 'edit_user_new_post user_new_post ';
+														else echo 'user_new_post'; ?> ">
 									<li><a data-toggle="tab" href="#home" class="active eventBlock"><i class="fa fa-pencil" aria-hidden="true"></i> <span>Basicinfo</span></a></li>
 									<li><a data-toggle="tab" href="#menu1" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
 																								?>><i class="fa fa-file-image-o" aria-hidden="true"></i> Media</a></li>
@@ -95,17 +96,17 @@
 																								?>><i class="fa fa-th-list" aria-hidden="true"></i> Category</a></li>
 									<li><a data-toggle="tab" href="#menu3" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
 																								?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Price</a></li>
-																								<?php  if(empty($id)) { ?>
+									<?php if (empty($id)) { ?>
 
-									<li><a data-toggle="tab" href="#menu4" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
-																								?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Type</a></li>
+										<li><a data-toggle="tab" href="#menu4" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
+																									?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Type</a></li>
 
-									<li><a data-toggle="tab" href="#menu5" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
-																								?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Sponsor</a></li>
+										<li><a data-toggle="tab" href="#menu5" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
+																									?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Sponsor</a></li>
 
-									<li><a data-toggle="tab" href="#menu6" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
-																								?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Pay </a></li>
-																								<?php } ?>
+										<li><a data-toggle="tab" href="#menu6" class="eventBlock" <?php //echo  isset($id) ? '' : 'class="eventBlock"' 
+																									?>><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Pay </a></li>
+									<?php } ?>
 								</ul>
 
 								<div class="tab-content">
@@ -332,7 +333,7 @@
 													<div class="col-md-6 col-sm-12">
 														<div class="submit-field">
 															<h5 for="price" class="price">View Price ($) <span class='text-danger required'>*</span></h5>
-															<input id="view_buynow" class="form-control" value="<?php echo $price ?? '' ?>" disabled='disabled'>
+															<input name="view_price" id="view_buynow" class="form-control" value="<?php echo $price ?? '' ?>">
 														</div>
 													</div>
 													<div id="Sell-Classified-Website" class="row w-100 asing_price_section_a">
@@ -432,9 +433,9 @@
 
 													</div>
 													<div class="col-md-6 col-sm-12">
-													   <?php if(!empty($id)) {?>
-														<button type="submit" id="solution_step_edit_4" class="btn btn-primary submit_post"> Submit </button><?php }else {?>
-														<button type="submit" id="solution_step4" class="btn btn-primary submit_post">Next</button>
+														<?php if (!empty($id)) { ?>
+															<button type="submit" id="solution_step_edit_4" class="btn btn-primary submit_post"> Submit </button><?php } else { ?>
+															<button type="submit" id="solution_step4" class="btn btn-primary submit_post">Next</button>
 														<?php } ?>
 													</div>
 												</div>
@@ -466,7 +467,7 @@
 
 														foreach ($listingOptions as $option) { ?>
 
-															<div class="col-xl-4 <?php if($i == true) {?> smallestPlan<?php } ?>">
+															<div class="col-xl-4 <?php if ($i == true) { ?> smallestPlan<?php } ?>">
 																<span class='text-danger'>*</span>
 																<div class="submit-field item">
 																	<input id="answer_<?php echo $option['listing_id']; ?>" type="radio" name="listing_group_1" value="<?php echo $option['listing_id'] ?>" class="required">
@@ -809,7 +810,9 @@
 	<?php $this->load->view('main/includes/footerscripts'); ?>
 	<!--------------------------------------------------------------------------------------------------------------->
 
-	<script> checkoutlistingspage(); </script>
+	<script>
+		checkoutlistingspage();
+	</script>
 	<script src="<?php echo base_url(); ?>assets/js/dropzone.js"></script>
 	<script>
 		Dropzone.autoDiscover = false;

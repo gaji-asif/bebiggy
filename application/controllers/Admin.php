@@ -2284,7 +2284,8 @@ class Admin extends CI_Controller
                     'metadescription' => $this->input->post('metadescription'),
                     'metakeywords'  => $this->input->post('metakeywords'),
                     'status'  => $this->input->post('status'),
-                    'price'             =>  !empty($commission['website_buynowprice']) ? $commission['website_buynowprice']  : $commission['original_buynowprice'],
+                    // 'price'             =>  !empty($commission['website_buynowprice']) ? $commission['website_buynowprice']  : $commission['original_buynowprice'],
+                    'price'             => $this->input->post('view_price'),
 
                     'original_minimumoffer'     => $commission['original_minimumoffer'],
                     'original_buynowprice'      => $commission['original_buynowprice'],

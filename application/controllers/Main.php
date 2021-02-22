@@ -1570,13 +1570,17 @@ class Main extends CI_Controller
 		$this->change_contract_status($this->input->post('contract_id'), 4);
 		$invoice_id = $this->database->_get_single_data('tbl_contracts', array('contract_id' => $this->input->post('contract_id')), 'invoice_id');
 		$this->_change_invoice_status($invoice_id, 4);
-		if ($this->session->userdata('user_id') === '1' && $this->session->userdata('user_level') === '0') {
+		// if ($this->session->userdata('user_id') === '1' && $this->session->userdata('user_level') === '0') {
+		// 	$this->database->_update_to_table('tbl_disputes', array('status' => 1), array('contract_id' => $this->input->post('contract_id')));
+		// }
+		if ($this->session->userdata('user_level') === '0') {
 			$this->database->_update_to_table('tbl_disputes', array('status' => 1), array('contract_id' => $this->input->post('contract_id')));
 		}
 		if ($datas['settings'][0]['email_notifications'] === '1') {
 			$this->email_op->_user_email_notification('mark-accepted', $this->input->post('contract_id'));
 		}
-		redirect($this->session->userdata('url'));
+		// redirect($this->session->userdata('url'));
+		redirect(base_url() . 'admin');
 		return;
 	}
 
@@ -1603,6 +1607,7 @@ class Main extends CI_Controller
 			$this->email_op->_user_email_notification('cancel-contract', $this->input->post('contract_id'));
 		}
 		redirect($this->session->userdata('url'));
+
 		return;
 	}
 
@@ -1618,7 +1623,8 @@ class Main extends CI_Controller
 		if ($datas['settings'][0]['email_notifications'] === '1') {
 			$this->email_op->_user_email_notification('accept-cancel', $this->input->post('contract_id'));
 		}
-		redirect($this->session->userdata('url'));
+		// redirect($this->session->userdata('url'));
+		redirect(base_url() . 'admin');
 		return;
 	}
 
@@ -2708,7 +2714,7 @@ class Main extends CI_Controller
 		$data['pageName'] = "";
 		$data['url'] = site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
 		$url =  site_url("product-category/exclusive-shopify-dropship-stores-for-sale");
-		$data['commonData']	= $this->database->_get_selected_listing_types_frontend('date', 0, $perPage, array('page_tags' => 'exclusive-shopify-store'), 'app', $pageName, $page, $searchterm);
+		$data['commonData']	= $this->database->_custome_get_selected_listing_types_frontend2('date', 0, $perPage, array('page_tags' => 'exclusive-shopify-store'), 'app', $pageName, $page, $searchterm);
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];
 		$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['solution'];

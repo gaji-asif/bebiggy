@@ -13,9 +13,9 @@
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
 
-			<!-- Avatar -->
+				<!-- Avatar -->
 				<a id="avatarbids" href="#"></a>
-				
+
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3 id="offer-from">Accept Bids From</h3>
@@ -26,7 +26,7 @@
 					<!-- Button -->
 					<div id="acceptmsg"></div>
 					<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" type="submit">Accept <i class="icon-material-outline-arrow-right-alt"></i></button>
-					<span id="loader" style="display:none;" class="text-center"> <img src="<?php echo base_url();?>assets/img/loadingimage.gif"/> </span>
+					<span id="loader" style="display:none;" class="text-center"> <img src="<?php echo base_url(); ?>assets/img/loadingimage.gif" /> </span>
 
 					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 				</form>
@@ -58,10 +58,10 @@
 				<div class="welcome-text">
 					<h3 id="sendMessageh3"></h3>
 				</div>
-					
+
 				<!-- Form -->
 				<form name="msgOwnerForm" class="msgOwnerForm" method="POST" enctype="multipart/form-data">
-					<input type="hidden" name="owner_id" class="owner_id" value="<?php if(isset($userprofile[0]['user_id'])) echo $userprofile[0]['user_id']; ?>">
+					<input type="hidden" name="owner_id" class="owner_id" value="<?php if (isset($userprofile[0]['user_id'])) echo $userprofile[0]['user_id']; ?>">
 					<textarea name="txt_msg" class="txt_msg" cols="10" placeholder="Message" class="with-border" required></textarea>
 					<input type="hidden" name="o_bid_id" class="o_bid_id">
 
@@ -71,7 +71,7 @@
 
 					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 				</form>
-				
+
 			</div>
 
 		</div>
@@ -94,7 +94,7 @@
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
 
-				<form id="openContractForm" name="openContractForm" action="<?php echo base_url().'user/open_contract'; ?>" method="POST">
+				<form id="openContractForm" name="openContractForm" action="<?php echo base_url() . 'user/open_contract'; ?>" method="POST">
 
 					<input type="hidden" name="offer_id" id="offer_id">
 					<input type="hidden" name="o_bid_id_cont" id="o_bid_id_cont">
@@ -106,12 +106,12 @@
 					<input type="hidden" class="txt_csrfname" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					<div class="radio centerButtons">
 						<input id="radio-1" name="radio" type="radio" required>
-						<label for="radio-1"><span class="radio-label"></span>  I have read and agree to the Terms and Conditions</label>
+						<label for="radio-1"><span class="radio-label"></span> I have read and agree to the Terms and Conditions</label>
 					</div>
 
-				
+
 					<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" type="submit" form="openContractForm">Open Contract <i class="icon-material-outline-arrow-right-alt"></i></button>
-				
+
 				</form>
 
 				<!-- Button -->
@@ -138,23 +138,23 @@
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-				<form id="acceptOfferForm" name="acceptOfferForm"  action="<?php echo base_url().'user/open_contract'; ?>" method="POST">
-				
+				<form id="acceptOfferForm" name="acceptOfferForm" action="<?php echo base_url() . 'user/open_contract'; ?>" method="POST">
+
 					<input type="hidden" name="offer_id" id="offer_id">
-				
+
 					<!-- Welcome Text -->
 					<div class="welcome-text">
 						<h3 class="offer-from">Accept Offer</h3>
 						<div id="offer-amount" class="bid-acceptance margin-top-15">$3200</div>
 						<br>
-						<p align="left">By accepting this Offer, you are committing to sell <strong class="text_class_a"> This Business </strong> to <strong id="customerName" class="text_class_a"></strong> as per our <a href="<?php echo site_url('terms-of-services'); ?>" target="_blank">Terms and Conditions.</a> The Current Offer Price is <strong id="bid_amount" class="text_class_a"></strong>	</p>
-						
+						<p align="left">By accepting this Offer, you are committing to sell <strong class="text_class_a"> This Business </strong> to <strong id="customerName" class="text_class_a"></strong> as per our <a href="<?php echo site_url('terms-of-services'); ?>" target="_blank">Terms and Conditions.</a> The Current Offer Price is <strong id="bid_amount" class="text_class_a"></strong> </p>
+
 					</div>
-					
+
 					<div class="radio">
 						<div class="radio centerButtons">
-						<input id="radio-1" name="radio" type="radio" required>
-						<label for="radio-1"><span class="radio-label"></span>  I have read and agree to the <a href="<?php echo site_url('terms-of-services'); ?>" target="_blank">Terms and Conditions</a></label>
+							<input id="radio-1" name="radio" type="radio" required>
+							<label for="radio-1"><span class="radio-label"></span> I have read and agree to the <a href="<?php echo site_url('terms-of-services'); ?>" target="_blank">Terms and Conditions</a></label>
 						</div>
 					</div>
 
@@ -193,10 +193,10 @@
 					<h3>Do you really want to deliver?</h3>
 					<p>Once you deliver Buyer will be notified and waiting for his/her approval</p>
 				</div>
-					
+
 				<!-- Form -->
-				<form name="deliverForm" id="deliverForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url().'main/markAsDelivered'; ?>">
-					<input type="hidden" name="contract_id" value="<?php if(isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
+				<form name="deliverForm" id="deliverForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url() . 'main/markAsDelivered'; ?>">
+					<input type="hidden" name="contract_id" value="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
 					<textarea name="messagetoBuyer"></textarea>
 					<div class="submit-field">
 						<div class="uploadButton margin-top-30">
@@ -210,7 +210,7 @@
 					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
 				</form>
-				
+
 				<button class="button full-width button-sliding-icon ripple-effect btn_themecolor_a" type="submit" form="deliverForm">Deliver Now <i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
@@ -221,40 +221,39 @@
 <!----Deliver Popup /Ends------------>
 
 <!----Accept Delivery Popup------------>
-<div id="small-dialog-4" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+<!-- <div id="small-dialog-4" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
 
-	<!--Tabs -->
-	<div class="sign-in-form">
+<div class="sign-in-form">
 
-		<ul class="popup-tabs-nav">
-			<li><a href="#tab2">Accept Delivery</a></li>
-		</ul>
+	<ul class="popup-tabs-nav">
+		<li><a href="#tab2">Accept Delivery</a></li>
+	</ul>
 
-		<div class="popup-tabs-container">
+	<div class="popup-tabs-container">
 
-			<!-- Tab -->
-			<div class="popup-tab-content" id="tab2">
+	
+<div class="popup-tab-content" id="tab2">
 
-				<!-- Welcome Text -->
-				<div class="welcome-text">
-					<h3>Do you really want to accept delivery?</h3>
-					<p>Once you accept this deal will be closed and payment will be realsed to the Seller's account</p>
-				</div>
-					
-				<!-- Form -->
-				<form name="acceptDeliveryForm" id="acceptDeliveryForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url().'main/markAsAccepted'; ?>">
-					<input type="hidden" name="contract_id" value="<?php if(isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
-					
-					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
-				</form>
-				
-				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="acceptDeliveryForm">Accept Delivery <i class="icon-material-outline-arrow-right-alt"></i></button>
 
-			</div>
-
-		</div>
-	</div>
+<div class="welcome-text">
+	<h3>Do you really want to accept delivery?</h3>
+	<p>Once you accept this deal will be closed and payment will be realsed to the Seller's account</p>
 </div>
+
+
+<form name="acceptDeliveryForm" id="acceptDeliveryForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url() . 'main/markAsAccepted'; ?>">
+	<input type="hidden" name="contract_id" value="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
+
+	<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+</form>
+
+<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="acceptDeliveryForm">Accept Delivery <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+</div>
+
+</div>
+</div>
+</div> -->
 <!----Accept Delivery Popup /Ends------------>
 
 <!----Request a revision Popup------------------------>
@@ -276,15 +275,15 @@
 				<div class="welcome-text">
 					<h3>Do you really want to request a revision?</h3>
 				</div>
-					
+
 				<!-- Form -->
-				<form name="requestaRivisionForm" id="requestaRivisionForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url().'main/requestaRivision'; ?>">
-					<input type="hidden" name="contract_id" value="<?php if(isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
+				<form name="requestaRivisionForm" id="requestaRivisionForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url() . 'main/requestaRivision'; ?>">
+					<input type="hidden" name="contract_id" value="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
 					<textarea name="messagetoBuyer"></textarea>
 
 					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 				</form>
-				
+
 				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="requestaRivisionForm">Request a Revision <i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
@@ -308,61 +307,62 @@
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab2">
-				
+
 				<!-- Welcome Text -->
 				<div class="welcome-text">
 					<h3>Leave a Review</h3>
-					<span>Rate <a href="#"><?php if(isset($contract[0]['firstname'])) echo $contract[0]['firstname'] ?> <?php if(isset($contract[0]['lastname'])) echo $contract[0]['lastname']; ?></a> </span>
+					<span>Rate <a href="#"><?php if (isset($contract[0]['firstname'])) echo $contract[0]['firstname'] ?> <?php if (isset($contract[0]['lastname'])) echo $contract[0]['lastname']; ?></a> </span>
 				</div>
-					
+
 				<!-- Form -->
 				<form id="leave-review-form" name="leave-review-form" method="POST" enctype="multipart/form-data">
 
 					<div class="feedback-yes-no">
 						<strong>Your Rating</strong>
 						<div class="leave-rating">
-							<?php if(isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '5') { ?>
-							<input type="radio" name="rating" id="rating-radio-1" value="5" required checked>
+							<?php if (isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '5') { ?>
+								<input type="radio" name="rating" id="rating-radio-1" value="5" required checked>
 							<?php } else { ?>
-							<input type="radio" name="rating" id="rating-radio-1" value="5" required>
-							<?php }?>
+								<input type="radio" name="rating" id="rating-radio-1" value="5" required>
+							<?php } ?>
 							<label for="rating-radio-1" class="icon-material-outline-star"></label>
-							<?php if(isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '4') { ?>
-							<input type="radio" name="rating" id="rating-radio-2" value="4" required checked>
+							<?php if (isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '4') { ?>
+								<input type="radio" name="rating" id="rating-radio-2" value="4" required checked>
 							<?php } else { ?>
-							<input type="radio" name="rating" id="rating-radio-2" value="4" required>
-							<?php }?>
+								<input type="radio" name="rating" id="rating-radio-2" value="4" required>
+							<?php } ?>
 							<label for="rating-radio-2" class="icon-material-outline-star"></label>
-							<?php if(isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '3') { ?>
-							<input type="radio" name="rating" id="rating-radio-3" value="3" required checked>
+							<?php if (isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '3') { ?>
+								<input type="radio" name="rating" id="rating-radio-3" value="3" required checked>
 							<?php } else { ?>
-							<input type="radio" name="rating" id="rating-radio-3" value="3" required>
-							<?php }?>
+								<input type="radio" name="rating" id="rating-radio-3" value="3" required>
+							<?php } ?>
 							<label for="rating-radio-3" class="icon-material-outline-star"></label>
-							<?php if(isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '2') { ?>
-							<input type="radio" name="rating" id="rating-radio-4" value="2" required checked>
+							<?php if (isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '2') { ?>
+								<input type="radio" name="rating" id="rating-radio-4" value="2" required checked>
 							<?php } else { ?>
-							<input type="radio" name="rating" id="rating-radio-4" value="2" required>
-							<?php }?>
+								<input type="radio" name="rating" id="rating-radio-4" value="2" required>
+							<?php } ?>
 							<label for="rating-radio-4" class="icon-material-outline-star"></label>
-							<?php if(isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '1') { ?>
-							<input type="radio" name="rating" id="rating-radio-5" value="1" required checked>
+							<?php if (isset($reviewRatings[0]['id']) && $reviewRatings[0]['ratings'] === '1') { ?>
+								<input type="radio" name="rating" id="rating-radio-5" value="1" required checked>
 							<?php } else { ?>
-							<input type="radio" name="rating" id="rating-radio-5" value="1" required>
-							<?php }?>	
+								<input type="radio" name="rating" id="rating-radio-5" value="1" required>
+							<?php } ?>
 							<label for="rating-radio-5" class="icon-material-outline-star"></label>
-						</div><div class="clearfix"></div>
+						</div>
+						<div class="clearfix"></div>
 					</div>
 
-					<textarea class="with-border" placeholder="Comment" name="review_msg" id="review_msg" cols="7" required><?php if(isset($reviewRatings[0]['review'])) echo $reviewRatings[0]['review']; ?></textarea>
-					<input type="hidden" name="review_user_id" id="review_user_id" value="<?php if(isset($userprofile[0]['user_id'])) echo $userprofile[0]['user_id']; ?>">
-					<input type="hidden" name="review_id" id="review_id" value="<?php if(isset($reviewRatings[0]['id'])) echo $reviewRatings[0]['id']; ?>">
+					<textarea class="with-border" placeholder="Comment" name="review_msg" id="review_msg" cols="7" required><?php if (isset($reviewRatings[0]['review'])) echo $reviewRatings[0]['review']; ?></textarea>
+					<input type="hidden" name="review_user_id" id="review_user_id" value="<?php if (isset($userprofile[0]['user_id'])) echo $userprofile[0]['user_id']; ?>">
+					<input type="hidden" name="review_id" id="review_id" value="<?php if (isset($reviewRatings[0]['id'])) echo $reviewRatings[0]['id']; ?>">
 					<input type="hidden" name="review_type" id="review_type" value="user">
 
 					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 
 				</form>
-				
+
 				<!-- Button -->
 				<div id="reviewVal"></div>
 				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="leave-review-form">Leave a Review <i class="icon-material-outline-arrow-right-alt"></i></button>
@@ -393,19 +393,19 @@
 				<div class="welcome-text">
 					<h3>Do you really want to cancel this contract?</h3>
 				</div>
-					
+
 				<!-- Form -->
-				<?php if($this->session->userdata('user_level') !== '0') { ?>
-				<form name="cancelcontractForm" id="cancelcontractForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url().'main/requestaCancel'; ?>">
-				<?php } else { ?>
-				<form name="cancelcontractForm" id="cancelcontractForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url().'main/requestaCanceladmin'; ?>">
-				<?php } ?>
-					<input type="hidden" name="contract_id" value="<?php if(isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
-					<textarea name="messagetoBuyer"></textarea>
-					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
-				</form>
-				
-				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="cancelcontractForm"> Cancel Contract<i class="icon-material-outline-arrow-right-alt"></i></button>
+				<?php if ($this->session->userdata('user_level') !== '0') { ?>
+					<form name="cancelcontractForm" id="cancelcontractForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url() . 'main/requestaCancel'; ?>">
+					<?php } else { ?>
+						<form name="cancelcontractForm" id="cancelcontractForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url() . 'main/requestaCanceladmin'; ?>">
+						<?php } ?>
+						<input type="hidden" name="contract_id" value="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
+						<textarea name="messagetoBuyer"></textarea>
+						<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+						</form>
+
+						<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="cancelcontractForm"> Cancel Contract<i class="icon-material-outline-arrow-right-alt"></i></button>
 
 			</div>
 
@@ -413,3 +413,40 @@
 	</div>
 </div>
 <!----Cancel Contract Popup /Ends------------>
+
+<!----Mark as completed Popup------------>
+<div id="small-dialog-4" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+	<!--Tabs -->
+	<div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab2">Mark As Complete</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab2">
+
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Do you really want to mark as compelete this contract?</h3>
+					<!-- <p>Once you accept this deal will be closed and payment will be realsed to the Seller's account</p> -->
+				</div>
+
+				<!-- Form -->
+				<form name="acceptDeliveryForm" id="acceptDeliveryForm" method="POST" enctype="multipart/form-data" action="<?php echo base_url() . 'main/markAsAccepted'; ?>">
+					<input type="hidden" name="contract_id" value="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>">
+
+					<input type="hidden" class="txt_csrfname" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
+				</form>
+
+				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="acceptDeliveryForm">Mark As Complete <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<!----Mark as completed Popup /Ends------------>

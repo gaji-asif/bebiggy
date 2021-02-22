@@ -52,7 +52,7 @@
 								<?php } else if ($contract[0]['status'] === '3') { ?>
 									<div class="badge badge-danger"> Canceled By Buyer</div>
 								<?php } else if ($contract[0]['status'] === '4') { ?>
-									<div class="badge badge-warning"> Sale Completed</div>
+									<div class="badge badge-warning"> Mark As Completed</div>
 								<?php } else if ($contract[0]['status'] === '5') { ?>
 									<div class="badge badge-dark"> Delivered</div>
 								<?php } else if ($contract[0]['status'] === '6') { ?>
@@ -69,7 +69,7 @@
 							<?php if ($dispute[0]['status'] === '0') {  ?>
 								<div class="input-group margin-top-25">
 
-									<a href="#small-dialog-7" data-contractid="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>" class="popup-with-send-message button dark ripple-effect float-left mark_as_completed_a"><i class="mdi mid-hand-okay"></i> MARK AS COMPLETED </a>&nbsp;&nbsp;
+									<a href="#small-dialog-4" data-contractid="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>" class="popup-with-send-message button dark ripple-effect float-left mark_as_completed_a"><i class="mdi mid-hand-okay"></i> MARK AS COMPLETED </a>&nbsp;&nbsp;
 									<a href="#small-dialog-6" data-contractid="<?php if (isset($contract[0]['id'])) echo $contract[0]['id']; ?>" class="popup-with-send-message button dark ripple-effect reject_refund_a"><i class="mdi mid-hand-okay"></i> REJECT & REFUND </a>
 								</div>
 							<?php } ?>

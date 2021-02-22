@@ -70,7 +70,7 @@ if (!empty($listing_data[0])) {
                         <?php if (!empty($listing_data['user_permission']['price']) || $listing_data[0]['user_id'] == $this->session->userdata('user_id')) { ?>
                             <div class="all_button_section_a">
 
-                                <div class="listingdetails_div_a single_page_view_a classfied_a">
+                                <div class="listingdetails_div_a single_page_view_a classfied_a ">
                                     <?php if (!empty($listing_data[0]['website_buynowprice'])) { ?>
                                         <p>Price</p>
                                         <h2><?php if (!empty($default_currency)) echo $default_currency;
@@ -143,7 +143,7 @@ if (!empty($listing_data[0])) {
                                     <?php if ($listing_data[0]['user_id'] !== $this->session->userdata('user_id') && !empty($listing_data['user_permission']['ask-price']) && !empty($listing_data[0]['website_minimumoffer'])) { ?>
 
                                         <?php if (!empty($listing_data['user_permission']['make-offer']) && $listing_data[0]['listing_type'] != 'business') { ?>
-                                            <div class="btn buy_nowbtn single_page_width_auto_a h-auto listing_type_btn_a mt-2">
+                                            <div class="btn buy_nowbtn single_page_width_auto_a h-auto listing_type_btn_a">
                                                 <a href="#small-dialog-6" class="white d-flex align-items-center button ripple-effect move-on-hover full-width margin-top-20 popup-with-zoom-anim">
                                                     <span>Make Offer
                                                     </span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
@@ -169,7 +169,7 @@ if (!empty($listing_data[0])) {
                                     <?php if ($listing_data[0]['listing_type'] == 'app' || $listing_data[0]['listing_type'] == 'business' || $listing_data[0]['listing_type'] == 'website') { ?>
 
                                         <?php if (!empty($listing_data['user_permission']['stats'])  || ($listing_data[0]['user_id'] == $this->session->userdata('user_id'))) { ?>
-                                            <div class="btn buy_nowbtn single_page_width_auto_a h-auto listing_type_btn_a">
+                                            <div class="btn buy_nowbtn single_page_width_auto_a h-auto listing_type_btn_a mt-2">
                                                 <a href="javascript:void(0)" id="business_stats" class="white d-flex align-items-center">
                                                     <span>Business stats</span><i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i></a>
                                             </div>
@@ -257,7 +257,12 @@ if (!empty($listing_data[0])) {
                                     } ?>
                                 <?php
                                 } else { ?>
-                                    <div class="alert alert-warning text-dark margin-bottom-35 text-center"> SOLD </div>
+                                    <div class="btn buy_nowbtn single_page_width_auto_a h-auto listing_type_btn_a mt-2">
+                                        <a href="" class="white d-flex align-items-center">
+                                            <span>Sold Out</span>
+                                            <i class="fa fa-long-arrow-right ml-auto" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 <?php
                                 }
                             } else { ?>
@@ -409,7 +414,7 @@ if (!empty($listing_data[0])) {
                 <div class="col-md-4">
                     <div class="right_coursedetails">
                         <div class="donnot_like_a shadow">
-                            <h4>Don’t like what you see? Or have something new in mindss?</h4>
+                            <h4>Don’t like what you see? Or have something new in mind?</h4>
                             <div class="order_custom_a">
                                 <p>Order Custom Shopify Premium Store</p>
                             </div>

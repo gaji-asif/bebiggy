@@ -107,7 +107,7 @@
 													<input type="hidden" name="domain_id" value='<?php echo $domain_id ?? '';  ?>'>
 													<input type="hidden" name="list_id" id="list_id" value="<?php echo  $list_id ?? '' ?>">
 
-													
+
 													<div id="SolutionUrlValMsg"></div>
 													<div class="form-group">
 														<input type="text" name="solution_url" class="form-control solution_url" id="txt_solution_url" maxlength="200" placeholder="Enter Soultion URL " value="<?php echo $solution_url ?? '' ?>">
@@ -117,12 +117,12 @@
 														<input type="text" name="name" class="form-control solution_name" id="txt_solution_title" maxlength="200" placeholder="Enter Soultion name *" required value="<?php echo $name ?? '' ?>">
 														<span class="helper-text">max length is 200 character</span>
 													</div>
-													
+
 													<div class="form-group">
 														<input type="text" name="slug" class="form-control solution_name" id="txt_solution_url_slug" onchange="updateSlug()" maxlength="200" placeholder="Enter slug" required value="<?php echo $slug ?? '' ?>">
 														<span class="helper-text">max length is 200 character</span>
 													</div>
-													
+
 													<div class="form-group">
 														<h5>Tell us about your Solution so potential buyers get excited<span>(Important)</span> <i class="help-icon" data-tippy-placement="right" title="Be Descriptive. Add everything you think which is important"></i></h5>
 														<textarea id="tiny-editor" name="description" rows="5" cols="60" class="form-control"><?php echo $description ?? '' ?></textarea>
@@ -137,12 +137,12 @@
 									</div>
 									<div id="menu1" class="tab-pane">
 										<div class="pt-4">
-											
-										
-										<?php
-										// check file permission 
-										CheckFilePermissionOrgenerateAlert(IMAGES_UPLOAD);
-										?>
+
+
+											<?php
+											// check file permission 
+											CheckFilePermissionOrgenerateAlert(IMAGES_UPLOAD);
+											?>
 										</div>
 										<div class="title_text">
 											<center>
@@ -328,7 +328,7 @@
 												<div class="col-md-6 col-sm-12">
 													<div class="submit-field">
 														<h5 for="price" class="price">View Price ($) <span class='text-danger required'>*</span></h5>
-														<input id="view_buynow" class="form-control" value="<?php echo $price ?? '' ?>" disabled='disabled'>
+														<input name='view_price' id="view_buynow" class="form-control" value="<?php echo $price ?? '' ?>">
 													</div>
 												</div>
 
@@ -338,7 +338,7 @@
 														<div class="submit-field">
 															<h5>Commission Type</h5>
 															<?php
-															$commission_type_1='';
+															$commission_type_1 = '';
 															if (!empty($commission_type)) {
 																if ($commission_type == 1) {
 																	$commission_type_1 = "Fixed";
@@ -363,9 +363,9 @@
 																		<?php endforeach;
 																		?>
 
-																<?php }
-																} else {?>
-																	<option value="1">Fixed</option>				
+																	<?php }
+																} else { ?>
+																	<option value="1">Fixed</option>
 																<?php } ?>
 															</select>
 														</div>
@@ -431,36 +431,36 @@
 													</div>
 												</div>
 												<?php //echo '<pre>';print_r($solution_data);
-													$listing_type_arr = array('Regular' => 1, 'Highlighted' => 2, 'Premium' => 3);?>
-													<div class="col-xl-6 col-md-4">
-														<div class="submit-field">
-															<h5>Select Type</h5>
-															
-															<select class="form-control with-border" name="listing_header_priority" >
+												$listing_type_arr = array('Regular' => 1, 'Highlighted' => 2, 'Premium' => 3); ?>
+												<div class="col-xl-6 col-md-4">
+													<div class="submit-field">
+														<h5>Select Type</h5>
+
+														<select class="form-control with-border" name="listing_header_priority">
 															<?php if (isset($listingOptions)) {
 
-																foreach ($listingOptions as $option) {?>
-																	<option <?php echo 	$solution_data['solution'][0]['listing_header_priority'] == $listing_type_arr[trim($option['listing_name'])] ? 'selected="selected"': '' ?> value="<?php echo $option['listing_id'] ?>"><?php echo $option['listing_name']; ?></option>
-																<?php } 
+																foreach ($listingOptions as $option) { ?>
+																	<option <?php echo 	$solution_data['solution'][0]['listing_header_priority'] == $listing_type_arr[trim($option['listing_name'])] ? 'selected="selected"' : '' ?> value="<?php echo $option['listing_id'] ?>"><?php echo $option['listing_name']; ?></option>
+															<?php }
 															} ?>
-															</select>
-															
-														</div>
+														</select>
+
 													</div>
-													<div class="col-xl-6 col-md-4">
+												</div>
+												<div class="col-xl-6 col-md-4">
 													<div class="submit-field">
 														<h5>Select Sponsorship</h5>
-														
-														<select class="form-control with-border" name="sponsorship_priority" >
-														<option value="">Select Sponsorship </option>
-														<?php if (isset($sponsorOptions)) {
-															
-															foreach ($sponsorOptions as $option) {?>
-																<option <?php echo 	$solution_data['solution'][0]['sponsorship_priority'] == array_search($option['listing_id'], LISTING_HEADER_SPONSORSHIP) ? 'selected="selected"': '' ?> value="<?php echo $option['listing_id'] ?>"><?php echo $option['listing_name']; ?></option>
-															<?php } 
-														} ?>
+
+														<select class="form-control with-border" name="sponsorship_priority">
+															<option value="">Select Sponsorship </option>
+															<?php if (isset($sponsorOptions)) {
+
+																foreach ($sponsorOptions as $option) { ?>
+																	<option <?php echo 	$solution_data['solution'][0]['sponsorship_priority'] == array_search($option['listing_id'], LISTING_HEADER_SPONSORSHIP) ? 'selected="selected"' : '' ?> value="<?php echo $option['listing_id'] ?>"><?php echo $option['listing_name']; ?></option>
+															<?php }
+															} ?>
 														</select>
-														
+
 													</div>
 												</div>
 												<!--  end -->
@@ -617,7 +617,7 @@
 									className: 'btntheme_color_a'
 								}
 							},
-							
+
 						});
 					}
 				})
