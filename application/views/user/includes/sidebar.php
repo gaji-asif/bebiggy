@@ -23,108 +23,140 @@
 
 	/*.sticky+.content {
 		padding-top: 60px;
-	}*/
+		}*/
 
-	.users_header_asif{
-		/*padding: 10px;*/
-		border:2px solid #ffc24d;
-	}
+		.users_header_asif{
+			/*padding: 10px;*/
+			border:2px solid #ffc24d;
+		}
 
-	.padding_left_asif{
-		margin-left: 9%;
-	}
+		.padding_left_asif{
+			margin-left: 9%;
+		}
 
-	.padding_top_asif{
-		margin-top: 3px;
-	}
+		.padding_top_asif{
+			margin-top: 3px;
+		}
 
-	@media screen and (max-width: 700px)
+		@media screen and (max-width: 700px)
+		{
+			.sticky{
+				width: 94%;
+			}
+
+		}
+
+
+
+	/*@media screen and (max-width: 500px)
 	{
-	    .sticky{
-			width: 94%;
+	    li.common_user_header{
+			display: block !important;
 		}
 	    
 	}
-</style>
-<!-- Dashboard Sidebar -->
+
+	
+
+	@media screen and (min-device-width: 510px) and (max-device-width: 1500px) { 
+	   li.common_user_header{
+			display: none;
+		}
+		}*/
+
+
+	</style>
+	<!-- Dashboard Sidebar -->
 
 
 
-<div class="dashboard-sidebar">
-	<div class="dashboard-sidebar-inner" data-simplebar>
-		<div class="dashboard-nav-container" id="dashboard-nav-container">
+	<div class="dashboard-sidebar">
+		<div class="dashboard-sidebar-inner" data-simplebar>
+			<div class="dashboard-nav-container" id="dashboard-nav-container">
 
-			<!-- Responsive Navigation Trigger -->
-			<div class="container mobile_dasboard_logo_with_useranem_a">
-				<div class="row">
+				<!-- Responsive Navigation Trigger -->
+				<div class="container mobile_dasboard_logo_with_useranem_a">
+					<div class="row">
 
 
-					<div class="col-md-6 col-sm-6 col-xs-12 logo_mobile_a">
-						<div class="w-100">
-							<a class="navbar-brand brand-logo-mini text-center" href="<?php echo base_url() ?>">
-								<img src="<?php if (isset($imagesData[0]['invoice_logo'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['invoice_logo']; ?>" alt="logo" width="100%" />
-							</a>
+						<div class="col-md-6 col-sm-6 col-xs-12 logo_mobile_a">
+							<div class="w-100">
+								<a class="navbar-brand brand-logo-mini text-center" href="<?php echo base_url() ?>">
+									<img src="<?php if (isset($imagesData[0]['invoice_logo'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['invoice_logo']; ?>" alt="logo" width="100%" />
+								</a>
+							</div>
 						</div>
+
+						<div class="col-md-6 col-sm-6 col-xs-12 username_a">
+							<div class="user_name">
+								<span class="margin-top-7">Welcome <a href=""><?php if (isset($userdata[0]['username'])) {
+									echo $userdata[0]['username'];
+								} ?></a> !</span>
+							</div>
+						</div>
+
 					</div>
 
-					<div class="col-md-6 col-sm-6 col-xs-12 username_a">
-						<div class="user_name">
-							<span class="margin-top-7">Welcome <a href=""><?php if (isset($userdata[0]['username'])) {
-																				echo $userdata[0]['username'];
-																			} ?></a> !</span>
-						</div>
-					</div>
+
 
 				</div>
-
-
-
-			</div>
-			<a href="#" class="dashboard-responsive-nav-trigger mobile_dashboard_a">
-				<span class="hamburger hamburger--collapse">
-					<span class="hamburger-box">
-						<span class="hamburger-inner"></span>
+				<a href="#" onclick="show_user_headre();" class="dashboard-responsive-nav-trigger mobile_dashboard_a">
+					<span class="hamburger hamburger--collapse">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
 					</span>
-				</span>
-				<span class="trigger-title">Dashboard Navigation</span>
-			</a>
+					<span class="trigger-title mobile_dashboard_a">Dashboard Navigation</span>
+				</a>
 
-			<!-- Navigation -->
-			<div class="dashboard-nav mobiledashboard_a">
-				<div class="dashboard-nav-inner">
+				<script type="text/javascript">
+
+					function show_user_headre(){
+						$('.common_user_header').show();
+					}
+
+		  // $(".mobile_dashboard_a").click(function(){
+		  //   alert("asif");
+		  // });
+
+		</script>
+
+		<!-- Navigation -->
+		<div class="dashboard-nav mobiledashboard_a">
+			<div class="dashboard-nav-inner">
 
 
-					<div class="w-100 desktopdashboard_a">
-						<a class="navbar-brand brand-logo-mini text-center" href="<?php echo base_url() ?>">
-							<img src="<?php if (isset($imagesData[0]['invoice_logo'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['invoice_logo']; ?>" alt="logo" width="100%" />
-						</a>
-					</div>
-					<hr>
+				<div class="w-100 desktopdashboard_a">
+					<a class="navbar-brand brand-logo-mini text-center" href="<?php echo base_url() ?>">
+						<img src="<?php if (isset($imagesData[0]['invoice_logo'])) echo base_url() . ADMIN_IMAGES . $imagesData[0]['invoice_logo']; ?>" alt="logo" width="100%" />
+					</a>
+				</div>
+				<hr>
 
 
 
-					<div class="user_name desktopdashboard_a">
-						<span class="margin-top-7">Welcome <a href=""><?php if (isset($userdata[0]['username'])) {
-																			echo $userdata[0]['username'];
-																		} ?></a> !</span>
-					</div>
+				<div class="user_name desktopdashboard_a">
+					<span class="margin-top-7">Welcome <a href=""><?php if (isset($userdata[0]['username'])) {
+						echo $userdata[0]['username'];
+					} ?></a> !</span>
+				</div>
 
-					<?php if (!empty($this->session->userdata('role'))) { ?> <?php if ($this->session->userdata('role') ==  'admin') { ?>
-							<ul>
-								<li class="active bg-dark admin-hover"><a href="<?php echo site_url('user/admin-login'); ?>" class="text-white"><i class="active text-white icon-material-outline-alarm-add"></i> Back to admin panel</a></li>
+				<?php if (!empty($this->session->userdata('role'))) { ?> <?php if ($this->session->userdata('role') ==  'admin') { ?>
+					<ul>
+						<li class="active bg-dark admin-hover"><a href="<?php echo site_url('user/admin-login'); ?>" class="text-white"><i class="active text-white icon-material-outline-alarm-add"></i> Back to admin panel</a></li>
 
-							</ul>
-						<?php  } ?>
-					<?php  } ?>
-
-					<ul data-submenu-title="Start">
-						<li><a href="<?php echo site_url('user/dashboard'); ?>"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-						<li><a href="<?php echo site_url('user/become-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Become Expert</a></li>
-						<!-- <li><a href="<?php echo site_url('user/contact-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Contact Expert</a></li> -->
-						<li <?php if (in_array($this->uri->segment(1), ['chat'])) echo "class='active'" ?>><a href="<?php echo site_url('chat'); ?>"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag"><?php echo $messageCount; ?></span></a></li>
-						<li <?php if (in_array($this->uri->segment(1), ['user-membership-list'])) echo "class='active'" ?>><a href="<?php echo site_url('user-membership-list'); ?>"> <i class="fa fa-id-card" aria-hidden="true"></i> Membership Listing</a></li>
 					</ul>
-					<?php $this->load->view('main/includes/create-lisiting-option-backend');
+				<?php  } ?>
+			<?php  } ?>
+
+			<ul data-submenu-title="Start">
+				<li><a href="<?php echo site_url('user/dashboard'); ?>"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+				<li><a href="<?php echo site_url('user/become-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Become Expert</a></li>
+				<!-- <li><a href="<?php echo site_url('user/contact-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Contact Expert</a></li> -->
+				<li <?php if (in_array($this->uri->segment(1), ['chat'])) echo "class='active'" ?>><a href="<?php echo site_url('chat'); ?>"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag"><?php echo $messageCount; ?></span></a></li>
+				<li <?php if (in_array($this->uri->segment(1), ['user-membership-list'])) echo "class='active'" ?>><a href="<?php echo site_url('user-membership-list'); ?>"> <i class="fa fa-id-card" aria-hidden="true"></i> Membership Listing</a></li>
+			</ul>
+			<?php $this->load->view('main/includes/create-lisiting-option-backend');
 					/*
 						<ul data-submenu-title="Organize and Manage">
 							<li  <?php if(in_array($this->uri->segment(2),['create_listings','manage_offers','manage_solutions'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-business-center"></i> Listings</a>
@@ -170,47 +202,137 @@
 							<li    <?php if(in_array($this->uri->segment(2),['invoices'])) echo "class='active'" ?> ><a href="<?php echo site_url('user/invoices'); ?>"><i class="mdi mdi-fax"></i> Invoices </a></li>
 						</ul>
 						*/ ?>
-					<ul data-submenu-title="Account">
-						<li <?php if (in_array($this->uri->segment(2), ['withdrawals'])) echo "class='active'" ?>><a href="<?php echo site_url('user/withdrawals'); ?>"><i class="mdi mdi-currency-usd"></i> Withdrawals</a></li>
-						<li <?php if (in_array($this->uri->segment(2), ['user_settings'])) echo "class='active'" ?>><a href="<?php echo site_url('user/user_settings'); ?>"><i class="icon-material-outline-settings"></i> Settings</a></li>
-						<li <?php if (in_array($this->uri->segment(2), ['change_password'])) echo "class='active'" ?>><a href="<?php echo site_url('user/change_password'); ?>"><i class="icon-material-outline-lock"></i> Change Password</a></li>
-						<li><a href="<?php echo site_url('user/logout'); ?>"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
 
-						<li><a href="<?php echo site_url('user/logout'); ?>"><i class="icon-material-outline-power-settings-new"></i> test</a></li>
-					</ul>
+						<ul style="display: none;" class="common_user_header">
+							
+							
+							<li class=""><a href="#"><i class="mdi mdi-gavel"></i> Website For Sale</a>
+								<ul>
+									<li><a href="http://52.13.172.193/product-category/shopify-dropship-websites-for-sale">Shopify Dropship Websites For Sale</a></li>
+									<li><a href="http://52.13.172.193/product-category/shopify-premium-dropship-websites-for-sale">Shopify Premium Dropship Websites For Sale</a></li>
+									
+									<li><a href="http://52.13.172.193/product-category/exclusive-shopify-dropship-stores-for-sale">Exclusive Shopify Dropship Stores For Sale</a></li>
+								</ul>
+							</li>
+
+							<li class=""><a href="#"><i class="mdi mdi-gavel"></i> Dropshipping</a>
+								<ul>
+									<li><a href="http://52.13.172.193/dropshipping-products">Winning Products</a></li>
+									<li><a href="http://52.13.172.193/dropshipping-websites">Dropshipping Websites</a></li>
+									
+									<li><a href="http://52.13.172.193/shopify-stores-for-sale">Shopify Stores</a></li>
+								</ul>
+							</li>
+
+							<li class=""><a href="#"><i class="mdi mdi-gavel"></i> Learn</a>
+								<ul>
+									<li><a href="http://52.13.172.193/standard-courses">Standard Courses</a></li>
+									<li><a href="http://52.13.172.193/special-courses">Special Courses</a></li>
+									
+									
+								</ul>
+							</li>
+
+							<li class=""><a href="#"><i class="mdi mdi-gavel"></i> FAQ</a>
+								
+
+								<ul>
+									<li><a class="" href="http://52.13.172.193/faq-3/how-to-make-money-drop-shipping">How To Make Money Drop Shipping</a></li>
+
+									<li class="">
+										<a class="" href="http://52.13.172.193/faq-3/how-to-start-an-online-shop">How To Start An Online Shop</a>
+									</li>
+									<li class="">
+										<a class="" href="http://52.13.172.193/faq-3/how-to-start-drop-shipping">How To Start Drop Shipping</a>
+									</li>
+									<li class="">
+										<a class="" href="http://52.13.172.193/faq-3/what-is-drop-shipping">What Is Drop Shipping</a>
+									</li>
+
+								</ul>
+
+							</li>
+
+
+							<li><a href="#"><i class="mdi mdi-gavel"></i> Marketplace</a>
+								<ul>
+									<li class="">
+
+			<a class="" href="http://52.13.172.193/domains">Domain</a>
+		</li>
+		<li class="">
+			<a class="" href="http://52.13.172.193/websites">Website</a>
+		</li>
+		<li class="">
+			<a class="" href="http://52.13.172.193/businesses">Business</a>
+		</li>
+		<li class="">
+			<a class="" href="http://52.13.172.193/apps">App</a>
+		</li>
+		<li class="">
+			<a class="" href="http://52.13.172.193/solution">Solution</a>
+		</li>
+								</ul>
+							</li>
+
+							<li><a href="#"><i class="mdi mdi-gavel"></i> About</a>
+								<ul>
+									<li class="">
+			<a class="" href="http://52.13.172.193/get-started">How To Get Started?</a>
+		</li>
+								</ul>
+							</li>
+
+							<li><a href="http://52.13.172.193/blog"><i class="mdi mdi-gavel"></i> Blog</a>
+							</li>
+
+
+
+
+
+							<ul data-submenu-title="Account">
+								<li <?php if (in_array($this->uri->segment(2), ['withdrawals'])) echo "class='active'" ?>><a href="<?php echo site_url('user/withdrawals'); ?>"><i class="mdi mdi-currency-usd"></i> Withdrawals</a></li>
+								<li <?php if (in_array($this->uri->segment(2), ['user_settings'])) echo "class='active'" ?>><a href="<?php echo site_url('user/user_settings'); ?>"><i class="icon-material-outline-settings"></i> Settings</a></li>
+								<li <?php if (in_array($this->uri->segment(2), ['change_password'])) echo "class='active'" ?>><a href="<?php echo site_url('user/change_password'); ?>"><i class="icon-material-outline-lock"></i> Change Password</a></li>
+								<li><a href="<?php echo site_url('user/logout'); ?>"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+
+
+
+
+							</ul>
+
+						</div>
+					</div>
+					<!-- Navigation / End -->
 
 				</div>
 			</div>
-			<!-- Navigation / End -->
-
 		</div>
-	</div>
-</div>
-<div class="dashboard-content-container" data-simplebar>
-	<div class="dashboard-content-inner">
-		
-		<!-- Dashboard Sidebar / End -->
+		<div class="dashboard-content-container" data-simplebar>
+			<div class="dashboard-content-inner">
 
-	    <!-- 	// started BY asif -->
+				<!-- Dashboard Sidebar / End -->
 
-		<div class="users_header_asif" id="users_header_asif">
+				<!-- 	// started BY asif -->
 
-			<link href="<?php echo base_url(); ?>assets/css_asif/css/custom_style.css?v=<?php echo time(); ?>" rel="stylesheet" />
-			<link href="<?php echo base_url(); ?>assets/css_asif/designer_css/custom_style.css" rel="stylesheet" />
-			<link href="<?php echo base_url(); ?>assets/css_asif/css/custom_responsive_style.css?v=<?php echo time(); ?>" rel="stylesheet" />
-			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/iconfonts/font-awesome/css/font-awesome.min.css" />
+				<div class="users_header_asif" id="users_header_asif">
 
-				  
+					<link href="<?php echo base_url(); ?>assets/css_asif/css/custom_style.css?v=<?php echo time(); ?>" rel="stylesheet" />
+					<link href="<?php echo base_url(); ?>assets/css_asif/designer_css/custom_style.css" rel="stylesheet" />
+					<link href="<?php echo base_url(); ?>assets/css_asif/css/custom_responsive_style.css?v=<?php echo time(); ?>" rel="stylesheet" />
+					<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/iconfonts/font-awesome/css/font-awesome.min.css" />
 
-			 
-			  
 
-<header>
-	<div class="desktop_menu">
-		<div class="header_custom py-1">
-			<div class="container p-0">
-				<div class="col-sm-12 p-0 padding_left_asif">
-					<nav class="navbar navbar-expand-sm">
+
+
+
+
+					<header>
+						<div class="desktop_menu">
+							<div class="header_custom py-1">
+								<div class="container p-0">
+									<div class="col-sm-12 p-0 padding_left_asif">
+										<nav class="navbar navbar-expand-sm">
 						<!-- <div class="col-sm-2 p-0">
 							<a class="navbar-brand" href="<?php echo site_url(); ?>">
 								
@@ -436,33 +558,33 @@
 														<?php else : ?>
 															<!-- <li class="firstulli_li_a active d-flex justify-content-end align-items-right pr-0">
 															<a class="free_register_a" style="color: #3abffd; margin-right: 5px;" href="<?php echo site_url($key); ?>"><?php echo ucwords($val); ?></a>
-															</li> -->
+														</li> -->
 
-														<?php endif; ?>
-													<?php endforeach; ?>
-												<?php endif; ?>
-											</ul>
-											<!---=============== -->
+													<?php endif; ?>
+												<?php endforeach; ?>
+											<?php endif; ?>
+										</ul>
+										<!---=============== -->
 
-										</div><!-- /.navbar-collapse -->
-									</nav>
+									</div><!-- /.navbar-collapse -->
+								</nav>
 
-								</div>
-								<div class="col-md-2 col-sm-12 d-flex justify-content-end align-items-center pr-0">
-									<?php if (empty($this->session->userdata('user_id'))) { ?>
-										<a href="<?php echo site_url('signup'); ?>" class="free_register_a">Register Free <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-									<?php } ?>
-								</div>
+							</div>
+							<div class="col-md-2 col-sm-12 d-flex justify-content-end align-items-center pr-0">
+								<?php if (empty($this->session->userdata('user_id'))) { ?>
+									<a href="<?php echo site_url('signup'); ?>" class="free_register_a">Register Free <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				<div class="mobile_menu">
-					<div class="row tablet_menu">
-						<div class="container">
-							<div class="col-md-12">
-								<div class="menu_with_logo_tablet d-flex justify-content-between">
+			<div class="mobile_menu" style="display: none;">
+				<div class="row tablet_menu">
+					<div class="container">
+						<div class="col-md-12">
+							<div class="menu_with_logo_tablet d-flex justify-content-between">
 									<!-- <a class="navbar-brand" href="<?php echo site_url(); ?>">
 										
 										<img src="<?php echo site_url('assets/img/admin/Logo_-small.png'); ?>" alt="logo">
@@ -578,13 +700,13 @@
 
 													<?php if (!empty($this->session->userdata('user_id'))) { ?>
 
-													<li class="firstulli_li_a active">
-														<a href="<?php echo site_url($key); ?>"><?php echo ucwords($val); ?></a>
-													</li>
+														<li class="firstulli_li_a active">
+															<a href="<?php echo site_url($key); ?>"><?php echo ucwords($val); ?></a>
+														</li>
 
-													<div class="dropdown-divider"></div>
+														<div class="dropdown-divider"></div>
 
-												<?php } ?>
+													<?php } ?>
 
 													
 												<?php endif; ?>
@@ -712,11 +834,13 @@
 						<?php } ?> 
 
 					</header>
-		</div>
+				</div>
 
-		<!-- // ended by asif -->
-      <!--  <script src="<?php echo base_url(); ?>assets/vendor/js/jquery-3.3.1.min.js"></script> -->
-		<script>
+				<!-- // ended by asif -->
+				<!--  <script src="<?php echo base_url(); ?>assets/vendor/js/jquery-3.3.1.min.js"></script> -->
+
+
+				<script>
 
 		// When the user scrolls the page, execute myFunction
 		window.onscroll = function() {myFunction()};
@@ -731,23 +855,27 @@
 
 		// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 		function myFunction() {
-		  if (window.pageYOffset > sticky) {
-		    header.classList.add("sticky");
-		    header.classList.add("width_for_sticky");
-		    
-		  } else {
-		    header.classList.remove("sticky");
-		    header.classList.remove("width_for_sticky");
-		  }
+			if (window.pageYOffset > sticky) {
+				header.classList.add("sticky");
+				header.classList.add("width_for_sticky");
+
+			} else {
+				header.classList.remove("sticky");
+				header.classList.remove("width_for_sticky");
+			}
 
 		  // if (window.pageYOffset > top_header_sticky) {
 		  //   header.classList.add("sticky");
 		  //   header.classList.add("width_for_sticky");
-		    
+
 		  // } else {
 		  //   header.classList.remove("sticky");
 		  //   header.classList.remove("width_for_sticky");
 		  // }
 		}
+
 		
-		</script>
+
+		
+		
+	</script>
