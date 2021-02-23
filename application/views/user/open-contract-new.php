@@ -79,8 +79,8 @@
 								<div class="headline">
 									<h3>Transaction History</h3>
 								</div>
-								<div id="negotiations_table" class="bs-example container pb-5" data-example-id="striped-table">
-									<table class="transaction_table table table-striped table-bordered table-hover">
+								<div id=" table-responsive" class="bs-example container pb-5" data-example-id="striped-table">
+									<table class=" table-responsive transaction_table table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>#</th>

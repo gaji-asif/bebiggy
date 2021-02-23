@@ -81,7 +81,7 @@
 
         <?php } else { ?>
             <div class="container">
-                <div class="row domain_row_selling_a">
+                <div class="row domain_row_selling_a pb-5">
                     <!-- <div class="title_ecommerce"> -->
                     <div class="w-100 text-center pb-3">
                         <center>
