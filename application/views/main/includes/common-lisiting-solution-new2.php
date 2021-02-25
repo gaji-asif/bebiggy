@@ -4,6 +4,7 @@
 
 if (!empty(@$commonData)) {
 	$common_listing = $commonData;
+
 	// pre($common_listing , 1);
 ?>
 

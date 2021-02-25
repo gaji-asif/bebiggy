@@ -2308,6 +2308,10 @@ class Main extends CI_Controller
 		$data['og_site_name']           = $this->lang->line('og_site_name');
 		$data['twitter_description']    = $this->lang->line('site_name');
 		$data['twitter_title']          = $this->lang->line('twitter_description');
+
+		// var_dump($data['commonData']);
+		// var_dump($data['commonData2']);
+		// exit;
 		if (!empty($data['commonData'])) {
 			$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['domain'];
 			$data['commonData']['user_permission'] 		= fileCache(getUserSlug("_permission"), " ", "get")['website'];

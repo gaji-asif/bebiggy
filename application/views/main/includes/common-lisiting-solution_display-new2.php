@@ -52,10 +52,12 @@ foreach ($common_listing as $ad) {
 
 	// pre($ad , 1);
 	if (!empty($ad['id'])) {
+		// var_dump($ad);
+
 ?>
 		<?php
 
-		if (!isset($ad['sponsorship_priority']) && !isset($ad['listing_header_priority'])) {
+		if (!isset($ad['sponsorship_priority']) && (isset($ad['listing_header_priority']) && $ad['listing_header_priority'] == 1)) {
 
 
 		?>
