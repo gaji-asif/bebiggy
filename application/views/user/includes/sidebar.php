@@ -47,6 +47,15 @@
 		}
 
 
+	/*	@media screen and (min-device-width: 510px) and (max-device-width: 1500px) { 
+	  		.sticky{
+				width: 94%;
+			}
+		}*/
+
+
+
+
 
 	/*@media screen and (max-width: 500px)
 	{
