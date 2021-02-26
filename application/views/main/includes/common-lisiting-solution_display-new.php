@@ -186,14 +186,16 @@ foreach ($common_listing as $ad) {
 						<div class="price_withvalue_a_mobile">
 							<?php if (!empty($common_listing['user_permission']['price'])  || $ad['user_id'] == $this->session->userdata('user_id')) {  ?>
 								<div class="price">
+									<span class="pricetext d-block">Price</span>
+
 									<span class="cutting_text "><del>
-											<?php if (!empty($ad['website_discountprice'])) { ?>
+											<?php if (!empty($ad['original_buynowprice'])) { ?>
 												<?php if (isset($default_currency)) echo $default_currency;
-												else echo '$'; ?><?php echo $ad['website_discountprice']; ?>
+												else echo '$'; ?><?php echo $ad['original_buynowprice']; ?>
 											<?php } ?></del>
 									</span>
 									<div class="price_with_a">
-										<span class="pricetext d-block">Price</span>
+										<!-- <span class="pricetext d-block">Price</span> -->
 										<?php if (!empty($ad['price'])) { ?>
 											<span class="price_text"><?php if (isset($default_currency)) echo $default_currency;
 																		else echo '$'; ?><?php if (isset($ad['price'])) echo number_format(floatval($ad['price']), 2);
@@ -221,22 +223,25 @@ foreach ($common_listing as $ad) {
 							<div class="desktop_price_a">
 								<div class="price">
 									<?php
-									if (!empty($ad['website_discountprice'])) {
+									if (!empty($ad['original_buynowprice'])) {
 										$show_price_label++;
 									?>
+										<span style=" padding-top: 6px; margin-bottom: 10px;margin-right:5px; font-size: 14px;font-weight: bold;">Price </span>
 										<span class="cutting_text">
 											<del><?php if (isset($default_currency)) echo $default_currency;
 													else echo '$'; ?>
-												<?php echo $ad['website_discountprice']; ?>
+												<?php echo $ad['original_buynowprice']; ?>
 											</del></span>
-									<?php } else {
-									?> <span class="cutting_text invisible"><del>$2625</del></span>
+
 									<?php } ?>
 
 									<?php if (!empty($ad['price'])) {
 										$show_price_label++;
 									?>
-										<span style="font-size: 20px; padding-top: 1px; margin-bottom: 10px;">Price: </span>
+										<?php if (empty($ad['original_buynowprice'])) { ?>
+											<span style=" padding-top: 6px; margin-bottom: 10px;margin-right:5px; font-size: 14px;font-weight: bold;">Price </span>
+										<?php } ?>
+										<!-- <span style="font-size: 20px; padding-top: 1px; margin-bottom: 10px;">Price: </span> -->
 										<span class="price_text"> <?php if (isset($default_currency)) echo $default_currency;
 																	else echo '$'; ?><?php if (isset($ad['price'])) echo number_format(floatval($ad['price']), 2);
 																						else echo number_format(floatval($ad['price']), 2);  ?></span>

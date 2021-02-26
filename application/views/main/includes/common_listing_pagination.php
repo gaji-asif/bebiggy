@@ -14,7 +14,7 @@
                         <!-- <div class="title_ecommerce"> -->
                         <div class="w-100 text-center mb-3">
                             <center>
-                                <h2><?php echo $this->lang->line($heading); 
+                                <h2><?php echo $this->lang->line($heading);
                                     ?></h2>
                             </center>
                         </div>
