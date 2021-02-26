@@ -38,38 +38,48 @@
 		margin-top: 3px;
 	}
 
-	@media screen and (max-width: 700px) {
-		.sticky {
-			width: 94%;
-		}
-
-	}
-
-
-	/*	@media screen and (min-device-width: 510px) and (max-device-width: 1500px) { 
-	  		.sticky{
-				width: 94%;
-			}
-		}*/
-
-
-
-
-
-	/*@media screen and (max-width: 500px)
-	{
-	    li.common_user_header{
-			display: block !important;
-		}
-	    
-	}
-
 	
 
-	@media screen and (min-device-width: 510px) and (max-device-width: 1500px) { 
-	   li.common_user_header{
+	@media screen and (min-device-width: 100px) and (max-device-width: 699px) { 
+		
+		body{
+			display: none important;
+		}
+		
+		.header_before_banner, .mobile_table{
 			display: none;
 		}
+
+		.text_herder_getnow{
+			display: none;
+		}
+
+		.users_header_asif{
+			display: none;
+		}
+
+
+
+	}
+
+	/*@media screen and (max-width: 700px) {*/
+		@media screen and (min-device-width: 700px) and (max-device-width: 1400px) { 
+		.sticky {
+			width: 72%;
+		}
+
+	}
+
+
+		@media screen and (min-device-width: 1401px) and (max-device-width: 2000px) { 
+	  		.sticky{
+				width: 80%;
+			}
+		}
+
+		/*.header_signin{
+			float: right !important;
+			text-align: right !important;
 		}*/
 </style>
 <!-- Dashboard Sidebar -->
@@ -112,7 +122,7 @@
 						<span class="hamburger-inner"></span>
 					</span>
 				</span>
-				<span class="trigger-title mobile_dashboard_a">Dashboard Navigation</span>
+				<span class="trigger-title mobile_dashboard_a">Menu</span>
 			</a>
 
 			<script type="text/javascript">
@@ -153,61 +163,9 @@
 						<?php  } ?>
 					<?php  } ?>
 
-					<ul data-submenu-title="Start">
-						<li><a href="<?php echo site_url('user/dashboard'); ?>"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-						<li><a href="<?php echo site_url('user/become-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Become Expert</a></li>
-						<!-- <li><a href="<?php echo site_url('user/contact-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Contact Expert</a></li> -->
-						<li <?php if (in_array($this->uri->segment(1), ['chat'])) echo "class='active'" ?>><a href="<?php echo site_url('chat'); ?>"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag"><?php echo $messageCount; ?></span></a></li>
-						<li <?php if (in_array($this->uri->segment(1), ['user-membership-list'])) echo "class='active'" ?>><a href="<?php echo site_url('user-membership-list'); ?>"> <i class="fa fa-id-card" aria-hidden="true"></i> Membership Listing</a></li>
-					</ul>
-					<?php $this->load->view('main/includes/create-lisiting-option-backend');
-					/*
-						<ul data-submenu-title="Organize and Manage">
-							<li  <?php if(in_array($this->uri->segment(2),['create_listings','manage_offers','manage_solutions'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-business-center"></i> Listings</a>
-								<ul>
-									<li><a href="<?php echo site_url('user/create_listings'); ?>">Create a Listing</a></li>
-									<!-- <?php //if (in_array('auction', array_column($options, 'platform'))) { ?>
-										<li><a href="<?php// echo site_url('user/manage_listings'); ?>">Manage Auctions<span class="nav-tag"><?php // echo $listingCount; ?></span></a></li>
-									<?php //} ?> -->
-									<?php if (in_array('classified', array_column($options, 'platform'))) { ?>
-										<li><a href="<?php echo site_url('user/manage_offers'); ?>">Manage Offers<span class="nav-tag"><?php echo $listingOfferCount; ?></span></a></li>
-									<?php } ?>
-									<?php if (empty($listingSolutionCount)) { $listingSolutionCount = 0 ;}?>
-										<li><a href="<?php echo site_url('user/manage_solutions'); ?>">Manage Solutions<span class="nav-tag"><?php echo $listingSolutionCount; ?></span></a></li>
-								</ul>
-							</li>
-							<li   <?php if(in_array($this->uri->segment(2),['pending_offers'])) echo "class='active-submenu'" ?>  ><a href="#"><i class="mdi mdi-gavel"></i> Bids & Offers</a>
-								<ul>
-									<?php if (in_array('auction', array_column($options, 'platform'))) { ?>
-										<li><a href="<?php echo site_url('user/pending_bids'); ?>">My Active Bids</a></li>
-									<?php } ?>
-									<?php if (in_array('classified', array_column($options, 'platform'))) { ?>
-										<li><a href="<?php echo site_url('user/pending_offers'); ?>">My Active Offers</a></li>
-									<?php } ?>
-								</ul>
-							</li>
+					<!-- // Start the web front End menu -->
 
-							<li    <?php if(in_array($this->uri->segment(2),['contract'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-assignment"></i> Open Contracts <span class="nav-tag"><?php echo count($openContracts); ?></span></a>
-								<ul>
-									<?php foreach ($openContracts as $contract) { ?>
-										<li><a href="<?php echo site_url('user/contract/' . $contract['contract_id']); ?>">Contract - #<?php echo $contract['contract_id']; ?> </a></li>
-									<?php } ?>
-								</ul>
-							</li>
-
-							<li    <?php if(in_array($this->uri->segment(2),['closed_contracts'])) echo "class='active-submenu'" ?> ><a href="#"><i class="mdi mdi-briefcase-check"></i> Closed Contracts <span class="nav-tag"><?php echo count($closeContracts); ?></span></a>
-								<ul>
-									<?php foreach ($closeContracts as $contract) { ?>
-										<li><a href="<?php echo site_url('user/closed_contracts/' . $contract['contract_id']); ?>">Contract - #<?php echo $contract['contract_id']; ?> </a></li>
-									<?php } ?>
-								</ul>
-							</li>
-
-							<li    <?php if(in_array($this->uri->segment(2),['invoices'])) echo "class='active'" ?> ><a href="<?php echo site_url('user/invoices'); ?>"><i class="mdi mdi-fax"></i> Invoices </a></li>
-						</ul>
-						*/ ?>
-
-					<ul style="display: none;" class="common_user_header">
+						<ul style="display: none;" class="common_user_header">
 
 
 						<li class=""><a href="#"><i class="mdi mdi-gavel"></i> Website For Sale</a>
@@ -290,8 +248,63 @@
 						<li><a href="http://52.13.172.193/blog"><i class="mdi mdi-gavel"></i> Blog</a>
 						</li>
 
+					</ul>
 
+					<!-- // End the web front End menu -->
 
+					<ul data-submenu-title="Start">
+						<li><a href="<?php echo site_url('user/dashboard'); ?>"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+						<li><a href="<?php echo site_url('user/become-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Become Expert</a></li>
+						<!-- <li><a href="<?php echo site_url('user/contact-expert'); ?>"><i class="icon-material-outline-dashboard"></i> Contact Expert</a></li> -->
+						<li <?php if (in_array($this->uri->segment(1), ['chat'])) echo "class='active'" ?>><a href="<?php echo site_url('chat'); ?>"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag"><?php echo $messageCount; ?></span></a></li>
+						<li <?php if (in_array($this->uri->segment(1), ['user-membership-list'])) echo "class='active'" ?>><a href="<?php echo site_url('user-membership-list'); ?>"> <i class="fa fa-id-card" aria-hidden="true"></i> Membership Listing</a></li>
+					</ul>
+					<?php $this->load->view('main/includes/create-lisiting-option-backend');
+					/*
+						<ul data-submenu-title="Organize and Manage">
+							<li  <?php if(in_array($this->uri->segment(2),['create_listings','manage_offers','manage_solutions'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-business-center"></i> Listings</a>
+								<ul>
+									<li><a href="<?php echo site_url('user/create_listings'); ?>">Create a Listing</a></li>
+									<!-- <?php //if (in_array('auction', array_column($options, 'platform'))) { ?>
+										<li><a href="<?php// echo site_url('user/manage_listings'); ?>">Manage Auctions<span class="nav-tag"><?php // echo $listingCount; ?></span></a></li>
+									<?php //} ?> -->
+									<?php if (in_array('classified', array_column($options, 'platform'))) { ?>
+										<li><a href="<?php echo site_url('user/manage_offers'); ?>">Manage Offers<span class="nav-tag"><?php echo $listingOfferCount; ?></span></a></li>
+									<?php } ?>
+									<?php if (empty($listingSolutionCount)) { $listingSolutionCount = 0 ;}?>
+										<li><a href="<?php echo site_url('user/manage_solutions'); ?>">Manage Solutions<span class="nav-tag"><?php echo $listingSolutionCount; ?></span></a></li>
+								</ul>
+							</li>
+							<li   <?php if(in_array($this->uri->segment(2),['pending_offers'])) echo "class='active-submenu'" ?>  ><a href="#"><i class="mdi mdi-gavel"></i> Bids & Offers</a>
+								<ul>
+									<?php if (in_array('auction', array_column($options, 'platform'))) { ?>
+										<li><a href="<?php echo site_url('user/pending_bids'); ?>">My Active Bids</a></li>
+									<?php } ?>
+									<?php if (in_array('classified', array_column($options, 'platform'))) { ?>
+										<li><a href="<?php echo site_url('user/pending_offers'); ?>">My Active Offers</a></li>
+									<?php } ?>
+								</ul>
+							</li>
+
+							<li    <?php if(in_array($this->uri->segment(2),['contract'])) echo "class='active-submenu'" ?> ><a href="#"><i class="icon-material-outline-assignment"></i> Open Contracts <span class="nav-tag"><?php echo count($openContracts); ?></span></a>
+								<ul>
+									<?php foreach ($openContracts as $contract) { ?>
+										<li><a href="<?php echo site_url('user/contract/' . $contract['contract_id']); ?>">Contract - #<?php echo $contract['contract_id']; ?> </a></li>
+									<?php } ?>
+								</ul>
+							</li>
+
+							<li    <?php if(in_array($this->uri->segment(2),['closed_contracts'])) echo "class='active-submenu'" ?> ><a href="#"><i class="mdi mdi-briefcase-check"></i> Closed Contracts <span class="nav-tag"><?php echo count($closeContracts); ?></span></a>
+								<ul>
+									<?php foreach ($closeContracts as $contract) { ?>
+										<li><a href="<?php echo site_url('user/closed_contracts/' . $contract['contract_id']); ?>">Contract - #<?php echo $contract['contract_id']; ?> </a></li>
+									<?php } ?>
+								</ul>
+							</li>
+
+							<li    <?php if(in_array($this->uri->segment(2),['invoices'])) echo "class='active'" ?> ><a href="<?php echo site_url('user/invoices'); ?>"><i class="mdi mdi-fax"></i> Invoices </a></li>
+						</ul>
+						*/ ?>
 
 
 						<ul data-submenu-title="Account">
