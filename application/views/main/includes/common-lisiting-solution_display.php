@@ -41,6 +41,8 @@
 //  pre($common_listing);
 //  die("---");
 foreach ($common_listing as $ad) {
+	// var_dump($ad['original_buynowprice']);
+	// exit;
 	/*$m++;
 	if($m == 5) die('-===========');
 */	// pre($ad['website_thumbnail'][0]['name'] , 1)
@@ -220,13 +222,15 @@ foreach ($common_listing as $ad) {
 						<div class="desktop_price_a">
 							<div class="price">
 								<?php
-								if (!empty($ad['website_discountprice'])) {
+
+								if (!empty($ad['original_buynowprice'])) {
+
 									$show_price_label++;
 								?>
 									<span class="cutting_text">
 										<del><?php if (isset($default_currency)) echo $default_currency;
 												else echo '$'; ?>
-											<?php echo $ad['website_discountprice']; ?>
+											<?php echo $ad['original_buynowprice']; ?>
 										</del></span>
 								<?php } else {
 								?> <span class="cutting_text invisible"><del>$2625</del></span>

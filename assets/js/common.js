@@ -305,15 +305,38 @@ $("#analyticsViewDrop").change(function() {
 
 function validateInputNumbers(evt) {
     var theEvent = evt || window.event;
+   
     if (theEvent.type === 'paste') {
         evt.preventDefault();
        // key = event.clipboardData.getData('text/plain');
     } else {
         var key = theEvent.keyCode || theEvent.which;
+   
+
         key = String.fromCharCode(key);
     }
     var regex = /[0-9]|\./;
     if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+function validateThisInput(evt) {
+    var theEvent = evt || window.event;
+    console.log(theEvent);
+    if (theEvent.type === 'paste') {
+        evt.preventDefault();
+       // key = event.clipboardData.getData('text/plain');
+    } else {
+        var key = theEvent.keyCode || theEvent.which;
+    console.log(key);
+
+        key = String.fromCharCode(key);
+    }
+    let price = parseInt($('#website_buynowprice_soln').val());
+    let view_price = parseInt($('#view_buynow').val());
+    let obj_view_price = $('#view_buynow');
+    if(price <= view_price) {
         theEvent.returnValue = false;
         if (theEvent.preventDefault) theEvent.preventDefault();
     }
