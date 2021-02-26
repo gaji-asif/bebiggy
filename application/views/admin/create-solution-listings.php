@@ -328,7 +328,7 @@
 												<div class="col-md-6 col-sm-12">
 													<div class="submit-field">
 														<h5 for="price" class="price">View Price ($) <span class='text-danger required'>*</span></h5>
-														<input name='view_price' id="view_buynow" class="form-control" value="<?php echo $price ?? '' ?>">
+														<input name='view_price' id="view_buynow" class="form-control numeric_validation required" value="<?php echo $price ?? '' ?>">
 													</div>
 												</div>
 

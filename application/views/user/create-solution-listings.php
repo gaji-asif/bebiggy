@@ -333,7 +333,8 @@
 													<div class="col-md-6 col-sm-12">
 														<div class="submit-field">
 															<h5 for="price" class="price">View Price ($) <span class='text-danger required'>*</span></h5>
-															<input name="view_price" id="view_buynow" class="form-control" value="<?php echo $price ?? '' ?>">
+															<input name="view_price" id="view_buynow" class="form-control numeric_validation required" value="<?php echo $price ?? '' ?>">
+															<span class="helper-text">View Price value not more then Price value</span>
 														</div>
 													</div>
 													<div id="Sell-Classified-Website" class="row w-100 asing_price_section_a">
@@ -434,7 +435,7 @@
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<?php if (!empty($id)) { ?>
-															<button type="submit" id="solution_step_edit_4" class="btn btn-primary submit_post"> Submit </button><?php } else { ?>
+															<button type="submit" id="solution_step_edit_4" onclick="checkPrice()" class="btn btn-primary submit_post"> Submit </button><?php } else { ?>
 															<button type="submit" id="solution_step4" class="btn btn-primary submit_post">Next</button>
 														<?php } ?>
 													</div>

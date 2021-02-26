@@ -2939,7 +2939,7 @@ class DatabaseOperationsHandler extends CI_Model
 
     public function front_solution_listings($limit = 4, $start = 1, $search = "", $pageName = "", $condition = "")
     {
-        $this->db->select('l1.id, s1.id as solutionId, s1.solution_url, s1.user_id, s1.slug, s1.name as website_BusinessName, s1.description,s1.date, s1.price, s1.delivery_days,  c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type , s1.listing_header_priority');
+        $this->db->select('l1.id, s1.id as solutionId, s1.solution_url, s1.user_id, s1.slug, s1.name as website_BusinessName, s1.description,s1.date, s1.price, s1.delivery_days,  c1.id as category_id,c1.c_name as category ,c2.id as sub_category_id,c2.c_name as sub_category ,s2.c_name as service_type , s1.listing_header_priority, s1.original_buynowprice');
         $this->db->from('tbl_solutions as s1');
         $this->db->order_by('s1.date', 'desc');
 

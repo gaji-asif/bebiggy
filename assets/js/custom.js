@@ -7142,6 +7142,16 @@ $(document).on('click', '#solution_step3', function (e) {
 $(document).on('click', '#solution_step4', function (e) {
     e.preventDefault();
     var form = $('#solutionFormStep4');
+    let price = parseInt($('#website_buynowprice_soln').val());
+    let view_price = parseInt($('#view_buynow').val());
+    $.validator.addMethod("notMoreThen", function (value, element) {
+        if ( price < view_price) {
+            return false;
+        } else {
+            return true;
+        };
+    }, "View Price value not more then Price value");
+
     form.validate();
     if (form.valid()) {
         url = baseUrl + 'user/addSolution'
@@ -7181,7 +7191,28 @@ $(document).on('click', '#solution_step4', function (e) {
 $(document).on('click', '#solution_step_edit_4', function (e) {
     e.preventDefault();
     var form = $('#solutionFormStep4');
-    form.validate();
+    let price = parseInt($('#website_buynowprice_soln').val());
+    let view_price = parseInt($('#view_buynow').val());
+    let trueORFalse = price <view_price ? false : true;
+    console.log(trueORFalse);
+    $.validator.addMethod("notMoreThen", function (value, element) {
+        if ( price < view_price) {
+            return false;
+        } else {
+            return true;
+        };
+    }, "View Price value not more then Price value");
+
+    form.validate(
+       { 
+           rules: {
+            view_price:{
+                notMoreThen:true
+            },
+          },
+        
+        }
+    );
     if (form.valid()) {
         url = baseUrl + 'user/addSolution'
         data = form.serialize();
@@ -7376,7 +7407,26 @@ $(document).on('click', '#solution_step32', function (e) {
 $(document).on('click', '#solution_step42', function (e) {
     e.preventDefault();
     var form = $('#solutionFormStep42');
-    form.validate();
+    let price = parseInt($('#website_buynowprice_soln').val());
+    let view_price = parseInt($('#view_buynow').val());
+    $.validator.addMethod("notMoreThen", function (value, element) {
+        if ( price < view_price) {
+            return false;
+        } else {
+            return true;
+        };
+    }, "View Price value not more then Price value");
+
+    form.validate(
+        { 
+            rules: {
+             view_price:{
+                 notMoreThen:true
+             },
+           },
+         
+         }
+    );
     if (form.valid()) {
         url = baseUrl + 'admin/addSolution'
         data = form.serialize();
@@ -7841,6 +7891,7 @@ $(document).on('submit', '#CourseCategoryForm', function (e) {
 
 function forceNumeric() {
     var $input = $(this);
+    // console.log($input.val().replace(/[^\d]+/g, ''));
     $input.val($input.val().replace(/[^\d]+/g, ''));
 }
 $('body').on('propertychange input', '.numeric_validation', forceNumeric);
@@ -9104,6 +9155,46 @@ function innerFunction($commission_type, $admin_commission, $original_minimumoff
     $("#view_actual").val(parseFloat($website_discountprice).toFixed(2));
 }
 
+function checkPrice()
+{
+    let price = parseInt($('#website_buynowprice_soln').val());
+    let view_price = parseInt($('#view_buynow').val());
+    let obj_view_price = $('#view_buynow');
+    // console.log(view_price < price);
+    trueOrFalse = price < view_price ;
+    if(price < view_price) {
+        obj_view_price.removeClass('valid');
+        obj_view_price.addClass('error');
+        obj_view_price.addClass('required');
+        // obj_view_price.attr("required", true);
+        // console.log(obj_view_price);
+        // obj_view_price[0].setCustomValidity('Required email addressasdasd');
+        // obj_view_price.attr("oninvalid", "this.setCustomValidity('Required!')");
+        // // obj_view_price.attr("oninput", "setCustomValidity('')");
+        // obj_view_price[0].setCustomValidity('View Price value not more then Price value');
+        // alert( obj_view_price[0].checkValidity());
+                    // alert( obj_view_price[0].validationMessage);
+        // obj_view_price[0].attr("oninput", "setCustomValidity('')");
+
+    }
+    else{
+          obj_view_price.attr("oninput", "setCustomValidity('')");
+    }
+}
+
+// $(document).on('click','#solution_step_edit_4',function(){
+//     let price = parseInt($('#website_buynowprice_soln').val());
+//     let view_price = parseInt($('#view_buynow').val());
+//     let obj_view_price = $('#view_buynow');
+//     // console.log(view_price < price);
+//     trueOrFalse = price < view_price ;
+//     if(price < view_price) {
+//         obj_view_price.attr("oninvalid", "this.setCustomValidity('Required!')")
+//     }
+//     else{
+//           obj_view_price.attr("oninput", "setCustomValidity('')");
+//     }
+// });
 
 function showPriceCommissionSoln() {
 
